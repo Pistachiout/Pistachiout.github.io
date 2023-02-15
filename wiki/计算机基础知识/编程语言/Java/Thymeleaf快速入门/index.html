@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Pistachiout的博客</title>
+    
+    
+        <meta name="keywords" content="博客">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="1.什么是ThymeleafThymeleaf是一个XML&#x2F;XHTML&#x2F;HTML5模板引擎，可用于Web与非Web环境中的应用开发，它是一个开源的Java库。Thymeleaf提供了一个用于整合Spring MVC的可选模块，在应用开发中，你可以使用Thymeleaf来完全代替JSP或其他模板引擎，如Velocity、FreeMarker等。Thymeleaf的主要目标在于提供">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pistachiout的博客">
+<meta property="og:url" content="https://pistachiout.github.io/wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/Thymeleaf%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="Pistachiout的博客">
+<meta property="og:description" content="1.什么是ThymeleafThymeleaf是一个XML&#x2F;XHTML&#x2F;HTML5模板引擎，可用于Web与非Web环境中的应用开发，它是一个开源的Java库。Thymeleaf提供了一个用于整合Spring MVC的可选模块，在应用开发中，你可以使用Thymeleaf来完全代替JSP或其他模板引擎，如Velocity、FreeMarker等。Thymeleaf的主要目标在于提供">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210617233419998.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2023-02-15T02:18:08.580Z">
+<meta property="article:modified_time" content="2023-02-15T02:18:09.207Z">
+<meta property="article:author" content="Pistachiout">
+<meta property="article:tag" content="博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210617233419998.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
+    
+
+    
+
+    
+        <link rel="icon" href="../../../../../favicon.ico">
+    
+
+    
+<link rel="stylesheet" href="../../../../libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="../../../../libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="../../../../libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="../../../../css/style.css">
+
+    
+<script src="../../../../../libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="../../../../../libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="../../../../libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="../../../../libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="atom.xml" title="Pistachiout的博客" type="application/atom+xml">
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="../../../../../index.html" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Pistachiout的博客</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="../../../../../index.html">首页</a>
+                
+                    <a class="main-nav-link" href="../../../../../archives">归档</a>
+                
+                    <a class="main-nav-link" href="../../../../../categories">分类</a>
+                
+                    <a class="main-nav-link" href="../../../../../tags">标签</a>
+                
+                    <a class="main-nav-link" href="../../../../../about">关于</a>
+                
+                    <a class="main-nav-link" target="_blank" rel="external nofollow noopener noreferrer" href="https://blog.csdn.net/qq_45808700">CSDN</a>
+                
+                    <a class="main-nav-link" target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/Pistachiout">Github</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="https://www.gravatar.com/avatar/8457c63e134f7b57719a508c3bb5297c">
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '../../../../../content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="../../../../../js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="../../../../../index.html">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="../../../../../archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="../../../../../categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="../../../../../tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="../../../../../about">关于</a></td>
+                
+                    <td><a class="main-nav-link" target="_blank" rel="external nofollow noopener noreferrer" href="https://blog.csdn.net/qq_45808700">CSDN</a></td>
+                
+                    <td><a class="main-nav-link" target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/Pistachiout">Github</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="https://www.gravatar.com/avatar/8457c63e134f7b57719a508c3bb5297c?s=128">
+            <h2 id="name">Pistachiout</h2>
+            <h3 id="title">Designer &amp; Programmer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>wuhan, China</span>
+            <a id="follow" target="_blank" href="https://github.com/Pistachiout/" rel="external nofollow noopener noreferrer">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                53
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                2
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/Pistachiout" target="_blank" title="github" class="tooltip" rel="external nofollow noopener noreferrer">
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://blog.csdn.net/qq_45808700" target="_blank" title="csdn" class="tooltip" rel="external nofollow noopener noreferrer">
+                            <i class="fa fa-csdn"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id="categories">
+        <h3 class="widget-title">
+            <span>分类</span>
+            &nbsp;
+            <a id="allExpand" href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            实用工具
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="../../../../%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/%E4%BD%BF%E7%94%A8nvm%E7%AE%A1%E7%90%86node%E7%89%88%E6%9C%AC%EF%BC%8C%E5%AE%9E%E7%8E%B0%E9%AB%98%E7%89%88%E6%9C%AC%E4%B8%8E%E4%BD%8E%E7%89%88%E6%9C%ACnode%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2/"></a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            算法笔记
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="../../../%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/LeetCode459.%20%E9%87%8D%E5%A4%8D%E7%9A%84%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2/">LeetCode459.重复的子字符串</a></li>  <li class="file"><a href="../../../%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/LeetCode409.%20%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E4%B8%B2/">LeetCode409.最长回文串</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            计算机基础知识
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            操作系统
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="../../../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/P%E3%80%81V%E6%93%8D%E4%BD%9C%E4%B8%8Ec++%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E7%88%B8%E7%88%B8%E6%94%BE%E8%8B%B9%E6%9E%9C%EF%BC%8C%E5%A6%88%E5%A6%88%E6%94%BE%E6%A1%94%E5%AD%90%EF%BC%8C%E4%B8%A4%E4%B8%AA%E5%84%BF%E5%AD%90%E4%B8%93%E5%90%83%E7%9B%98%E5%AD%90%E4%B8%AD%E6%A1%94%E5%AD%90%EF%BC%8C%E4%B8%A4%E4%B8%AA%E5%A5%B3%E5%84%BF%E4%B8%93%E5%90%83%E7%9B%98%E5%AD%90%E4%B8%AD%E8%8B%B9%E6%9E%9C%E9%97%AE%E9%A2%98/"></a></li>  <li class="file"><a href="../../../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Ubuntu%E7%BC%96%E5%88%B6%E6%A8%A1%E6%8B%9F%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E5%AD%90%E7%B3%BB%E7%BB%9F%EF%BC%8C%E7%94%B1%E8%BF%9B%E7%A8%8B%E5%BB%BA%E7%AB%8B%E6%A8%A1%E5%9D%97%E3%80%81%E8%BF%9B%E7%A8%8B%E6%92%A4%E6%B6%88%E6%A8%A1%E5%9D%97%E3%80%81%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%A1%A8%E7%BB%84%E6%88%90%EF%BC%8C%E5%B9%B6%E5%8C%85%E6%8B%AC%E8%BF%9B%E7%A8%8B%E5%88%87%E6%8D%A2%E5%92%8C%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9D%97/"></a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据库
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="../../../%E6%95%B0%E6%8D%AE%E5%BA%93/LeetCode1179.%20%E9%87%8D%E6%96%B0%E6%A0%BC%E5%BC%8F%E5%8C%96%E9%83%A8%E9%97%A8%E8%A1%A8%EF%BC%8C%E4%BD%BF%E7%94%A8group%20by%E4%B8%8Ecase%E8%81%9A%E5%90%88%E5%A4%84%E7%90%86/"></a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            算法笔记
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="../../../%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E7%94%A8Python%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E5%AE%9E%E7%8E%B0%E8%87%B3%E5%B0%917%E7%A7%8D%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"></a></li>  <li class="file"><a href="../../../%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/LeetCode461.%20%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB/"></a></li>  <li class="file"><a href="../../../%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E9%80%92%E5%BD%92+%E5%9B%9E%E6%BA%AF%E6%B3%95/"></a></li>  <li class="file"><a href="../../../%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E5%9B%BE%E7%9A%84%E7%9D%80%E8%89%B2%E9%97%AE%E9%A2%98%EF%BC%8C0-1%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%EF%BC%8C%E5%8D%95%E8%AF%8D%E5%BF%85%E9%A1%BB%E6%8C%89%E7%85%A7%E5%AD%97%E6%AF%8D%E9%A1%BA%E5%BA%8F%EF%BC%8C%E6%89%80%E6%9C%89%E5%AD%A6%E7%94%9F%E4%B8%AD%E7%9A%84%E5%B7%B2%E7%9F%A5%E7%9A%84%E6%9C%8B%E5%8F%8B%E5%9C%88%E6%80%BB%E6%95%B0%EF%BC%8C%E8%AE%A1%E7%AE%97%E7%9F%A9%E9%98%B5%E4%B8%AD%E6%89%80%E6%9C%89%E6%B1%A0%E5%A1%98%E7%9A%84%E5%A4%A7%E5%B0%8F/"></a></li>  <li class="file"><a href="../../../%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E6%83%85%E4%BE%A3%E7%89%B5%E6%89%8B%EF%BC%8C%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C%EF%BC%8C%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F%EF%BC%8C%E5%8D%95%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84Dijkstra%E7%AE%97%E6%B3%95%EF%BC%8C%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E6%9E%84%E9%80%A0%E9%9C%8D%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81/"></a></li>  <li class="file"><a href="../../../%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E6%9C%80%E5%A4%A7%E5%AD%90%E6%AE%B5%E5%92%8C%E9%97%AE%E9%A2%98%EF%BC%8C%E6%8B%BE%E6%8D%A1%E7%A1%AC%E5%B8%81%E9%97%AE%E9%A2%98%EF%BC%8C%20%E7%9F%A9%E9%98%B5%E8%BF%9E%E4%B9%98%E9%97%AE%E9%A2%98%EF%BC%8C%E6%9C%80%E7%9F%AD%E5%85%AC%E5%85%B1%E8%B6%85%E5%BA%8F%E5%88%97%E9%97%AE%E9%A2%98%EF%BC%8C%E6%9C%80%E4%BC%98%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2%E6%A0%91%EF%BC%8C%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA%EF%BC%8C%E5%A4%A9%E5%B9%B3%E7%A7%A4%E9%87%91%E6%9D%A1%E9%97%AE%E9%A2%98%EF%BC%8C%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E8%A7%A3%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/"></a></li>  <li class="file"><a href="../../../%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E9%80%86%E5%BA%8F%E9%97%AE%E9%A2%98%EF%BC%8C%E6%9C%80%E5%A4%A7%E9%97%B4%E9%9A%99%E9%97%AE%E9%A2%98%EF%BC%8C%E6%A3%8B%E7%9B%98%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98%EF%BC%8C%E6%9C%80%E6%8E%A5%E8%BF%91%E7%82%B9%E5%AF%B9%E9%97%AE%E9%A2%98/"></a></li>  <li class="file"><a href="../../../%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E6%9C%89_%E6%97%A0%E9%87%8D%E5%A4%8D%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%EF%BC%8C%E7%9F%A9%E9%98%B5%E6%9F%A5%E6%89%BE%EF%BC%8C%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E4%BD%8D%E6%95%B0%EF%BC%8C%E6%8E%A5%E9%9B%A8%E6%B0%B4%E7%AE%97%E6%B3%95/"></a></li>  <li class="file"><a href="../../../%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/dp%E8%A7%A3%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/"></a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            编程语言
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            GoLang
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="../../GoLang/Golang%E7%89%88LeetCode%E5%9F%BA%E6%9C%AC%E7%AE%97%E6%B3%95%E5%87%BD%E6%95%B0/"></a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Java
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="../%E5%88%86%E5%88%AB%E7%94%A8%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0%E5%9B%9B%E4%B8%AA%E5%8A%A8%E7%89%A9%E7%B1%BB%EF%BC%88%E9%B1%BC%E7%B1%BB%E3%80%81%E9%B8%9F%E7%B1%BB%E3%80%81%E7%88%AC%E8%A1%8C%E7%B1%BB%E3%80%81%E6%98%86%E8%99%AB%E7%B1%BB%EF%BC%89%E7%9A%84%E7%B1%BB%E5%88%AB%E5%92%8C%E5%A4%A9%E8%B5%8B/"></a></li>  <li class="file"><a href="../java%E6%A8%A1%E6%8B%9F%E5%A0%86%E6%A0%88%EF%BC%8C%E6%97%B6%E9%97%B4%E7%B1%BBMyDate%EF%BC%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%93%BE%E8%A1%A8%E8%8A%82%E7%82%B9%E7%B1%BB%EF%BC%8C%E7%B1%BBBankCustomer/"></a></li>  <li class="file"><a href="../%E7%BC%96%E7%A8%8B%E8%AE%A1%E7%AE%971%5E1+2%5E2+3%5E3+4%5E4+5%5E5+%E2%80%A6%E2%80%A6+20%5E20/"></a></li>  <li class="file"><a href="../java%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/"></a></li>  <li class="file"><a href="../%E9%9A%8F%E6%9C%BA%E7%94%9F%E6%88%90100%E4%B8%AA0%E5%88%B0200%E7%9A%84%E6%95%B4%E6%95%B0%20%E7%94%A8%E6%8A%98%E5%8D%8A%E6%9F%A5%E6%89%BE%E6%B3%95%EF%BC%88%E4%BA%8C%E5%88%86%E6%B3%95%EF%BC%89%E6%9F%A5%E6%89%BE50%E6%98%AF%E5%88%9D%E5%A7%8B%E6%95%B0%E6%8D%AE%E7%9A%84%E7%AC%AC%E5%87%A0%E4%B8%AA%E6%95%B0%EF%BC%8C%20%E5%B9%B6%E8%BE%93%E5%87%BA%E6%9F%A5%E6%89%BE%E8%BF%87%E7%A8%8B%EF%BC%88%E5%8D%B3%E5%92%8C%E4%BB%80%E4%B9%88%E6%95%B0%E8%BF%9B%E8%A1%8C%E4%BA%86%E6%AF%94%E8%BE%83%EF%BC%89%E3%80%82/"></a></li>  <li class="file"><a href="../Java%E5%8F%8D%E5%B0%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"></a></li>  <li class="file"><a href="../%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AArandomValue%E5%80%BC%E7%9A%84%E6%AF%94%E8%BE%83%E5%99%A8%EF%BC%8C%E7%94%9F%E6%88%90%E4%B8%80%E5%89%AF%E7%89%8C%E5%90%8E%E7%94%A8%E6%AD%A4%E6%AF%94%E8%BE%83%E5%99%A8%E6%B4%97%E7%89%8C%EF%BC%8C%E7%84%B6%E5%90%8E%E8%BE%93%E5%87%BA%E6%B4%97%E5%A5%BD%E7%9A%84%E6%95%B4%E5%89%AF%E7%89%8C%E3%80%82/"></a></li>  <li class="file"><a href="../%E8%BE%93%E5%85%A5%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AD%90%E7%9B%AE%E5%BD%95%EF%BC%8C%E7%BC%96%E7%A8%8B%E5%BA%8F%E5%B0%86%E5%85%B6%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E5%86%85%E5%AE%B9%E7%9A%84%E5%90%8D%E5%AD%97%E8%BE%93%E5%87%BA/"></a></li>  <li class="file"><a href="../%E7%94%A8Java%20I0%20api%E5%B0%86SomeData.txt%E5%85%B6%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%87%BA%EF%BC%8C%E8%AE%A1%E7%AE%97%E5%87%BA%E6%AF%8F%E4%B8%80%E8%A1%8C%E7%9A%84%E5%90%8E4%E5%88%97%E6%95%B0%E6%8D%AE%E7%9A%84%E5%B9%B3%E5%9D%87%E5%80%BC%EF%BC%8C%E5%AD%98%E6%94%BE%E5%88%B0%E6%96%B0%E6%96%87%E4%BB%B6AvgSomeData.txt%E6%96%87%E4%BB%B6%E4%B8%AD%20(1)/"></a></li>  <li class="file"><a href="../%E6%B3%9B%E5%9E%8B%E9%9B%86%E5%90%88%E7%B1%BB%E4%B8%AD%E7%9A%84%E9%93%BE%E8%A1%A8%E7%B1%BB%E9%9A%8F%E6%9C%BA%E4%BA%A7%E7%94%9F100%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B4%E6%95%B0%EF%BC%88%E5%8D%95%E8%AF%8D%EF%BC%89%E7%9A%84%E9%93%BE%E8%A1%A8/"></a></li>  <li class="file"><a href="../%E6%95%B0%E7%BB%84%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA50%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%A0%86%E6%A0%88%EF%BC%8C%E4%BD%BF%E7%94%A8%E5%A0%86%E6%A0%88%EF%BC%8C%E5%B0%86%E4%B8%AD%E7%BC%80%E7%AE%97%E6%9C%AF%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BD%AC%E6%8D%A2%E6%88%90%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E3%80%82/"></a></li>  <li class="file"><a href="../%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E5%B0%8F%E8%8B%B1%E6%B1%89%E8%AF%8D%E5%85%B8%EF%BC%8C%E5%85%B6%E4%B8%AD%E8%8B%B1%E6%96%87%E5%8D%95%E8%AF%8D%E7%9A%84%E4%B8%AA%E6%95%B0%E4%B8%BA30%EF%BC%88%E5%8D%95%E8%AF%8D%E5%8F%AF%E8%87%AA%E5%B7%B1%E4%BB%BB%E9%80%89%EF%BC%89%EF%BC%8C%E4%BB%8E%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%E5%8D%95%E8%AF%8D%EF%BC%8C%E7%A8%8B%E5%BA%8F%E5%B0%86%E5%8D%95%E8%AF%8D%E7%9A%84%E4%B8%AD%E6%96%87%E8%A7%A3%E9%87%8A%E8%BE%93%E5%87%BA%EF%BC%8C%E8%8B%A5%E6%B2%A1%E6%9C%89%E6%89%BE%E5%88%B0%EF%BC%8C%E5%88%99%E8%BE%93%E5%87%BA%EF%BC%9Anot%20found%20in%20our%20dictionary%EF%BC%81/"></a></li>  <li class="file"><a href="../%E9%80%92%E5%BD%92+%E5%9B%9E%E6%BA%AF%E6%B3%95/"></a></li>  <li class="file"><a href="../Shiro%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"></a></li>  <li class="file active"><a href></a></li>  <li class="file"><a href="../SSM%E9%A1%B9%E7%9B%AE%E4%B8%8A%E4%BC%A0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/"></a></li>  <li class="file"><a href="../IDEA%20web%E9%A1%B9%E7%9B%AE%E6%9C%AC%E5%9C%B0%E7%83%AD%E9%83%A8%E7%BD%B2/"></a></li>  <li class="file"><a href="../IDEA%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93/"></a></li>  <li class="file"><a href="../MyBatis%20Plus%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"></a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            python
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="../../python/%E5%88%A9%E7%94%A8python%E7%88%AC%E5%8F%96%E6%96%B0%E5%9E%8B%E5%86%A0%E7%8A%B6%E8%82%BA%E7%82%8E%E7%96%AB%E6%83%85%E5%8F%91%E7%94%9F%E4%BB%A5%E6%9D%A5%E7%9A%84%E5%AE%9E%E6%97%B6%E6%95%B0%E6%8D%AE%EF%BC%8C%E5%B9%B6%E8%BF%9B%E8%A1%8C%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B1%95%E7%A4%BA%E3%80%82/"></a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            论文研究
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="../../../../%E8%AE%BA%E6%96%87%E7%A0%94%E7%A9%B6/Nginx%E9%AB%98%E5%B9%B6%E5%8F%91%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/"></a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            软件项目
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Android项目
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="../../../../%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE/Android%E9%A1%B9%E7%9B%AE/Android%20UI%E6%8E%A7%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/"></a></li>  <li class="file"><a href="../../../../%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE/Android%E9%A1%B9%E7%9B%AE/Android%E4%BD%BF%E7%94%A8Service%E7%BB%84%E4%BB%B6%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8/"></a></li>  <li class="file"><a href="../../../../%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE/Android%E9%A1%B9%E7%9B%AE/Android%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%BC%82%E6%AD%A5%E6%93%8D%E4%BD%9C%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E8%87%AA%E5%8A%A8%E8%BD%AE%E6%92%AD/"></a></li>  <li class="file"><a href="../../../../%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE/Android%E9%A1%B9%E7%9B%AE/Android%20%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BC%96%E7%A8%8BSQLite%E5%AE%9E%E7%8E%B0%E5%AD%A6%E7%94%9F%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8/"></a></li>  <li class="file"><a href="../../../../%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE/Android%E9%A1%B9%E7%9B%AE/Android%E5%9B%BE%E7%89%87%EF%BC%8C%E8%A7%86%E9%A2%91%EF%BC%8C%E9%9F%B3%E4%B9%90%E9%80%89%E6%8B%A9%E6%92%AD%E6%94%BE%E5%99%A8/"></a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaWeb项目
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="../../../../%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE/JavaWeb%E9%A1%B9%E7%9B%AE/%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%AF%E4%BB%98%E6%A8%A1%E6%8B%9Fdemo/"></a></li>  <li class="file"><a href="../../../../%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE/JavaWeb%E9%A1%B9%E7%9B%AE/%E5%9F%BA%E4%BA%8Essm%E7%9A%84%E5%9C%A8%E7%BA%BF%E6%8F%90%E9%97%AE%E3%80%81%E5%9B%9E%E7%AD%94%E7%B3%BB%E7%BB%9F/"></a></li>  <li class="file"><a href="../../../../%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE/JavaWeb%E9%A1%B9%E7%9B%AE/%E5%9F%BA%E4%BA%8ESSM%E6%A1%86%E6%9E%B6%E7%9A%84%E7%BD%91%E4%B8%8A%E8%B4%AD%E7%89%A9%E9%80%81%E8%B4%A7%E7%B3%BB%E7%BB%9F/"></a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Linux项目
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="../../../../%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE/Linux%E9%A1%B9%E7%9B%AE/UNIX%E7%AE%80%E5%8D%95%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9E%E7%8E%B0/"></a></li>  <li class="file"><a href="../../../../%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE/Linux%E9%A1%B9%E7%9B%AE/Ubuntu%E7%BC%96%E5%88%B6%E6%A8%A1%E6%8B%9F%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E5%AD%90%E7%B3%BB%E7%BB%9F%EF%BC%8C%E7%94%B1%E8%BF%9B%E7%A8%8B%E5%BB%BA%E7%AB%8B%E6%A8%A1%E5%9D%97%E3%80%81%E8%BF%9B%E7%A8%8B%E6%92%A4%E6%B6%88%E6%A8%A1%E5%9D%97%E3%80%81%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%A1%A8%E7%BB%84%E6%88%90%EF%BC%8C%E5%B9%B6%E5%8C%85%E6%8B%AC%E8%BF%9B%E7%A8%8B%E5%88%87%E6%8D%A2%E5%92%8C%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9D%97/"></a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            小型项目
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="../../../../%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE/%E5%B0%8F%E5%9E%8B%E9%A1%B9%E7%9B%AE/C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AE%9E%E8%B7%B5%E2%80%94%E2%80%94%E7%BA%BF%E4%B8%8A%E8%B4%AD%E7%89%A9%E7%B3%BB%E7%BB%9F/"></a></li>  <li class="file"><a href="../../../../%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE/%E5%B0%8F%E5%9E%8B%E9%A1%B9%E7%9B%AE/C++%E9%87%8D%E8%BD%BD%E5%AE%9E%E7%8E%B0m_n_k%E4%B8%89%E7%BB%B4%E7%9F%A9%E9%98%B5%EF%BC%8C%E4%B8%94%E7%9F%A9%E9%98%B5%E5%85%83%E7%B4%A0%E4%B8%BA%E5%A4%8D%E6%95%B0/"></a></li>  <li class="file"><a href="../../../../%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE/%E5%B0%8F%E5%9E%8B%E9%A1%B9%E7%9B%AE/%E8%8A%AF%E7%89%87+%E6%AD%A5%E8%BF%9B%E7%94%B5%E6%9C%BA%E6%A1%A3%E4%BD%8D%E6%8E%A7%E5%88%B6%E5%AE%9E%E9%AA%8C/"></a></li>  <li class="file"><a href="../../../../%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE/%E5%B0%8F%E5%9E%8B%E9%A1%B9%E7%9B%AE/C++%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F%EF%BC%8C%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F%EF%BC%8C%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F%EF%BC%8C%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%EF%BC%8C%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F%E5%AE%9E%E7%8E%B0%E8%B6%85%E5%B8%82%E8%B4%AD%E7%89%A9/"></a></li>  <li class="file"><a href="../../../../%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE/%E5%B0%8F%E5%9E%8B%E9%A1%B9%E7%9B%AE/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%B4%E6%98%8E-%E7%BD%97%E7%90%AA%E6%BA%90-M202276666/"></a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     <li class="file"><a href="../../../../index/">Hello World</a></li>  </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-计算机基础知识/编程语言/Java/Thymeleaf快速入门" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+        
+        
+            <h1 id="1-什么是Thymeleaf"><a href="#1-什么是Thymeleaf" class="headerlink" title="1.什么是Thymeleaf"></a>1.什么是Thymeleaf</h1><p>Thymeleaf是一个XML&#x2F;XHTML&#x2F;HTML5模板引擎，可用于Web与非Web环境中的应用开发，它是一个开源的Java库。Thymeleaf提供了一个用于整合Spring MVC的可选模块，在应用开发中，你可以使用Thymeleaf来完全代替JSP或其他模板引擎，如Velocity、FreeMarker等。Thymeleaf的主要目标在于提供一种可被浏览器正确显示的、格式良好的模板创建方式，因此也可以用作静态建模。你可以使用它创建经过验证的XML与HTML模板，它的特点便是：开箱即用。</p>
+<h1 id="2-Springboot整合thymeleaf"><a href="#2-Springboot整合thymeleaf" class="headerlink" title="2.Springboot整合thymeleaf"></a>2.Springboot整合thymeleaf</h1><p>实现的步骤为：</p>
+<ol>
+<li>创建一个sprinboot项目</li>
+<li>添加thymeleaf的起步依赖</li>
+<li>添加spring web的起步依赖</li>
+<li>编写html 使用thymleaf的语法获取变量对应后台传递的值</li>
+<li>编写controller 设置变量的值到model中</li>
+</ol>
+<h2 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="line">&lt;project xmlns=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span><br><span class="line"> xmlns:xsi=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="line"> xsi:schemaLocation=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span><br><span class="line"> &lt;modelVersion&gt;<span class="number">4.0</span><span class="number">.0</span>&lt;/modelVersion&gt;</span><br><span class="line">​</span><br><span class="line"> &lt;groupId&gt;com.itheima&lt;/groupId&gt;</span><br><span class="line"> &lt;artifactId&gt;springboot-thymeleaf&lt;/artifactId&gt;</span><br><span class="line"> &lt;version&gt;<span class="number">1.0</span>-SNAPSHOT&lt;/version&gt;</span><br><span class="line">​</span><br><span class="line"> &lt;parent&gt;</span><br><span class="line"> &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line"> &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</span><br><span class="line"> &lt;version&gt;<span class="number">2.1</span><span class="number">.4</span>.RELEASE&lt;/version&gt;</span><br><span class="line"> &lt;/parent&gt;</span><br><span class="line">​</span><br><span class="line"> &lt;dependencies&gt;</span><br><span class="line"> &lt;!--web起步依赖</span><br><span class="line"> Tomcat </span><br><span class="line"> Springmvc  引赖Jar包  一个中心 三大组件</span><br><span class="line">--&gt;</span><br><span class="line"> &lt;dependency&gt;</span><br><span class="line"> &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line"> &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line"> &lt;/dependency&gt;</span><br><span class="line">​</span><br><span class="line"> &lt;!--thymeleaf配置--&gt;</span><br><span class="line"> &lt;dependency&gt;</span><br><span class="line"> &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line"> &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;</span><br><span class="line"> &lt;/dependency&gt;</span><br><span class="line"> &lt;/dependencies&gt;</span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建application-yml-并设置thymeleaf的缓存设置，设置为false。"><a href="#创建application-yml-并设置thymeleaf的缓存设置，设置为false。" class="headerlink" title="创建application.yml,并设置thymeleaf的缓存设置，设置为false。"></a>创建application.yml,并设置thymeleaf的缓存设置，设置为false。</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line"> thymeleaf:</span><br><span class="line"> cache: <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<h2 id="在resources中创建templates目录，在templates目录创建index-html-代码如下："><a href="#在resources中创建templates目录，在templates目录创建index-html-代码如下：" class="headerlink" title="在resources中创建templates目录，在templates目录创建index.html,代码如下："></a>在resources中创建templates目录，在templates目录创建index.html,代码如下：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html lang=<span class="string">&quot;ch&quot;</span> xmlns:th=<span class="string">&quot;http://www.thymeleaf.org&quot;</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;meta charset=<span class="string">&quot;UTF-8&quot;</span>&gt;</span><br><span class="line">	&lt;title th:text=<span class="string">&quot;|lookroot-$&#123;title&#125;|&quot;</span>&gt;默认的标题&lt;/title&gt;</span><br><span class="line">	&lt;meta name=<span class="string">&quot;description&quot;</span> th:content=<span class="string">&quot;$&#123;description&#125;&quot;</span>&gt;</span><br><span class="line">	&lt;meta name=<span class="string">&quot;keywords&quot;</span> th:content=<span class="string">&quot;$&#123;keywords&#125;&quot;</span>&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>&lt;html xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;</code>这句声明使用thymeleaf标签<br><code>&lt;title th:text=&quot;$&#123;title&#125;&quot;&gt;默认的标题&lt;/title&gt;</code>这句使用 th:text&#x3D;”${变量名}” 表示 使用thymeleaf获取文本数据，类似于EL表达式。</p>
+<p><code>&lt;title th:text=&quot;|lookroot-$&#123;title&#125;|&quot;&gt;默认的标题&lt;/title&gt;</code>假如我们的 th:text 标签里面需要拼接字符串${title}可以使用||来包裹</p>
+<h2 id="创建controller用于测试后台-设置数据到model中。"><a href="#创建controller用于测试后台-设置数据到model中。" class="headerlink" title="创建controller用于测试后台 设置数据到model中。"></a>创建controller用于测试后台 设置数据到model中。</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">IndexController</span> &#123;</span><br><span class="line">   <span class="meta">@GetMapping(&quot;/index&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">index</span><span class="params">(Model model)</span> &#123;</span><br><span class="line">    model.addAttribute(<span class="string">&quot;title&quot;</span>, <span class="string">&quot;传递的标题&quot;</span>);</span><br><span class="line">    model.addAttribute(<span class="string">&quot;description&quot;</span>, <span class="string">&quot;传递的描述&quot;</span>);</span><br><span class="line">    model.addAttribute(<span class="string">&quot;keywords&quot;</span>, <span class="string">&quot;传递的关键字&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;index&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Thymeleaf常用语法"><a href="#Thymeleaf常用语法" class="headerlink" title="Thymeleaf常用语法"></a>Thymeleaf常用语法</h2><p><img src="https://img-blog.csdnimg.cn/20210617233419998.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="渲染对象"><a href="#渲染对象" class="headerlink" title="渲染对象"></a>渲染对象</h2><p>创建一个基本对象UserVO</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserVO</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="keyword">private</span> Integer sex;</span><br><span class="line">    <span class="keyword">private</span> Boolean isVip;</span><br><span class="line">    <span class="keyword">private</span> Date createTime;</span><br><span class="line">    <span class="keyword">private</span> List&lt;String&gt; tags;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>新建一个方法basic，将user对象传输到页面中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/basicTrain&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">basic</span><span class="params">(Model model)</span> &#123;</span><br><span class="line">    <span class="type">UserVO</span> <span class="variable">userVO</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserVO</span>();</span><br><span class="line">    userVO.setAge(<span class="number">21</span>);</span><br><span class="line">    userVO.setSex(<span class="number">1</span>);</span><br><span class="line">    userVO.setCreateTime(<span class="keyword">new</span> <span class="title class_">Date</span>());</span><br><span class="line">    userVO.setTags(Arrays.asList(<span class="string">&quot;Java&quot;</span>, <span class="string">&quot;PHP&quot;</span>, <span class="string">&quot;Node&quot;</span>));</span><br><span class="line">    userVO.setUsername(<span class="string">&quot;lookroot&quot;</span>);</span><br><span class="line">    model.addAttribute(<span class="string">&quot;user&quot;</span>, userVO);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;basic&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>新建basic.html，此时如果我们想渲染User这个对象的信息我们可以这样</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;h2 th:text=<span class="string">&quot;$&#123;user.getUsername()&#125;&quot;</span>&gt;&lt;/h2&gt;</span><br><span class="line">	&lt;p th:text=<span class="string">&quot;$&#123;user.getAge()&#125;&quot;</span>&gt;&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>也可以将User定义为临时变量，接着使用*{xxx}就能取到值了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div th:object=<span class="string">&quot;$&#123;user&#125;&quot;</span>&gt;</span><br><span class="line">	&lt;h2 th:text=<span class="string">&quot;*&#123;username&#125;&quot;</span>&gt;&lt;/h2&gt;</span><br><span class="line">	&lt;p th:text=<span class="string">&quot;*&#123;age&#125;&quot;</span>&gt;&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>还可以不使用get的方式，直接使用属性名</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;h2 th:text=<span class="string">&quot;$&#123;user.username&#125;&quot;</span> &gt;&lt;/h2&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="th-if使用"><a href="#th-if使用" class="headerlink" title="th:if使用"></a><code>th:if</code>使用</h2><p><code>th:if</code>通过布尔值决定这个元素是否渲染</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p th:<span class="keyword">if</span>=<span class="string">&quot;$&#123;user.isVip&#125;&quot;</span>&gt;会员&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="th-each使用"><a href="#th-each使用" class="headerlink" title="th:each使用"></a><code>th:each</code>使用</h2><p>th:each可以迭代循环出数据，前面我们User对象里面的tags是一个数组，我们来渲染一下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">   &lt;li th:each=<span class="string">&quot;tag:$&#123;user.getTags()&#125;&quot;</span> </span><br><span class="line">       th:text=<span class="string">&quot;$&#123;tag&#125;&quot;</span>&gt;&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<p>状态变量在th:each属性中定义，并且包含以下数据：</p>
+<blockquote>
+<p>当前的迭代索引，从0开始。这是index属性。.<br> 从1开始的当前迭代索引。这是count属性。<br>  迭代变量中元素的总数。这是size财产。<br>每次迭代的iter变量。这是current财产。<br>当前迭代是偶数还是奇数。这些是even&#x2F;odd布尔属性。<br>当前迭代是否是第一个。这是first布尔属性。<br>当前迭代是否为最后一次。这是last布尔属性</p>
+</blockquote>
+<h2 id="th-switch使用"><a href="#th-switch使用" class="headerlink" title="th:switch使用"></a><code>th:switch</code>使用</h2><p>th:switch选择语句</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div th:<span class="keyword">switch</span>=<span class="string">&quot;$&#123;user.getSex()&#125;&quot;</span>&gt;</span><br><span class="line">	&lt;p th:<span class="keyword">case</span>=<span class="string">&quot;&#x27;1&#x27;&quot;</span>&gt;男&lt;/p&gt;</span><br><span class="line">	&lt;p th:<span class="keyword">case</span>=<span class="string">&quot;&#x27;2&#x27;&quot;</span>&gt;女&lt;/p&gt;</span><br><span class="line">	&lt;p th:<span class="keyword">case</span>=<span class="string">&quot;*&quot;</span>&gt;默认&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="url"><a href="#url" class="headerlink" title="url"></a>url</h2><p>如果在springboot中需要引入static目录下的静态资源可以使用@{xxx}的方式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link th:href=<span class="string">&quot;@&#123;/app.css&#125;&quot;</span> rel=<span class="string">&quot;stylesheet&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="JavaScript动态渲染"><a href="#JavaScript动态渲染" class="headerlink" title="JavaScript动态渲染"></a>JavaScript动态渲染</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">th:inline</span>=<span class="string">&quot;javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> user = <span class="comment">/*[[$&#123;user&#125;]]*/</span> &#123;&#125;;</span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(user);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>同理css也是可以的</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">th:inline</span>=<span class="string">&quot;css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-class">.main</span>\ elems &#123;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">text-align</span>: <span class="comment">/*[[$&#123;align&#125;]]*/</span> left;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Thymeleaf碎片（组件）"><a href="#Thymeleaf碎片（组件）" class="headerlink" title="Thymeleaf碎片（组件）"></a>Thymeleaf碎片（组件）</h1><h2 id="th-fragment"><a href="#th-fragment" class="headerlink" title="th:fragment"></a><code>th:fragment</code></h2><p>新建一个component.html,一个文件里面可以写多个碎片，使用<code>th:fragment</code>来定义</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">footer</span> <span class="attr">th:fragment</span>=<span class="string">&quot;com1&quot;</span>&gt;</span></span><br><span class="line">	this is com1</span><br><span class="line"><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">footer</span> <span class="attr">id</span>=<span class="string">&quot;com2&quot;</span>&gt;</span></span><br><span class="line">	this is com2</span><br><span class="line"><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>使用碎片主要有两种方式replace和insert,在index.html中编写</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--replace--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:replace</span>=<span class="string">&quot;~&#123;component::com1&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--insert--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:insert</span>=<span class="string">&quot;~&#123;component::com1&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这两种方式的区别就是，replace会将新标签完全替换原本的标签，也就是说原本写th:replace属性的标签就不会渲染出来，insert是往这个地方插入标签</p>
+<h2 id="直接通过选择器使用"><a href="#直接通过选择器使用" class="headerlink" title="直接通过选择器使用"></a>直接通过选择器使用</h2><p>对于碎片，甚至可以不定义，我们再次添加一个 碎片</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">footer</span> <span class="attr">id</span>=<span class="string">&quot;com2&quot;</span>&gt;</span></span><br><span class="line">	this is com2</span><br><span class="line"><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后使用它</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:insert</span>=<span class="string">&quot;~&#123;component::#com2&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="注释类型"><a href="#注释类型" class="headerlink" title="注释类型"></a>注释类型</h2><p>在碎片里面，我们是可以使用控制传递的数据的，比如上面的User对象，但是开发工具在component.html页面中可能不能识别到User对象，我们可以打一个注释</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--/*@thymesVar id=&quot;user&quot; type=&quot;cn.lookroot.loop.thymeleafdemo.vo.UserVO&quot;*/--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:text</span>=<span class="string">&quot;$&#123;user.getUsername()&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="组件传递参数"><a href="#组件传递参数" class="headerlink" title="组件传递参数"></a>组件传递参数</h2><p>组件也是可以传递数据的</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:fragment</span>=<span class="string">&quot;com3(message)&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span> <span class="attr">th:text</span>=<span class="string">&quot;$&#123;message&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>使用的时候</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:insert</span>=<span class="string">&quot;~&#123;component::com3(&#x27;传递数据&#x27;)&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="局部替换组件"><a href="#局部替换组件" class="headerlink" title="局部替换组件"></a>局部替换组件</h2><p>我们使用一个组件的时候，想要局部替换掉这个组件里面的部分内容该怎么做呢？通过传递参数的方式传递一个组件过来，并把这个组件替换原本的一部分</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:fragment</span>=<span class="string">&quot;com4(message)&quot;</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">p</span> <span class="attr">th:replace</span>=<span class="string">&quot;$&#123;message&#125;&quot;</span>&gt;</span>原本的message<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>使用的时候</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:insert</span>=<span class="string">&quot;~&#123;component::com4(~&#123;::#message&#125;)&#125;&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;message&quot;</span>&gt;</span>替换的message<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="基本对象"><a href="#基本对象" class="headerlink" title="基本对象"></a>基本对象</h1><h2 id="ctx：上下文对象"><a href="#ctx：上下文对象" class="headerlink" title="ctx：上下文对象"></a>ctx：上下文对象</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$&#123;#ctx.request&#125;</span><br><span class="line">$&#123;#ctx.response&#125;</span><br><span class="line">$&#123;#ctx.session&#125;</span><br><span class="line">$&#123;#ctx.servletContext&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="请求-x2F-会话属性"><a href="#请求-x2F-会话属性" class="headerlink" title="请求&#x2F;会话属性"></a>请求&#x2F;会话属性</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$&#123;session.xxx&#125;                 </span><br><span class="line">$&#123;application.xxx&#125;          </span><br><span class="line">$&#123;#request.getAttribute(&#x27;xxx&#x27;)&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="工具类"><a href="#工具类" class="headerlink" title="工具类"></a>工具类</h2><p>在thymeleaf里面是可以直接使用一些Java的函数的，并且你可以通过传递参数的方式把一些自己写的方法传递给页面，在里面调用也是可以的</p>
+<blockquote>
+<p>#dates<br>#calendars<br>#strings<br>#numbers<br>#objects<br>#bools<br>#arrays<br>#lists<br>#sets<br>#maps<br>#aggregates</p>
+</blockquote>
+<p>以日期格式化来举例</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--日期格式化--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">th:text</span>=<span class="string">&quot;$&#123;#dates.format(user.createTime,&#x27;yyyy-MM-dd HH:mm&#x27;)&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="../SSM%E9%A1%B9%E7%9B%AE%E4%B8%8A%E4%BC%A0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    (no title)
+                
+            </div>
+        </a>
+    
+    
+        <a href="../Shiro%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title"></div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Pistachiout &copy; 2023 
+            <a rel="external nofollow noopener noreferrer" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png"></a>
+            <br> Powered by <a href="http://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a>. Theme - <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a>
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="../../../../../libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="../../../../../libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="../../../../../libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="../../../../../libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="../../../../../libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="../../../../../libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="../../../../../libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="../../../../../libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="../../../../../libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="../../../../../libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="../../../../../js/main.js"></script>
+
+
+    </div>
+</body>
+</html>
