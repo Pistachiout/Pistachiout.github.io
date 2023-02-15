@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Pistachiout的网络日志</title>
+  <title>Pistachiout的博客</title>
   
   <subtitle>每天多学一点知识,就少写一行代码</subtitle>
   <link href="https://pistachiout.github.io/atom.xml" rel="self"/>
