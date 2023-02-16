@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-flash.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"pistachiout.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="一、系统的主要目标与功能　 　&amp;emsp;  在本次设计中，考虑到目前疫情反复不断，为了方便群众，超市都推出在线购物并有配送员送货，于是我设计了一个超市在线网上购物送货的系统，这个系统的主要目标是帮助人们在家里购买自己需要的套餐，充值账户，同时该系统能查看自己的历史金额变动记录，也能够撤销前一次操作，这样能够帮助疫情期间的人们快速购物，也能够减少疫情期间出门购物的可能带来的危害。本超市目前">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pistachiout的博客">
+<meta property="og:url" content="https://pistachiout.github.io/wiki/C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AE%9E%E8%B7%B5%E2%80%94%E2%80%94%E7%BA%BF%E4%B8%8A%E8%B4%AD%E7%89%A9%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="Pistachiout的博客">
+<meta property="og:description" content="一、系统的主要目标与功能　 　&amp;emsp;  在本次设计中，考虑到目前疫情反复不断，为了方便群众，超市都推出在线购物并有配送员送货，于是我设计了一个超市在线网上购物送货的系统，这个系统的主要目标是帮助人们在家里购买自己需要的套餐，充值账户，同时该系统能查看自己的历史金额变动记录，也能够撤销前一次操作，这样能够帮助疫情期间的人们快速购物，也能够减少疫情期间出门购物的可能带来的危害。本超市目前">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/29e716d5d65f48d99204337830559ccc.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/26ccc7b527f34157b74efdbf82c669bf.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/47bb147acd374c86b3379b22faaa7771.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/4767464811d04431832e9446cf9e97f3.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c1cb76901ed74fc8b414b58ab9178f6b.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/076a5b76f65747e0adf2116e18e7fa72.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/d9bf52d8586a4a3ab5313936ab14273d.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/5614c4e5f8c64d419ed0105546c0077e.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/a09519a9b8ef4fd0a51aaee7c9b37494.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/f8a55f4b0a7e4fa29d202a895d789934.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/94beb1b41bca43669c0041bb97a01e38.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/b3f91294bfa547348d77f97e5ca6d8a3.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/d41a8aabb9b14d50a2905f208938b4e4.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/1570761ef9b04a728ff8bff0335e279a.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/0f56134ea6184bb68caccb6d60d0581f.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/01b08cd82f314f2cab539df0df2c4d5e.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/ebd822a475e0444b9725b66f5f4a976a.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/68453b4ddf944f9cb77bd6c6af4a1716.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/f9a8ff7ec1c6479bac3c6e234303f760.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/4bb27ae8ffa04ca8b886d4d26e4016f7.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/0ae1595ef22f42f793c7e005c1b9d2dc.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/21b333daa46e4dbe83b4561b37251adc.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/1ec75e41fd7a41569f9929d306e70107.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/513081c9bb1547d3a30cc69ac1c9de5d.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/7d2d5f1b06af45a194a8f1ac53adef07.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/527f6cbe963b46f18d3cc2c57e6ff0d0.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/28ba57e3df484487802f18c70e2daa7d.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/51a47eba58af413c8b58b36b9b428ba5.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/ad34e75290bd4868bbc68dc3a6f238dc.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/8e18d18db0d744a180e21fcf5cc097e5.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/48e55a9cdaa544289983980de04c5002.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/9039bf56cf2744739f2bf992cc152bb9.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/f9b1baa6ea3040f897926adb72b90ce0.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/bccef95d0a2841c089aa32e9f61f34f5.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/d4eba3ae8fca4f298445862e4882315c.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c889e815a1dd4c66a079f7958c216bff.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/5496faa0836147c38000b08043628143.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/b7517714ff2c4e2a9f148218038ac69a.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/b38a9f2f2c4c418895c53553a3df016f.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/cfcc808f89b54ff28dd09d6a0af33c28.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/037e3bb584024e37b74506c71b70e488.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/6f25eed893244f32a40acc48afed3125.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/5c26d58236b94c548db57532dfe2e4dc.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/7e73595441a64362a10661e0fee5e3ca.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/30d1a910fe4c4d13b779cafbcf78f63a.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/d34b4e06cb0446d5857abc91aac6d1f1.png">
+<meta property="article:published_time" content="2023-02-16T10:54:55.668Z">
+<meta property="article:modified_time" content="2023-02-15T01:52:14.622Z">
+<meta property="article:author" content="Pistachiout">
+<meta property="article:tag" content="博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/29e716d5d65f48d99204337830559ccc.png">
+
+<link rel="canonical" href="https://pistachiout.github.io/wiki/C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AE%9E%E8%B7%B5%E2%80%94%E2%80%94%E7%BA%BF%E4%B8%8A%E8%B4%AD%E7%89%A9%E7%B3%BB%E7%BB%9F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | Pistachiout的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Pistachiout的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a target="_blank" rel="noopener" href="https://github.com/Pistachiout" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Pistachiout的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">每天多学一点知识,就少写一行代码</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+    <link rel="stylesheet" href="/dist/APlayer.min.css">
+        <div id="aplayer"></div>
+        <script type="text/javascript" src="/dist/APlayer.min.js"></script>
+        <script type="text/javascript" src="/dist/music.js"></script>
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pistachiout.github.io/wiki/C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AE%9E%E8%B7%B5%E2%80%94%E2%80%94%E7%BA%BF%E4%B8%8A%E8%B4%AD%E7%89%A9%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Pistachiout">
+      <meta itemprop="description" content="Pistachiout的学习博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pistachiout的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-02-16 18:54:55" itemprop="dateCreated datePublished" datetime="2023-02-16T18:54:55+08:00">2023-02-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-15 09:52:14" itemprop="dateModified" datetime="2023-02-15T09:52:14+08:00">2023-02-15</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="一、系统的主要目标与功能"><a href="#一、系统的主要目标与功能" class="headerlink" title="一、系统的主要目标与功能"></a>一、系统的主要目标与功能</h2><p>　 　&amp;emsp;  在本次设计中，考虑到目前疫情反复不断，为了方便群众，超市都推出在线购物并有配送员送货，于是我设计了一个超市在线网上购物送货的系统，这个系统的主要目标是帮助人们在家里购买自己需要的套餐，充值账户，同时该系统能查看自己的历史金额变动记录，也能够撤销前一次操作，这样能够帮助疫情期间的人们快速购物，也能够减少疫情期间出门购物的可能带来的危害。本超市目前功能如下：</p>
+<ol>
+<li>查看超市套餐 </li>
+<li>购买超市套餐 </li>
+<li>给账户充值 </li>
+<li>查看历史余额记录 </li>
+<li>撤回上次操作  </li>
+<li>系统自动提示配送员</li>
+<li>退出本超市在线购物系</li>
+</ol>
+<p>系统运行比较简单，且每一步完成后都会有提示信息，按照提示信息一步一步运行即可。</p>
+<h2 id="二-、系统中使用的设计模式（UML类图、详细描述场景、解决的问题、模式的效果及意义）"><a href="#二-、系统中使用的设计模式（UML类图、详细描述场景、解决的问题、模式的效果及意义）" class="headerlink" title="二 、系统中使用的设计模式（UML类图、详细描述场景、解决的问题、模式的效果及意义）"></a>二 、系统中使用的设计模式（UML类图、详细描述场景、解决的问题、模式的效果及意义）</h2><p><img data-src="https://img-blog.csdnimg.cn/29e716d5d65f48d99204337830559ccc.png" alt="在这里插入图片描述"></p>
+<h2 id="•1-状态模式："><a href="#•1-状态模式：" class="headerlink" title="•1.状态模式："></a><strong>•1.状态模式</strong>：</h2><p>　　&amp;emsp;对有状态的对象，把复杂的“判断逻辑”提取到不同的状态对象中，允许状态对象在其内部状态发生改变时改变其行为。在一个对象内在状态改变时也改变了其行为，这个对象看起来像改变了其类，因此选择使用状态模式。<br>•<img data-src="https://img-blog.csdnimg.cn/26ccc7b527f34157b74efdbf82c669bf.png" alt="在这里插入图片描述"></p>
+<p>　　&amp;emsp;<strong>•设计思路</strong>：在本系统中，状态模式在购物时提供用户信息和余额的信息，分别为正常状态GreenState，欠款状态RedState与会员VIP状态。在进入程序时便初始化账户Account，通过这个账户记录余额balance信息，同时考虑到余额不足时不能购物，考虑到特殊情况，设计余额不足购买时允许赊欠，但当前余额小于0时不能购物，这样是考虑到实际，余额小于0时是不能购买的；此外若充值后余额超过1000元，则当前状态变为VIP模式，之后购买商品可以有8折优惠。</p>
+<p>　　&amp;emsp;<strong>程序设计</strong>：Account中有属性state来聚合AccountState记录当前Account的状态，且有RedState，GreenState，VIP三个子状态继承AccountState，AccountState中有balance余额属性，在每个子状态里面有stateCheck()函数，可以在调用该函数后判断balance的数值，来改变当前Account所处的状态，并在改变状态后改变消费的行为。Accout有函数deposit和withdraw，分别是存款和取款来对balance进行操作，并会根据属性state的不同有不同的行为。</p>
+<p><img data-src="https://img-blog.csdnimg.cn/47bb147acd374c86b3379b22faaa7771.png" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/4767464811d04431832e9446cf9e97f3.png" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/c1cb76901ed74fc8b414b58ab9178f6b.png" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/076a5b76f65747e0adf2116e18e7fa72.png" alt="在这里插入图片描述"></p>
+<p>　　&amp;emsp;Account中有属性msStrategy，这是与策略模式结合的属性，在代码中设计的为若状态为GreenState或RedState，即初试化为MessageStrategy2直接在窗口输出，若为VIP状态，则初试化为MessageStrategy1，产生MessageBox弹窗通知。<br><img data-src="https://img-blog.csdnimg.cn/d9bf52d8586a4a3ab5313936ab14273d.png" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/5614c4e5f8c64d419ed0105546c0077e.png" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/a09519a9b8ef4fd0a51aaee7c9b37494.png" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/f8a55f4b0a7e4fa29d202a895d789934.png" alt="在这里插入图片描述"></p>
+<h2 id="•2-建造者模式"><a href="#•2-建造者模式" class="headerlink" title="•2.建造者模式"></a><strong>•2.建造者模式</strong></h2><p>　　&amp;emsp;建筑者模式封装一个产品的构造过程, 并允许按步骤构造. 将一个复杂对象的构建与它的表示分离, 使得同样的构建过程可以创建不同的表示。<br>•<img data-src="https://img-blog.csdnimg.cn/94beb1b41bca43669c0041bb97a01e38.png" alt="在这里插入图片描述"></p>
+<p>　　&amp;emsp;<strong>设计思路</strong>：在本系统中建造者模式可用于构建不同的套餐1，套餐2，套餐3，由超市Supermarket作为指挥者，将套餐的内部表象与生成过程分割开来，从而可以使一个建造过程生成具有不同的内部表象的产品对象Product，并且使客户便于查看各个套餐的内容与价格便于购买。</p>
+<p>　　&amp;emsp;<strong>程序设计</strong>：首先Supermarket是系统中建造者模式的Director指导者，拥有Construct()函数，且拥有Builder类的bld属性，使用Construct（）即可调佣bld中的BuildPartA，B，C函数，来构建出Product产品类，从而返回Product完成建造，将Product的复杂构造在ConcreteBuilder内实现，而Supermarket只需要设置不同的bld属性和调用Construct（）函数，即可创建不同的产品，实现产品构建的封装。</p>
+<p><img data-src="https://img-blog.csdnimg.cn/b3f91294bfa547348d77f97e5ca6d8a3.png" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/d41a8aabb9b14d50a2905f208938b4e4.png" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/1570761ef9b04a728ff8bff0335e279a.png" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/0f56134ea6184bb68caccb6d60d0581f.png" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/01b08cd82f314f2cab539df0df2c4d5e.png" alt="在这里插入图片描述"></p>
+<p><img data-src="https://img-blog.csdnimg.cn/ebd822a475e0444b9725b66f5f4a976a.png" alt="在这里插入图片描述"></p>
+<h2 id="•3-观察者模式"><a href="#•3-观察者模式" class="headerlink" title="•3.观察者模式"></a><strong>•3.观察者模式</strong></h2><p>　　&amp;emsp;观察者模式建立一种对象与对象之间的依赖关系，一个对象发生改变时将自动通知其他对象，其他对象将相应作出反应。在此，发生改变的对象称为观察目标，而被通知的对象称为观察者，一个观察目标可以对应多个观察者，而且这些观察者之间没有相互联系，可以根据需要增加和删除观察者，使得系统更易于扩展。<br><img data-src="https://img-blog.csdnimg.cn/68453b4ddf944f9cb77bd6c6af4a1716.png" alt="在这里插入图片描述"></p>
+<p>　　&amp;emsp;<strong>设计思路</strong>：在本系统中，观察者模式的观察目标为商家系统Supermarket，具体观察者为配送员DeliveryObserver，多个配送员DeliveryObserver观察对应的商家系统Supermarket，当有客户在商家购买套餐时，商家系统会发出通知提醒观察了自己的配送员。</p>
+<p>　　&amp;emsp;<strong>程序设计</strong>：在Supermarket中有Attach()和Detach()两个函数与list&lt;DeliveryObserver*&gt;accs即 DeliveryObserver的一个列表，Attach()来增加配送员Observer为观察者，Detach()删除观察者Observer，然后在消费者进行购物后，通过调用notify（）函数来进行通知，且Observer中具体的notify（）函数与策略模式相结合，对于list中的单数采用MessageStrategy1通知，list采用MessageStrategy2来通知。<br><img data-src="https://img-blog.csdnimg.cn/f9a8ff7ec1c6479bac3c6e234303f760.png" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/4bb27ae8ffa04ca8b886d4d26e4016f7.png" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/0ae1595ef22f42f793c7e005c1b9d2dc.png" alt="在这里插入图片描述"></p>
+<p><img data-src="https://img-blog.csdnimg.cn/21b333daa46e4dbe83b4561b37251adc.png" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/1ec75e41fd7a41569f9929d306e70107.png" alt="在这里插入图片描述"></p>
+<h2 id="•4-单例模式"><a href="#•4-单例模式" class="headerlink" title="•4.单例模式"></a><strong>•4.单例模式</strong></h2><p>　　&amp;emsp;单例类只有一个实例对象，且该单例对象必须由单例类自行创建，单例类对外提供一个访问该单例的全局访问点。<br>•<img data-src="https://img-blog.csdnimg.cn/513081c9bb1547d3a30cc69ac1c9de5d.png" alt="在这里插入图片描述"></p>
+<p>　　&amp;emsp;<strong>设计思路</strong>：在本系统中，单例类为商家类，只允许创建一个商家类，且该商家类是建造者模式的指挥者，指挥套餐的建立。</p>
+<p>　　&amp;emsp;<strong>程序设计</strong>：在Supermarket里面，有私有静态的Supermarket类属性_instance，然后将构造函数定义为保护函数防止外界调用，在调用构造函数时判断_instance是否为空，若为空则可初始化，否则返回_instance。<br><img data-src="https://img-blog.csdnimg.cn/7d2d5f1b06af45a194a8f1ac53adef07.png" alt="在这里插入图片描述"></p>
+<h2 id="•5-策略模式"><a href="#•5-策略模式" class="headerlink" title="•5.策略模式"></a><strong>•5.策略模式</strong></h2><p>　　&amp;emsp;该模式定义了一系列算法，并将每个算法封装起来，使它们可以相互替换，且算法的变化不会影响使用算法的客户。策略模式的主要目的是将算法的定义与使用分开，将算法的定义放在专门的策略类中，每一个策略类封装了一种实现算法，在出现新的算法时，只需要增加一个新的实现了抽象策略类的具体策略类即可。<br><img data-src="https://img-blog.csdnimg.cn/527f6cbe963b46f18d3cc2c57e6ff0d0.png" alt="在这里插入图片描述"></p>
+<p>　　&amp;emsp;<strong>设计思路</strong>：本系统中，策略模式在观察者模式的基础上使用，在观察者模式通知Observer时，通知方式可选择不同的策略，如短信通知或软件信息通知等，在本系统中选择弹窗通知MessageStrategy1与直接输出通知MessageStrategy2来模拟这两种不同的通知方式。</p>
+<p>　　&amp;emsp;此外，策略模式与状态模式也有在一起联合使用，若Account目前状态为GreenState或RedState，即初试化为MessageStrategy2直接在命令行窗口输出，若为VIP状态，则初试化为MessageStrategy1，产生MessageBox弹窗通知。<br><img data-src="https://img-blog.csdnimg.cn/28ba57e3df484487802f18c70e2daa7d.png" alt="在这里插入图片描述"></p>
+<p>　　&amp;emsp;<strong>程序设计</strong>：MessageStrategy有两个子类，分别为MessageStrategy1与MessageStrategy2，MessageStrategy1即采用MessageBox进行弹窗输出，而MessageStrategy2即为cout直接输出，使用时可具体不同的策略类来实现不同的通知方式</p>
+<p><img data-src="https://img-blog.csdnimg.cn/51a47eba58af413c8b58b36b9b428ba5.png" alt="在这里插入图片描述"></p>
+<p><img data-src="https://img-blog.csdnimg.cn/ad34e75290bd4868bbc68dc3a6f238dc.png" alt="在这里插入图片描述"></p>
+<h2 id="•6-备忘录模式"><a href="#•6-备忘录模式" class="headerlink" title="•6.备忘录模式"></a><strong>•6.备忘录模式</strong></h2><p>　　&amp;emsp;在不破坏封装性的前提下捕获一个对象的内部状态，并在对象之外保存这个状态。这样以后就可以将对象恢复到原先保存的状态。</p>
+<p><img data-src="https://img-blog.csdnimg.cn/8e18d18db0d744a180e21fcf5cc097e5.png" alt="在这里插入图片描述"></p>
+<p>　　&amp;emsp;<strong>设计思路</strong>：在本系统中，备忘录模式记录在系统中的余额变动，并可查看所有的历史变动记录，并可以撤销上一次余额变动的操作，在现实中大部分购物应用都可以查看历史记录与撤销，因此利用备忘录模式实现该操作，便于观察余额变化。</p>
+<p>　　&amp;emsp;<strong>程序设计</strong>：首先通过UserInfoDTO来在主函数中将每次余额改变时的balance即state记入Memento，然后利用Caretaker中的mementoList来记录每次余额改变后的Memento值。在查看历史记录时，即调用UserInfoDTO的getStateFromMemento()函数来遍历mementoList所有记录的历史余额；在想要进行撤销操作时，即首先调用user.getStateFromMemento（）获取最近一次操作后的余额值，之后调用p-&gt;setbalance(user.getState())将余额记录到Account账户中，且对于第一次操作与第0次操作有不同的撤销行为。<br><img data-src="https://img-blog.csdnimg.cn/48e55a9cdaa544289983980de04c5002.png" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/9039bf56cf2744739f2bf992cc152bb9.png" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/f9b1baa6ea3040f897926adb72b90ce0.png" alt="在这里插入图片描述"></p>
+<p><img data-src="https://img-blog.csdnimg.cn/bccef95d0a2841c089aa32e9f61f34f5.png" alt="在这里插入图片描述"></p>
+<h2 id="三、系统运行截图"><a href="#三、系统运行截图" class="headerlink" title="三、系统运行截图"></a>三、系统运行截图</h2><p>　　&amp;emsp;<img data-src="https://img-blog.csdnimg.cn/d4eba3ae8fca4f298445862e4882315c.png" alt="在这里插入图片描述"></p>
+<p>　　&amp;emsp;<img data-src="https://img-blog.csdnimg.cn/c889e815a1dd4c66a079f7958c216bff.png" alt="在这里插入图片描述"></p>
+<p>　　&amp;emsp;<img data-src="https://img-blog.csdnimg.cn/5496faa0836147c38000b08043628143.png" alt="在这里插入图片描述"></p>
+<p>　　&amp;emsp;<img data-src="https://img-blog.csdnimg.cn/b7517714ff2c4e2a9f148218038ac69a.png" alt="在这里插入图片描述"><br>　　&amp;emsp;<img data-src="https://img-blog.csdnimg.cn/b38a9f2f2c4c418895c53553a3df016f.png" alt="在这里插入图片描述"><br>　　&amp;emsp;<img data-src="https://img-blog.csdnimg.cn/cfcc808f89b54ff28dd09d6a0af33c28.png" alt="在这里插入图片描述"><br>　　&amp;emsp;<img data-src="https://img-blog.csdnimg.cn/037e3bb584024e37b74506c71b70e488.png" alt="在这里插入图片描述"><br>　　&amp;emsp;<img data-src="https://img-blog.csdnimg.cn/6f25eed893244f32a40acc48afed3125.png" alt="在这里插入图片描述"><br>　　&amp;emsp;<img data-src="https://img-blog.csdnimg.cn/5c26d58236b94c548db57532dfe2e4dc.png" alt="在这里插入图片描述"><br>　　&amp;emsp;<img data-src="https://img-blog.csdnimg.cn/7e73595441a64362a10661e0fee5e3ca.png" alt="在这里插入图片描述"></p>
+<p>   　　　&amp;emsp;　　&amp;emsp;<img data-src="https://img-blog.csdnimg.cn/30d1a910fe4c4d13b779cafbcf78f63a.png" alt="在这里插入图片描述"></p>
+<h2 id="四、设计模式总结"><a href="#四、设计模式总结" class="headerlink" title="四、设计模式总结"></a>四、设计模式总结</h2><p>  　　&amp;emsp; 本次实践作业我使用了一些比较常见的设计模式，包括状态模式，单例模式，建造者模式，观察者模式，策略模式，备忘录模式。我个人认为在设计模式的使用有两个亮点。<br>  　&amp;ensp;第一个亮点就是策略模式与观察者模式与状态模式联合使用，而不是将策略模式进行单一的使用。这个想法是我在进行观察者模式设计时，发现观察者模式的通知功能可以有不同的策略实现后做出的模式设计。我将策略模式与观察者模式与状态模式联合使用，对于不同的观察者，不同的状态时会有不同的行为，因此我将策略模式融合到这两种模式中，这也是对于设计模式的一种深入使用，而不仅仅是生硬的套用。在本次实践中，。<br>　&amp;ensp; 第二个亮点是备忘录模式的使用，我个人认为备忘录模式的理解和代码设计都有一定的难度，在实践过程中也确实遇到了一些困难如Caretaker和Memento的区别，以及如何存和取历史数据，但经过认真学习进行了解决。<br>　&amp;ensp; 通过使用这些设计模式，代码对修改有了封闭性，在客户端没有具体实现，难以修改，而在进行扩展时更加容易，如对于策略模式，如果想要添加一个新的策略实现不同的通知方式，只需要增加一个策略实现的子类MessageStrategy3即可实现策略添加。</p>
+<h2 id="五、个人的模式学习心得"><a href="#五、个人的模式学习心得" class="headerlink" title="五、个人的模式学习心得"></a>五、个人的模式学习心得</h2><p>　&amp;emsp;在本次面向对象与系统建模的课程学习中，我个人认为收获良多，与本科学习过的设计模式相比学到了更多与更加深入，首先是因为研一与本科学习时相比自己做过的项目与见过的代码更多，更加理解了为什么要运用设计模式来进行代码封装与复用，如何使用设计模式来更好的扩展代码，为什么设计代码时要满足开闭原则等多项原则。（而不像是本科学习时觉得进行这些设计模式的使用没有用处，反而让人看不懂代码具体逻辑）。<br>&amp;emsp;此外，也正是提前了解到了设计模式的重要性，我学习的兴趣也更加浓厚，因此我除了在上课时的学习，还购买了《大话设计模式》进行课外学习，同时参加了软件设计师的考试，于是我对设计模式的复用性有了更深入的了解，对于重要的模式如观察者模式、状态模式、工厂模式，适配器模式等理论方面有了更加深入的理解，对于每种设计模式的UML类图也更加理解，对于该在哪种应用场景来使用某种设计模式、如何用代码实现这些模式也更加明确，对一些不太常见的模式如原型模式，访问者模式也了解更多，更加理解了设计模式对于修改封闭，扩展开放的好处，对于迪米特法则、单一职责原则等更加理解。</p>
+<h2 id="六、意见和建议"><a href="#六、意见和建议" class="headerlink" title="六、意见和建议"></a>六、意见和建议</h2><p>　&amp;emsp;个人认为对于设计模式的学习不能追求通过上课来速成，要在自己进行代码编写的过程中以及后续代码修改过程中才能深入理解设计模式的重要性。<br>&amp;emsp;因此对于学习过程中建议可以不用课本，直接用能够运行的使用了2-3个设计模式的简单项目，并编写2个不同的代码，一个没有使用设计模式的代码，一个使用了设计模式代码，首先演示让同学们了解代码的作用，然后平时作业可以让同学们分别对两种代码进行扩展，如对于状态模式，可以让学生对两种代码都加一种状态，这样可能比对着书本更容易理解设计模式的作用，而在期末作业上也可以要求同学们对于上课时的简单项目进行扩展，如多加几个设计模式。</p>
+<h2 id="七、main函数与抽象类代码"><a href="#七、main函数与抽象类代码" class="headerlink" title="七、main函数与抽象类代码"></a>七、main函数与抽象类代码</h2><p>　&amp;emsp;Main函数：可以看到在Main函数与抽象类中没有看到具体的实现代码，仅仅只有函数的调用，因此基本满足开闭原则，扩展性良好，想要扩展时仅仅只需要增加子类。<br><img data-src="https://img-blog.csdnimg.cn/d34b4e06cb0446d5857abc91aac6d1f1.png" alt="在这里插入图片描述"></p>
+<p>.</p>
+
+    </div>
+
+    
+    
+    
+ <div>
+    
+       <div>
+      
+          <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+      
+  </div>
+    
+  </div>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Pistachiout
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://pistachiout.github.io/wiki/C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AE%9E%E8%B7%B5%E2%80%94%E2%80%94%E7%BA%BF%E4%B8%8A%E8%B4%AD%E7%89%A9%E7%B3%BB%E7%BB%9F/" title="">https://pistachiout.github.io/wiki/C++设计模式实践——线上购物系统/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/wiki/C++%E9%87%8D%E8%BD%BD%E5%AE%9E%E7%8E%B0m_n_k%E4%B8%89%E7%BB%B4%E7%9F%A9%E9%98%B5%EF%BC%8C%E4%B8%94%E7%9F%A9%E9%98%B5%E5%85%83%E7%B4%A0%E4%B8%BA%E5%A4%8D%E6%95%B0/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/wiki/Golang%E7%89%88LeetCode%E5%9F%BA%E6%9C%AC%E7%AE%97%E6%B3%95%E5%87%BD%E6%95%B0/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%B8%BB%E8%A6%81%E7%9B%AE%E6%A0%87%E4%B8%8E%E5%8A%9F%E8%83%BD"><span class="nav-text">一、系统的主要目标与功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E3%80%81%E7%B3%BB%E7%BB%9F%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88UML%E7%B1%BB%E5%9B%BE%E3%80%81%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0%E5%9C%BA%E6%99%AF%E3%80%81%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%81%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%95%88%E6%9E%9C%E5%8F%8A%E6%84%8F%E4%B9%89%EF%BC%89"><span class="nav-text">二 、系统中使用的设计模式（UML类图、详细描述场景、解决的问题、模式的效果及意义）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%80%A21-%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F%EF%BC%9A"><span class="nav-text">•1.状态模式：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%80%A22-%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="nav-text">•2.建造者模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%80%A23-%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="nav-text">•3.观察者模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%80%A24-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="nav-text">•4.单例模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%80%A25-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F"><span class="nav-text">•5.策略模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%80%A26-%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F"><span class="nav-text">•6.备忘录模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E7%B3%BB%E7%BB%9F%E8%BF%90%E8%A1%8C%E6%88%AA%E5%9B%BE"><span class="nav-text">三、系统运行截图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93"><span class="nav-text">四、设计模式总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E4%B8%AA%E4%BA%BA%E7%9A%84%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97"><span class="nav-text">五、个人的模式学习心得</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E6%84%8F%E8%A7%81%E5%92%8C%E5%BB%BA%E8%AE%AE"><span class="nav-text">六、意见和建议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81main%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8A%BD%E8%B1%A1%E7%B1%BB%E4%BB%A3%E7%A0%81"><span class="nav-text">七、main函数与抽象类代码</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Pistachiout"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Pistachiout</p>
+  <div class="site-description" itemprop="description">Pistachiout的学习博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Pistachiout" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Pistachiout" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/qq_45808700?spm=1010.2135.3001.5343" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_45808700?spm&#x3D;1010.2135.3001.5343" rel="noopener" target="_blank"><i class="fa csdn fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pistachiout</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">263k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">3:59</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+<!-- <br /> -->
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<!-- <span id="times">载入时分秒...</span> -->
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("02/15/2023 8:00:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); 
+        if(String(snum).length ==1 ){snum = "0" + snum;}
+        // var times = document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "+hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+  
+
+  
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":140,"height":240},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

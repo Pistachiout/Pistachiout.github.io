@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-flash.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"pistachiout.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="一、实验目的及要求 1、世界地图上相邻国家需要用不同的颜色标注以示区别，但最多只需要选取四种颜色即可。请编程实现图的着色问题。2、编程实现0-1背包问题，至少两种算法。3、给定一个二维网格和一个单词，找出该单词是否存在于网格中。说明：单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。示例：board &amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pistachiout的博客">
+<meta property="og:url" content="https://pistachiout.github.io/wiki/%E5%9B%BE%E7%9A%84%E7%9D%80%E8%89%B2%E9%97%AE%E9%A2%98%EF%BC%8C0-1%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%EF%BC%8C%E5%8D%95%E8%AF%8D%E5%BF%85%E9%A1%BB%E6%8C%89%E7%85%A7%E5%AD%97%E6%AF%8D%E9%A1%BA%E5%BA%8F%EF%BC%8C%E6%89%80%E6%9C%89%E5%AD%A6%E7%94%9F%E4%B8%AD%E7%9A%84%E5%B7%B2%E7%9F%A5%E7%9A%84%E6%9C%8B%E5%8F%8B%E5%9C%88%E6%80%BB%E6%95%B0%EF%BC%8C%E8%AE%A1%E7%AE%97%E7%9F%A9%E9%98%B5%E4%B8%AD%E6%89%80%E6%9C%89%E6%B1%A0%E5%A1%98%E7%9A%84%E5%A4%A7%E5%B0%8F/index.html">
+<meta property="og:site_name" content="Pistachiout的博客">
+<meta property="og:description" content="一、实验目的及要求 1、世界地图上相邻国家需要用不同的颜色标注以示区别，但最多只需要选取四种颜色即可。请编程实现图的着色问题。2、编程实现0-1背包问题，至少两种算法。3、给定一个二维网格和一个单词，找出该单词是否存在于网格中。说明：单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。示例：board &amp;#x">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210520192411628.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210520192419761.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210520192426877.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210520192434994.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210520192439632.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210520192444927.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210520192453598.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210520192457685.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210520192503218.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210520192507461.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210520192515327.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210520192701962.png">
+<meta property="article:published_time" content="2023-02-16T10:54:54.871Z">
+<meta property="article:modified_time" content="2023-02-15T02:20:55.129Z">
+<meta property="article:author" content="Pistachiout">
+<meta property="article:tag" content="博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210520192411628.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
+
+<link rel="canonical" href="https://pistachiout.github.io/wiki/%E5%9B%BE%E7%9A%84%E7%9D%80%E8%89%B2%E9%97%AE%E9%A2%98%EF%BC%8C0-1%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%EF%BC%8C%E5%8D%95%E8%AF%8D%E5%BF%85%E9%A1%BB%E6%8C%89%E7%85%A7%E5%AD%97%E6%AF%8D%E9%A1%BA%E5%BA%8F%EF%BC%8C%E6%89%80%E6%9C%89%E5%AD%A6%E7%94%9F%E4%B8%AD%E7%9A%84%E5%B7%B2%E7%9F%A5%E7%9A%84%E6%9C%8B%E5%8F%8B%E5%9C%88%E6%80%BB%E6%95%B0%EF%BC%8C%E8%AE%A1%E7%AE%97%E7%9F%A9%E9%98%B5%E4%B8%AD%E6%89%80%E6%9C%89%E6%B1%A0%E5%A1%98%E7%9A%84%E5%A4%A7%E5%B0%8F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | Pistachiout的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Pistachiout的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a target="_blank" rel="noopener" href="https://github.com/Pistachiout" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Pistachiout的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">每天多学一点知识,就少写一行代码</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+    <link rel="stylesheet" href="/dist/APlayer.min.css">
+        <div id="aplayer"></div>
+        <script type="text/javascript" src="/dist/APlayer.min.js"></script>
+        <script type="text/javascript" src="/dist/music.js"></script>
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pistachiout.github.io/wiki/%E5%9B%BE%E7%9A%84%E7%9D%80%E8%89%B2%E9%97%AE%E9%A2%98%EF%BC%8C0-1%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%EF%BC%8C%E5%8D%95%E8%AF%8D%E5%BF%85%E9%A1%BB%E6%8C%89%E7%85%A7%E5%AD%97%E6%AF%8D%E9%A1%BA%E5%BA%8F%EF%BC%8C%E6%89%80%E6%9C%89%E5%AD%A6%E7%94%9F%E4%B8%AD%E7%9A%84%E5%B7%B2%E7%9F%A5%E7%9A%84%E6%9C%8B%E5%8F%8B%E5%9C%88%E6%80%BB%E6%95%B0%EF%BC%8C%E8%AE%A1%E7%AE%97%E7%9F%A9%E9%98%B5%E4%B8%AD%E6%89%80%E6%9C%89%E6%B1%A0%E5%A1%98%E7%9A%84%E5%A4%A7%E5%B0%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Pistachiout">
+      <meta itemprop="description" content="Pistachiout的学习博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pistachiout的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-02-16 18:54:54" itemprop="dateCreated datePublished" datetime="2023-02-16T18:54:54+08:00">2023-02-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-15 10:20:55" itemprop="dateModified" datetime="2023-02-15T10:20:55+08:00">2023-02-15</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>一、实验目的及要求</p>
+<h2 id="1、世界地图上相邻国家需要用不同的颜色标注以示区别，但最多只需要选取四种颜色即可。请编程实现图的着色问题。"><a href="#1、世界地图上相邻国家需要用不同的颜色标注以示区别，但最多只需要选取四种颜色即可。请编程实现图的着色问题。" class="headerlink" title="1、世界地图上相邻国家需要用不同的颜色标注以示区别，但最多只需要选取四种颜色即可。请编程实现图的着色问题。"></a>1、世界地图上相邻国家需要用不同的颜色标注以示区别，但最多只需要选取四种颜色即可。请编程实现图的着色问题。</h2><h2 id="2、编程实现0-1背包问题，至少两种算法。"><a href="#2、编程实现0-1背包问题，至少两种算法。" class="headerlink" title="2、编程实现0-1背包问题，至少两种算法。"></a>2、编程实现0-1背包问题，至少两种算法。</h2><h2 id="3、给定一个二维网格和一个单词，找出该单词是否存在于网格中。说明：单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。"><a href="#3、给定一个二维网格和一个单词，找出该单词是否存在于网格中。说明：单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。" class="headerlink" title="3、给定一个二维网格和一个单词，找出该单词是否存在于网格中。说明：单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。"></a>3、给定一个二维网格和一个单词，找出该单词是否存在于网格中。说明：单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。</h2><p>示例：board &#x3D;[  [‘A’,’B’,’C’,’E’], [‘S’,’F’,’C’,’S’], [‘A’,’D’,’E’,’E’]] ，给定 word &#x3D; “ABCCED”, 返回 true， 给定 word &#x3D; “SEE”, 返回 true， 给定 word &#x3D; “ABCB”, 返回 false。</p>
+<h2 id="4、班上有-N-名学生。其中有些人是朋友，有些则不是。他们的友谊具有是传递性。如果已知-A-是-B-的朋友，B-是-C-的朋友，那么我们可以认为-A-也是-C-的朋友。所谓的朋友圈，是指所有朋友的集合。给定一个-N-N-的矩阵-M，表示班级中学生之间的朋友关系。如果M-i-j-x3D-1，表示已知第-i-个和-j-个学生互为朋友关系，否则为不知道。你必须输出所有学生中的已知的朋友圈总数。"><a href="#4、班上有-N-名学生。其中有些人是朋友，有些则不是。他们的友谊具有是传递性。如果已知-A-是-B-的朋友，B-是-C-的朋友，那么我们可以认为-A-也是-C-的朋友。所谓的朋友圈，是指所有朋友的集合。给定一个-N-N-的矩阵-M，表示班级中学生之间的朋友关系。如果M-i-j-x3D-1，表示已知第-i-个和-j-个学生互为朋友关系，否则为不知道。你必须输出所有学生中的已知的朋友圈总数。" class="headerlink" title="4、班上有 N 名学生。其中有些人是朋友，有些则不是。他们的友谊具有是传递性。如果已知 A 是 B 的朋友，B 是 C 的朋友，那么我们可以认为 A 也是 C 的朋友。所谓的朋友圈，是指所有朋友的集合。给定一个 N * N 的矩阵 M，表示班级中学生之间的朋友关系。如果M[i][j] &#x3D; 1，表示已知第 i 个和 j 个学生互为朋友关系，否则为不知道。你必须输出所有学生中的已知的朋友圈总数。"></a>4、班上有 N 名学生。其中有些人是朋友，有些则不是。他们的友谊具有是传递性。如果已知 A 是 B 的朋友，B 是 C 的朋友，那么我们可以认为 A 也是 C 的朋友。所谓的朋友圈，是指所有朋友的集合。给定一个 N * N 的矩阵 M，表示班级中学生之间的朋友关系。如果M[i][j] &#x3D; 1，表示已知第 i 个和 j 个学生互为朋友关系，否则为不知道。你必须输出所有学生中的已知的朋友圈总数。</h2><p>示例1：输入: [[1,1,0], [1,1,0], [0,0,1]]       输出: 2      说明：已知学生0和学生1互为朋友，他们在一个朋友圈。第2个学生自己在一个朋友圈。所以返回2。<br>示例2：输入: [[1,1,0],   [1,1,1],  [0,1,1]]       输出: 1      说明：已知学生0和学生1互为朋友，学生1和学生2互为朋友，所以学生0和学生2也是朋友，所以他们三个在一个朋友圈，返回1。</p>
+<h2 id="5、你有一个用于表示一片土地的整数矩阵land，该矩阵中每个点的值代表对应地点的海拔高度。若值为0则表示水域。由垂直、水平或对角连接的水域为池塘。池塘的大小是指相连接的水域的个数。编写一个方法来计算矩阵中所有池塘的大小，返回值需要从小到大排序。"><a href="#5、你有一个用于表示一片土地的整数矩阵land，该矩阵中每个点的值代表对应地点的海拔高度。若值为0则表示水域。由垂直、水平或对角连接的水域为池塘。池塘的大小是指相连接的水域的个数。编写一个方法来计算矩阵中所有池塘的大小，返回值需要从小到大排序。" class="headerlink" title="5、你有一个用于表示一片土地的整数矩阵land，该矩阵中每个点的值代表对应地点的海拔高度。若值为0则表示水域。由垂直、水平或对角连接的水域为池塘。池塘的大小是指相连接的水域的个数。编写一个方法来计算矩阵中所有池塘的大小，返回值需要从小到大排序。"></a>5、你有一个用于表示一片土地的整数矩阵land，该矩阵中每个点的值代表对应地点的海拔高度。若值为0则表示水域。由垂直、水平或对角连接的水域为池塘。池塘的大小是指相连接的水域的个数。编写一个方法来计算矩阵中所有池塘的大小，返回值需要从小到大排序。</h2><p>示例：输入：[[0,2,1,0],   [0,1,0,1],  [1,1,0,1],  [0,1,0,1]]      输出： [1,2,4]</p>
+<p>三、实验内容及结果<br>（包括实验过程、实验数据、实验结果及分析，实验代码另外单独附页）<br>1、世界地图上相邻国家需要用不同的颜色标注以示区别，但最多只需要选取四种颜色即可。请编程实现图的着色问题。</p>
+<p>使用回溯法，有1,2,3,4四种颜色，而地图如关系矩阵所示。从第一个位置颜色为1，接着依次往下遍历，使用与相邻的不同的颜色，如果这样下去无法满足4种颜色填色，则说明之前填色有误，<br>回溯到之前一个位置，如果该位置4种颜色都不行，则继续回溯直到满足条件。当关系矩阵M如图中所示时，地图的各个位置颜色如输出所示。<br><img data-src="https://img-blog.csdnimg.cn/20210520192411628.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20210520192419761.png" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">FourColorLabel</span>(<span class="params">M</span>):<span class="comment">#回溯法地图四色</span></span><br><span class="line">    Num=<span class="built_in">len</span>(M)</span><br><span class="line">    Color=[-<span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(Num)]</span><br><span class="line">    n=m=<span class="number">1</span></span><br><span class="line">    <span class="comment">#染色第一个区域，先设置为1</span></span><br><span class="line">    <span class="keyword">while</span> m&lt;=Num:</span><br><span class="line">        <span class="keyword">while</span> n&lt;=<span class="number">4</span> <span class="keyword">and</span> m&lt;=Num:</span><br><span class="line">            flag=<span class="literal">True</span></span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(m-<span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> M[m-<span class="number">1</span>][k]==<span class="number">1</span> <span class="keyword">and</span> Color[k]==n:<span class="comment">#如果与第m-1个点接触且颜色相同则回溯</span></span><br><span class="line">                    flag=<span class="literal">False</span>  </span><br><span class="line">                    n+=<span class="number">1</span></span><br><span class="line">                    <span class="keyword">break</span>    </span><br><span class="line">            <span class="keyword">if</span> flag:<span class="comment">#flag为true,则涂色</span></span><br><span class="line">                Color[m-<span class="number">1</span>]=n;</span><br><span class="line">                m+=<span class="number">1</span></span><br><span class="line">                n=<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> n&gt;<span class="number">4</span>:     <span class="comment">#颜色使用超过4种，说明之前涂色有问题，回溯</span></span><br><span class="line">            m-=<span class="number">1</span></span><br><span class="line">            n=Color[m-<span class="number">1</span>]+<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> Color</span><br><span class="line"> </span><br><span class="line">M=[</span><br><span class="line">                [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>],</span><br><span class="line">                [<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>],</span><br><span class="line">                [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>],</span><br><span class="line">                [<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>],</span><br><span class="line">                [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>],</span><br><span class="line">                [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>],</span><br><span class="line">                [<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>]</span><br><span class="line">             ]<span class="comment">#关系矩阵，M[i][j]为1则表示i与j相邻，为0则表示不相邻</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> FourColorLabel(M):</span><br><span class="line"><span class="built_in">print</span>(i)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>2、编程实现0-1背包问题，至少两种算法。</p>
+<p>   使用了2种算法，<br>第一种是动态规划法，使用数组c记录最大价值，c[i][j]表示前i个物体放入容量为j 包的最大价值，c[i-1][j] 表示前i个物体放入容量为j 包的最大价值 ，c[i-1][j-w[i]] 表示前i-1个物体放入容量为j-w[i] 包的最大价值，而c[i][j]到第i个物品时有放入和不放入2种选择，取这2选择的最大值，这样利用动态规划算法可以求出c[i][j]所有的值，能求出最大价值，然后利用show函数输出选择的物品。<br>第二种方法为回溯法，利用全局变量bestV最大价值currW当前背包重量currV当前背包价值bestx最优选择物品，每次回溯有选并记录当前值与不选往后遍历两种选择，遍历到最后一个物品时与bestV比较。<br><img data-src="https://img-blog.csdnimg.cn/20210520192426877.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20210520192434994.png" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#n：物品件数；c:最大承重为c的背包；w:各个物品的重量；v:各个物品的价值</span></span><br><span class="line"><span class="comment">#w[i]：第i个物体的重量 </span></span><br><span class="line"><span class="comment">#p[i]：第i个物体的价值 </span></span><br><span class="line"><span class="comment">#c[i][j]：前i个物体放入容量为j 包的最大价值 </span></span><br><span class="line"><span class="comment">#c[i-1][j]：前i个物体放入容量为j 包的最大价值 </span></span><br><span class="line"><span class="comment">#c[i-1][j-w[i]]：前i-1个物体放入容量为j-w[i] 包的最大价值</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">knapsack</span>(<span class="params">n,c,w,p</span>):<span class="comment">#动态规划算法求出最大价值</span></span><br><span class="line">    res=[[-<span class="number">1</span> <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(c+<span class="number">1</span>)]<span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n+<span class="number">1</span>)]</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(c+<span class="number">1</span>):</span><br><span class="line">        <span class="comment">#第0行全部赋值为0，物品编号从1开始.为了下面赋值方便</span></span><br><span class="line">        res[<span class="number">0</span>][j]=<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,n+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,c+<span class="number">1</span>):</span><br><span class="line">            res[i][j]=res[i-<span class="number">1</span>][j]</span><br><span class="line">            <span class="comment">#生成了n*c有效矩阵，以下公式w[i-1],p[i-1]代表从第一个元素w[0],p[0]开始取。</span></span><br><span class="line">            <span class="keyword">if</span>(j&gt;=w[i-<span class="number">1</span>]) <span class="keyword">and</span> res[i-<span class="number">1</span>][j-w[i-<span class="number">1</span>]]+p[i-<span class="number">1</span>]&gt;res[i][j]:</span><br><span class="line">                res[i][j]=res[i-<span class="number">1</span>][j-w[i-<span class="number">1</span>]]+p[i-<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">show</span>(<span class="params">n,c,w,res</span>):<span class="comment">#输出最大价值和选择的物品</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;最大价值为:&#x27;</span>,res[n][c])  </span><br><span class="line">    x=[<span class="literal">False</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n)]  </span><br><span class="line">    j=c  </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,n+<span class="number">1</span>):  </span><br><span class="line">        <span class="keyword">if</span> res[i][j]&gt;res[i-<span class="number">1</span>][j]:<span class="comment">#res[i][j]&gt;res[i-1][j]则表示第i个物品放入背包</span></span><br><span class="line">            x[i-<span class="number">1</span>]=<span class="literal">True</span>  </span><br><span class="line">            j-=w[i-<span class="number">1</span>]  </span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;选择的物品为:&quot;</span>,end=<span class="string">&quot; &quot;</span>)  </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):  </span><br><span class="line">        <span class="keyword">if</span> x[i]:  </span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;第&#x27;</span>,i+<span class="number">1</span>,<span class="string">&#x27;个&#x27;</span>,end=<span class="string">&quot; &quot;</span>)</span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:  </span><br><span class="line">    n=<span class="number">5</span>  </span><br><span class="line">    c=<span class="number">10</span>  </span><br><span class="line">    weight=[<span class="number">2</span>,<span class="number">2</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>]  </span><br><span class="line">    price=[<span class="number">6</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">6</span>]  </span><br><span class="line">    res=knapsack(n,c,weight,price)  </span><br><span class="line">    show(n,c,weight,res) </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://img-blog.csdnimg.cn/20210520192439632.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20210520192444927.png" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">bestV = <span class="number">0</span> <span class="comment"># 最大价值</span></span><br><span class="line">currW = <span class="number">0</span> <span class="comment"># 当前背包重量</span></span><br><span class="line">currV = <span class="number">0</span> <span class="comment"># 当前背包价值</span></span><br><span class="line">bestx = <span class="literal">None</span> <span class="comment"># 最优解</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">backtrack</span>(<span class="params">i</span>):<span class="comment">#深度优先策略搜索回溯法实现01背包,i表示从回溯到第i个物品</span></span><br><span class="line">    <span class="keyword">global</span> bestV,bestx,currV,currW,x<span class="comment">#全局变量使不同深度的遍历时记录相同</span></span><br><span class="line">    <span class="keyword">if</span> i&gt;= n:<span class="comment">#遍历i到最后一个物品时，比较当前背包重量与最大背包重量，与最优解</span></span><br><span class="line">        <span class="keyword">if</span> bestV&lt;currV:</span><br><span class="line">            bestV = currV</span><br><span class="line">            bestx = x[:]</span><br><span class="line">    <span class="keyword">else</span>:<span class="comment">#当i小于n时</span></span><br><span class="line">        <span class="keyword">if</span> currW+w[i]&lt;=c:<span class="comment">#如果选择第i个物品后重量小于最大值，则记录选择第i个物品后的值</span></span><br><span class="line">            x[i]=<span class="number">1</span></span><br><span class="line">            currW += w[i]</span><br><span class="line">            currV += v[i]</span><br><span class="line">            backtrack(i+<span class="number">1</span>)</span><br><span class="line">            currW -= w[i]</span><br><span class="line">            currV -= v[i]</span><br><span class="line">        x[i]=<span class="number">0</span><span class="comment">#记录后将第i个物品设置为不选，对第i+1个物品进行选择</span></span><br><span class="line">        backtrack(i+<span class="number">1</span>)</span><br><span class="line">n=<span class="number">5</span></span><br><span class="line">c=<span class="number">10</span></span><br><span class="line">w=[<span class="number">2</span>,<span class="number">2</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>]</span><br><span class="line">v=[<span class="number">6</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">6</span>]</span><br><span class="line">x=[<span class="literal">False</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">backtrack(<span class="number">0</span>)</span><br><span class="line"><span class="built_in">print</span>(bestV)</span><br><span class="line"><span class="built_in">print</span>(bestx)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>3、给定一个二维网格和一个单词，找出该单词是否存在于网格中。说明：单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。<br>示例：board &#x3D;[  [‘A’,’B’,’C’,’E’], [‘S’,’F’,’C’,’S’], [‘A’,’D’,’E’,’E’]] ，给定 word &#x3D; “ABCCED”, 返回 true， 给定 word &#x3D; “SEE”, 返回 true， 给定 word &#x3D; “ABCB”, 返回 false。<br>  本题利用回溯法解决单词搜索问题，首先directions为四个方向，而从左上角开始，依次改变开始位置，依次往四个方向上在网格中遍历，且用mark记录是否已遍历，如果找不到，则回溯重新遍历，只要有一次开始位置使回溯返回结果为true即返回true。<br><img data-src="https://img-blog.csdnimg.cn/20210520192453598.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20210520192457685.png" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="comment"># 定义上下左右四个行走方向</span></span><br><span class="line">    directs = [(<span class="number">0</span>, <span class="number">1</span>), (<span class="number">0</span>, -<span class="number">1</span>), (<span class="number">1</span>, <span class="number">0</span>), (-<span class="number">1</span>, <span class="number">0</span>)]</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">exist</span>(<span class="params">self, board, word</span>):</span><br><span class="line">        m = <span class="built_in">len</span>(board)<span class="comment">#m表示二维矩阵宽</span></span><br><span class="line">        <span class="keyword">if</span> m == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        n = <span class="built_in">len</span>(board[<span class="number">0</span>])<span class="comment">#n表示二维矩阵场</span></span><br><span class="line">        mark = [[<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)] <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(m)]<span class="comment">#mark[i][j]记录是否遍历过,1表示已遍历，0表示没有 </span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(board)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(board[<span class="number">0</span>])):<span class="comment">#每次从board[i][j]开始遍历</span></span><br><span class="line">                <span class="keyword">if</span> board[i][j] == word[<span class="number">0</span>]:</span><br><span class="line">                    <span class="comment"># 将该元素标记为已使用</span></span><br><span class="line">                    mark[i][j] = <span class="number">1</span></span><br><span class="line">                    <span class="keyword">if</span> self.backtrack(i, j, mark, board, word[<span class="number">1</span>:]) == <span class="literal">True</span>:<span class="comment">#只要有一次返回true则函数返回true</span></span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        <span class="comment"># 回溯</span></span><br><span class="line">                        mark[i][j] = <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">backtrack</span>(<span class="params">self, i, j, mark, board, word</span>):<span class="comment">#从board[i][j]开始遍历，mark[i][j]记录是否遍历过，board为二维数组,word为单词</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(word) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span>   </span><br><span class="line">        <span class="keyword">for</span> direct <span class="keyword">in</span> self.directs:<span class="comment">#每次都按上，下，右，左遍历</span></span><br><span class="line">            cur_i = i + direct[<span class="number">0</span>]</span><br><span class="line">            cur_j = j + direct[<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">if</span> cur_i &gt;= <span class="number">0</span> <span class="keyword">and</span> cur_i &lt; <span class="built_in">len</span>(board) <span class="keyword">and</span> cur_j &gt;= <span class="number">0</span> <span class="keyword">and</span> cur_j &lt; <span class="built_in">len</span>(board[<span class="number">0</span>]) <span class="keyword">and</span> board[cur_i][cur_j] == word[<span class="number">0</span>]:<span class="comment">#保证board[cur_i][cur_j]不越界且等于word[0]</span></span><br><span class="line">                <span class="keyword">if</span> mark[cur_i][cur_j] == <span class="number">1</span>:<span class="comment"># 如果是已经使用过的元素，忽略</span></span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                mark[cur_i][cur_j] = <span class="number">1</span><span class="comment"># 将该元素标记为已使用</span></span><br><span class="line">                <span class="keyword">if</span> self.backtrack(cur_i, cur_j, mark, board, word[<span class="number">1</span>:]) == <span class="literal">True</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="comment"># 不满足条件则回溯</span></span><br><span class="line">                    mark[cur_i][cur_j] = <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    board = [</span><br><span class="line">        [<span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;C&#x27;</span>, <span class="string">&#x27;E&#x27;</span>],</span><br><span class="line">        [<span class="string">&#x27;S&#x27;</span>, <span class="string">&#x27;F&#x27;</span>, <span class="string">&#x27;C&#x27;</span>, <span class="string">&#x27;S&#x27;</span>],</span><br><span class="line">        [<span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;D&#x27;</span>, <span class="string">&#x27;E&#x27;</span>, <span class="string">&#x27;E&#x27;</span>]</span><br><span class="line">    ]</span><br><span class="line">    solution = Solution()</span><br><span class="line">    word = <span class="string">&quot;ABCCED&quot;</span></span><br><span class="line">    res = solution.exist(board, word)</span><br><span class="line">    <span class="built_in">print</span>(res)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>4、班上有 N 名学生。其中有些人是朋友，有些则不是。他们的友谊具有是传递性。如果已知 A 是 B 的朋友，B 是 C 的朋友，那么我们可以认为 A 也是 C 的朋友。所谓的朋友圈，是指所有朋友的集合。给定一个 N * N 的矩阵 M，表示班级中学生之间的朋友关系。如果M[i][j] &#x3D; 1，表示已知第 i 个和 j 个学生互为朋友关系，否则为不知道。你必须输出所有学生中的已知的朋友圈总数。<br>示例1：输入: [[1,1,0], [1,1,0], [0,0,1]]       输出: 2      说明：已知学生0和学生1互为朋友，他们在一个朋友圈。第2个学生自己在一个朋友圈。所以返回2。<br>示例2：输入: [[1,1,0],   [1,1,1],  [0,1,1]]       输出: 1      说明：已知学生0和学生1互为朋友，学生1和学生2互为朋友，所以学生0和学生2也是朋友，所以他们三个在一个朋友圈，返回1。</p>
+<p>使用宽度优先遍历搜索算法，依次遍历，当该点能够到达其他点即为朋友时，使他们的queue设为同1值，且res+1即朋友圈数+1,且将遍历的点踢出点集。<br><img data-src="https://img-blog.csdnimg.cn/20210520192503218.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20210520192507461.png" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">findCircleNum</span>(<span class="params">M</span>):</span><br><span class="line">    N, visited, res = <span class="built_in">len</span>(M), <span class="built_in">set</span>(), <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):<span class="comment">#宽度优先搜索算法</span></span><br><span class="line">        <span class="keyword">if</span> i <span class="keyword">not</span> <span class="keyword">in</span> visited:<span class="comment">#当第i个未被访问时</span></span><br><span class="line">            queue = [i]</span><br><span class="line">            <span class="keyword">while</span> queue:<span class="comment">#while将所有从第i个人能够达到的人遍历完</span></span><br><span class="line">                p = queue.pop(<span class="number">0</span>)</span><br><span class="line">                <span class="keyword">if</span> p <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                    visited.add(p)<span class="comment">#从i能够到达的点加入visited</span></span><br><span class="line">                    queue += [k <span class="keyword">for</span> k, num <span class="keyword">in</span> <span class="built_in">enumerate</span>(M[p]) <span class="keyword">if</span> num <span class="keyword">and</span> k <span class="keyword">not</span> <span class="keyword">in</span> visited]</span><br><span class="line">                    <span class="comment">#queue加入通过enumerate(M[p])遍历的所能达到的未被遍历的点</span></span><br><span class="line">            res += <span class="number">1</span><span class="comment">#一次遍历完，res+1</span></span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">M=[[<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>],</span><br><span class="line"> [<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>],</span><br><span class="line"> [<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>]]</span><br><span class="line"><span class="built_in">print</span>(findCircleNum(M))</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>5、你有一个用于表示一片土地的整数矩阵land，该矩阵中每个点的值代表对应地点的海拔高度。若值为0则表示水域。由垂直、水平或对角连接的水域为池塘。池塘的大小是指相连接的水域的个数。编写一个方法来计算矩阵中所有池塘的大小，返回值需要从小到大排序。<br>示例：输入：[[0,2,1,0],   [0,1,0,1],  [1,1,0,1],  [0,1,0,1]]      输出： [1,2,4]</p>
+<p>   该题也利用宽度优先遍历算法，当找到一个高度为0时，向垂直、水平或对角连接八个方向依次遍历，且对遍历过的点设置已访问，当8个方向都没有高度为0时，记下这个池塘的大小，然后从其他高度为0的点继续遍历记下大小，最后返回从小到大排序后的结果。<br>   <img data-src="https://img-blog.csdnimg.cn/20210520192515327.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20210520192701962.png" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">pondSizes</span>(<span class="params">self,land</span>):</span><br><span class="line">        areas = []<span class="comment"># 水域面积存储数组</span></span><br><span class="line">        visit = [[<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(land[<span class="number">0</span>]))] <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(land))]<span class="comment"># 记录访问数组</span></span><br><span class="line">        steps = [[<span class="number">1</span>, <span class="number">0</span>], [<span class="number">1</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>], [-<span class="number">1</span>, <span class="number">1</span>], [-<span class="number">1</span>, <span class="number">0</span>], [-<span class="number">1</span>, -<span class="number">1</span>], [<span class="number">0</span>, -<span class="number">1</span>], [<span class="number">1</span>, -<span class="number">1</span>]] <span class="comment">#垂直、水平或对角连接八个方向</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">bfs</span>(<span class="params">x, y</span>):<span class="comment">#宽度优先搜索算法</span></span><br><span class="line">            area = <span class="number">1</span>        </span><br><span class="line">            q = [[x, y]]</span><br><span class="line">            visit[x][y] = <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> q:<span class="comment">#一次遍历出q的8个方向上所有的水域点</span></span><br><span class="line">                p = q.pop(<span class="number">0</span>)<span class="comment">#判断p=q[0]是否为水域</span></span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> steps:<span class="comment">#对8个方向依次遍历是否存在水域</span></span><br><span class="line">                    dx, dy = p[<span class="number">0</span>] + i[<span class="number">0</span>], p[<span class="number">1</span>] + i[<span class="number">1</span>]</span><br><span class="line">                    <span class="keyword">if</span> <span class="number">0</span> &lt;= dx &lt; <span class="built_in">len</span>(land) <span class="keyword">and</span> <span class="number">0</span> &lt;= dy &lt; <span class="built_in">len</span>(land[<span class="number">0</span>]) <span class="keyword">and</span> land[dx][dy] == <span class="number">0</span> <span class="keyword">and</span> visit[dx][dy] == <span class="number">0</span>:</span><br><span class="line">                        <span class="comment">#判断是否在土地内</span></span><br><span class="line">                        q.append([dx, dy])<span class="comment">#每次当8个方向的点在土地上时，就加入q中</span></span><br><span class="line">                        area += <span class="number">1</span></span><br><span class="line">                        visit[dx][dy] = <span class="number">1</span></span><br><span class="line">            areas.append(area)<span class="comment">#当q旁的所有满足条件的点遍历完后计入areas中</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(land)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(land[<span class="number">0</span>])):</span><br><span class="line">                <span class="keyword">if</span> land[i][j] == <span class="number">0</span> <span class="keyword">and</span> visit[i][j] == <span class="number">0</span>:<span class="comment">#当land[i][j]为水域时且未被访问时就从该点宽度优先搜索</span></span><br><span class="line">                    bfs(i, j)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sorted</span>(areas)<span class="comment">#返回从小到大排序后的结果</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    solution = Solution()</span><br><span class="line">    land=[</span><br><span class="line">      [<span class="number">0</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>],</span><br><span class="line">      [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>],</span><br><span class="line">      [<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>],</span><br><span class="line">      [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>]]</span><br><span class="line">    sizes=solution.pondSizes(land)</span><br><span class="line">    <span class="built_in">print</span>(sizes)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>四、实验总结<br>   （根据实验写出一些心得或分析等）<br>这次实验让我更加体会了回溯法与深度宽度遍历算法，虽然算法很好理解，但在代码编写时感觉有些困难，对许多细节方面有所不足。</p>
+
+    </div>
+
+    
+    
+    
+ <div>
+    
+       <div>
+      
+          <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+      
+  </div>
+    
+  </div>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Pistachiout
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://pistachiout.github.io/wiki/%E5%9B%BE%E7%9A%84%E7%9D%80%E8%89%B2%E9%97%AE%E9%A2%98%EF%BC%8C0-1%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%EF%BC%8C%E5%8D%95%E8%AF%8D%E5%BF%85%E9%A1%BB%E6%8C%89%E7%85%A7%E5%AD%97%E6%AF%8D%E9%A1%BA%E5%BA%8F%EF%BC%8C%E6%89%80%E6%9C%89%E5%AD%A6%E7%94%9F%E4%B8%AD%E7%9A%84%E5%B7%B2%E7%9F%A5%E7%9A%84%E6%9C%8B%E5%8F%8B%E5%9C%88%E6%80%BB%E6%95%B0%EF%BC%8C%E8%AE%A1%E7%AE%97%E7%9F%A9%E9%98%B5%E4%B8%AD%E6%89%80%E6%9C%89%E6%B1%A0%E5%A1%98%E7%9A%84%E5%A4%A7%E5%B0%8F/" title="">https://pistachiout.github.io/wiki/图的着色问题，0-1背包问题，单词必须按照字母顺序，所有学生中的已知的朋友圈总数，计算矩阵中所有池塘的大小/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/wiki/%E6%83%85%E4%BE%A3%E7%89%B5%E6%89%8B%EF%BC%8C%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C%EF%BC%8C%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F%EF%BC%8C%E5%8D%95%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84Dijkstra%E7%AE%97%E6%B3%95%EF%BC%8C%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E6%9E%84%E9%80%A0%E9%9C%8D%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/wiki/%E9%80%92%E5%BD%92+%E5%9B%9E%E6%BA%AF%E6%B3%95/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E4%B8%96%E7%95%8C%E5%9C%B0%E5%9B%BE%E4%B8%8A%E7%9B%B8%E9%82%BB%E5%9B%BD%E5%AE%B6%E9%9C%80%E8%A6%81%E7%94%A8%E4%B8%8D%E5%90%8C%E7%9A%84%E9%A2%9C%E8%89%B2%E6%A0%87%E6%B3%A8%E4%BB%A5%E7%A4%BA%E5%8C%BA%E5%88%AB%EF%BC%8C%E4%BD%86%E6%9C%80%E5%A4%9A%E5%8F%AA%E9%9C%80%E8%A6%81%E9%80%89%E5%8F%96%E5%9B%9B%E7%A7%8D%E9%A2%9C%E8%89%B2%E5%8D%B3%E5%8F%AF%E3%80%82%E8%AF%B7%E7%BC%96%E7%A8%8B%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%9A%84%E7%9D%80%E8%89%B2%E9%97%AE%E9%A2%98%E3%80%82"><span class="nav-text">1、世界地图上相邻国家需要用不同的颜色标注以示区别，但最多只需要选取四种颜色即可。请编程实现图的着色问题。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E7%BC%96%E7%A8%8B%E5%AE%9E%E7%8E%B00-1%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%EF%BC%8C%E8%87%B3%E5%B0%91%E4%B8%A4%E7%A7%8D%E7%AE%97%E6%B3%95%E3%80%82"><span class="nav-text">2、编程实现0-1背包问题，至少两种算法。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E7%BB%99%E5%AE%9A%E4%B8%80%E4%B8%AA%E4%BA%8C%E7%BB%B4%E7%BD%91%E6%A0%BC%E5%92%8C%E4%B8%80%E4%B8%AA%E5%8D%95%E8%AF%8D%EF%BC%8C%E6%89%BE%E5%87%BA%E8%AF%A5%E5%8D%95%E8%AF%8D%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E4%BA%8E%E7%BD%91%E6%A0%BC%E4%B8%AD%E3%80%82%E8%AF%B4%E6%98%8E%EF%BC%9A%E5%8D%95%E8%AF%8D%E5%BF%85%E9%A1%BB%E6%8C%89%E7%85%A7%E5%AD%97%E6%AF%8D%E9%A1%BA%E5%BA%8F%EF%BC%8C%E9%80%9A%E8%BF%87%E7%9B%B8%E9%82%BB%E7%9A%84%E5%8D%95%E5%85%83%E6%A0%BC%E5%86%85%E7%9A%84%E5%AD%97%E6%AF%8D%E6%9E%84%E6%88%90%EF%BC%8C%E5%85%B6%E4%B8%AD%E2%80%9C%E7%9B%B8%E9%82%BB%E2%80%9D%E5%8D%95%E5%85%83%E6%A0%BC%E6%98%AF%E9%82%A3%E4%BA%9B%E6%B0%B4%E5%B9%B3%E7%9B%B8%E9%82%BB%E6%88%96%E5%9E%82%E7%9B%B4%E7%9B%B8%E9%82%BB%E7%9A%84%E5%8D%95%E5%85%83%E6%A0%BC%E3%80%82%E5%90%8C%E4%B8%80%E4%B8%AA%E5%8D%95%E5%85%83%E6%A0%BC%E5%86%85%E7%9A%84%E5%AD%97%E6%AF%8D%E4%B8%8D%E5%85%81%E8%AE%B8%E8%A2%AB%E9%87%8D%E5%A4%8D%E4%BD%BF%E7%94%A8%E3%80%82"><span class="nav-text">3、给定一个二维网格和一个单词，找出该单词是否存在于网格中。说明：单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81%E7%8F%AD%E4%B8%8A%E6%9C%89-N-%E5%90%8D%E5%AD%A6%E7%94%9F%E3%80%82%E5%85%B6%E4%B8%AD%E6%9C%89%E4%BA%9B%E4%BA%BA%E6%98%AF%E6%9C%8B%E5%8F%8B%EF%BC%8C%E6%9C%89%E4%BA%9B%E5%88%99%E4%B8%8D%E6%98%AF%E3%80%82%E4%BB%96%E4%BB%AC%E7%9A%84%E5%8F%8B%E8%B0%8A%E5%85%B7%E6%9C%89%E6%98%AF%E4%BC%A0%E9%80%92%E6%80%A7%E3%80%82%E5%A6%82%E6%9E%9C%E5%B7%B2%E7%9F%A5-A-%E6%98%AF-B-%E7%9A%84%E6%9C%8B%E5%8F%8B%EF%BC%8CB-%E6%98%AF-C-%E7%9A%84%E6%9C%8B%E5%8F%8B%EF%BC%8C%E9%82%A3%E4%B9%88%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E8%AE%A4%E4%B8%BA-A-%E4%B9%9F%E6%98%AF-C-%E7%9A%84%E6%9C%8B%E5%8F%8B%E3%80%82%E6%89%80%E8%B0%93%E7%9A%84%E6%9C%8B%E5%8F%8B%E5%9C%88%EF%BC%8C%E6%98%AF%E6%8C%87%E6%89%80%E6%9C%89%E6%9C%8B%E5%8F%8B%E7%9A%84%E9%9B%86%E5%90%88%E3%80%82%E7%BB%99%E5%AE%9A%E4%B8%80%E4%B8%AA-N-N-%E7%9A%84%E7%9F%A9%E9%98%B5-M%EF%BC%8C%E8%A1%A8%E7%A4%BA%E7%8F%AD%E7%BA%A7%E4%B8%AD%E5%AD%A6%E7%94%9F%E4%B9%8B%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B%E5%85%B3%E7%B3%BB%E3%80%82%E5%A6%82%E6%9E%9CM-i-j-x3D-1%EF%BC%8C%E8%A1%A8%E7%A4%BA%E5%B7%B2%E7%9F%A5%E7%AC%AC-i-%E4%B8%AA%E5%92%8C-j-%E4%B8%AA%E5%AD%A6%E7%94%9F%E4%BA%92%E4%B8%BA%E6%9C%8B%E5%8F%8B%E5%85%B3%E7%B3%BB%EF%BC%8C%E5%90%A6%E5%88%99%E4%B8%BA%E4%B8%8D%E7%9F%A5%E9%81%93%E3%80%82%E4%BD%A0%E5%BF%85%E9%A1%BB%E8%BE%93%E5%87%BA%E6%89%80%E6%9C%89%E5%AD%A6%E7%94%9F%E4%B8%AD%E7%9A%84%E5%B7%B2%E7%9F%A5%E7%9A%84%E6%9C%8B%E5%8F%8B%E5%9C%88%E6%80%BB%E6%95%B0%E3%80%82"><span class="nav-text">4、班上有 N 名学生。其中有些人是朋友，有些则不是。他们的友谊具有是传递性。如果已知 A 是 B 的朋友，B 是 C 的朋友，那么我们可以认为 A 也是 C 的朋友。所谓的朋友圈，是指所有朋友的集合。给定一个 N * N 的矩阵 M，表示班级中学生之间的朋友关系。如果M[i][j] &#x3D; 1，表示已知第 i 个和 j 个学生互为朋友关系，否则为不知道。你必须输出所有学生中的已知的朋友圈总数。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E3%80%81%E4%BD%A0%E6%9C%89%E4%B8%80%E4%B8%AA%E7%94%A8%E4%BA%8E%E8%A1%A8%E7%A4%BA%E4%B8%80%E7%89%87%E5%9C%9F%E5%9C%B0%E7%9A%84%E6%95%B4%E6%95%B0%E7%9F%A9%E9%98%B5land%EF%BC%8C%E8%AF%A5%E7%9F%A9%E9%98%B5%E4%B8%AD%E6%AF%8F%E4%B8%AA%E7%82%B9%E7%9A%84%E5%80%BC%E4%BB%A3%E8%A1%A8%E5%AF%B9%E5%BA%94%E5%9C%B0%E7%82%B9%E7%9A%84%E6%B5%B7%E6%8B%94%E9%AB%98%E5%BA%A6%E3%80%82%E8%8B%A5%E5%80%BC%E4%B8%BA0%E5%88%99%E8%A1%A8%E7%A4%BA%E6%B0%B4%E5%9F%9F%E3%80%82%E7%94%B1%E5%9E%82%E7%9B%B4%E3%80%81%E6%B0%B4%E5%B9%B3%E6%88%96%E5%AF%B9%E8%A7%92%E8%BF%9E%E6%8E%A5%E7%9A%84%E6%B0%B4%E5%9F%9F%E4%B8%BA%E6%B1%A0%E5%A1%98%E3%80%82%E6%B1%A0%E5%A1%98%E7%9A%84%E5%A4%A7%E5%B0%8F%E6%98%AF%E6%8C%87%E7%9B%B8%E8%BF%9E%E6%8E%A5%E7%9A%84%E6%B0%B4%E5%9F%9F%E7%9A%84%E4%B8%AA%E6%95%B0%E3%80%82%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E6%96%B9%E6%B3%95%E6%9D%A5%E8%AE%A1%E7%AE%97%E7%9F%A9%E9%98%B5%E4%B8%AD%E6%89%80%E6%9C%89%E6%B1%A0%E5%A1%98%E7%9A%84%E5%A4%A7%E5%B0%8F%EF%BC%8C%E8%BF%94%E5%9B%9E%E5%80%BC%E9%9C%80%E8%A6%81%E4%BB%8E%E5%B0%8F%E5%88%B0%E5%A4%A7%E6%8E%92%E5%BA%8F%E3%80%82"><span class="nav-text">5、你有一个用于表示一片土地的整数矩阵land，该矩阵中每个点的值代表对应地点的海拔高度。若值为0则表示水域。由垂直、水平或对角连接的水域为池塘。池塘的大小是指相连接的水域的个数。编写一个方法来计算矩阵中所有池塘的大小，返回值需要从小到大排序。</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Pistachiout"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Pistachiout</p>
+  <div class="site-description" itemprop="description">Pistachiout的学习博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Pistachiout" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Pistachiout" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/qq_45808700?spm=1010.2135.3001.5343" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_45808700?spm&#x3D;1010.2135.3001.5343" rel="noopener" target="_blank"><i class="fa csdn fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pistachiout</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">263k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">3:59</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+<!-- <br /> -->
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<!-- <span id="times">载入时分秒...</span> -->
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("02/15/2023 8:00:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); 
+        if(String(snum).length ==1 ){snum = "0" + snum;}
+        // var times = document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "+hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+  
+
+  
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":140,"height":240},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

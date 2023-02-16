@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-flash.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"pistachiout.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1、情侣牵手问题描述：N 对情侣坐在连续排列的 2N 个座位上，想要牵到对方的手。 计算最少交换座位的次数，以便每对情侣可以并肩坐在一起。一次交换可选择任意两人，让他们站起来交换座位。人和座位用 0 到 2N-1 的整数表示，情侣们按顺序编号，第一对是 (0, 1)，第二对是 (2, 3)，以此类推，最后一对是 (2N-2, 2N-1)。这些情侣的初始座位  row[i] 是由最初始坐在第 i 个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pistachiout的博客">
+<meta property="og:url" content="https://pistachiout.github.io/wiki/%E6%83%85%E4%BE%A3%E7%89%B5%E6%89%8B%EF%BC%8C%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C%EF%BC%8C%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F%EF%BC%8C%E5%8D%95%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84Dijkstra%E7%AE%97%E6%B3%95%EF%BC%8C%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E6%9E%84%E9%80%A0%E9%9C%8D%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81/index.html">
+<meta property="og:site_name" content="Pistachiout的博客">
+<meta property="og:description" content="1、情侣牵手问题描述：N 对情侣坐在连续排列的 2N 个座位上，想要牵到对方的手。 计算最少交换座位的次数，以便每对情侣可以并肩坐在一起。一次交换可选择任意两人，让他们站起来交换座位。人和座位用 0 到 2N-1 的整数表示，情侣们按顺序编号，第一对是 (0, 1)，第二对是 (2, 3)，以此类推，最后一对是 (2N-2, 2N-1)。这些情侣的初始座位  row[i] 是由最初始坐在第 i 个">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210520190710408.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2021052019071567.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210520190726368.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210520190906472.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210520190954966.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210520190958868.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210520190945954.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2023-02-16T10:54:54.857Z">
+<meta property="article:modified_time" content="2023-02-15T02:21:01.681Z">
+<meta property="article:author" content="Pistachiout">
+<meta property="article:tag" content="博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210520190710408.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
+
+<link rel="canonical" href="https://pistachiout.github.io/wiki/%E6%83%85%E4%BE%A3%E7%89%B5%E6%89%8B%EF%BC%8C%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C%EF%BC%8C%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F%EF%BC%8C%E5%8D%95%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84Dijkstra%E7%AE%97%E6%B3%95%EF%BC%8C%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E6%9E%84%E9%80%A0%E9%9C%8D%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | Pistachiout的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Pistachiout的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a target="_blank" rel="noopener" href="https://github.com/Pistachiout" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Pistachiout的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">每天多学一点知识,就少写一行代码</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+    <link rel="stylesheet" href="/dist/APlayer.min.css">
+        <div id="aplayer"></div>
+        <script type="text/javascript" src="/dist/APlayer.min.js"></script>
+        <script type="text/javascript" src="/dist/music.js"></script>
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pistachiout.github.io/wiki/%E6%83%85%E4%BE%A3%E7%89%B5%E6%89%8B%EF%BC%8C%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C%EF%BC%8C%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F%EF%BC%8C%E5%8D%95%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84Dijkstra%E7%AE%97%E6%B3%95%EF%BC%8C%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E6%9E%84%E9%80%A0%E9%9C%8D%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Pistachiout">
+      <meta itemprop="description" content="Pistachiout的学习博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pistachiout的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-02-16 18:54:54" itemprop="dateCreated datePublished" datetime="2023-02-16T18:54:54+08:00">2023-02-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-15 10:21:01" itemprop="dateModified" datetime="2023-02-15T10:21:01+08:00">2023-02-15</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="1、情侣牵手"><a href="#1、情侣牵手" class="headerlink" title="1、情侣牵手"></a>1、情侣牵手</h2><p>问题描述：N 对情侣坐在连续排列的 2N 个座位上，想要牵到对方的手。 计算最少交换座位的次数，以便每对情侣可以并肩坐在一起。<br>一次交换可选择任意两人，让他们站起来交换座位。人和座位用 0 到 2N-1 的整数表示，情侣们按顺序编号，第一对是 (0, 1)，第二对是 (2, 3)，以此类推，最后一对是 (2N-2, 2N-1)。这些情侣的初始座位  row[i] 是由最初始坐在第 i 个座位上的人决定的。<br>示例1：输入: row &#x3D; [0, 2, 1, 3]    输出: 1     解释: 我们只需要交换row[1]和row[2]的位置即可。<br>示例2：输入: row &#x3D; [3, 2, 0, 1]    输出: 0    解释: 无需交换座位，所有的情侣都已经可以手牵手了。</p>
+<h2 id="2、分发糖果"><a href="#2、分发糖果" class="headerlink" title="2、分发糖果"></a>2、分发糖果</h2><p>问题描述：老师想给孩子们分发糖果，有 N 个孩子站成了一条直线，老师会根据每个孩子的表现，预先给他们评分。你需要按照以下要求，帮助老师给这些孩子分发糖果：（1）每个孩子至少分配到 1 个糖果；（2）相邻的孩子中，评分高的孩子必须获得更多的糖果。那么这样下来，老师至少需要准备多少颗糖果呢？<br>示例 1: 输入: [1,0,2]    输出: 5    解释: 你可以分别给这三个孩子分发 2、1、2 颗糖果。<br>示例 2: 输入: [1,2,2]    输出: 4    解释: 你可以分别给这三个孩子分发 1、2、1 颗糖果。 第三个孩子只得到 1 颗糖果，这已满足上述两个条件。</p>
+<h2 id="3、跳跃游戏"><a href="#3、跳跃游戏" class="headerlink" title="3、跳跃游戏"></a>3、跳跃游戏</h2><p>问题描述：给定一个非负整数数组，你最初位于数组的第一个位置。数组中的每个元素代表你在该位置可以跳跃的最大长度。你的目标是使用最少的跳跃次数到达数组的最后一个位置。<br>示例: 输入: [2,3,1,1,4]   输出: 2     解释: 跳到最后一个位置的最小跳跃数是 2。从下标为 0 跳到下标为 1 的位置，跳 1 步，然后跳 3 步到达数组的最后一个位置。<br>说明: 假设你总是可以到达数组的最后一个位置。</p>
+<h2 id="4、编程实现单源最短路径Dijkstra算法，并回答如果将图中所有边的权重-1，所得到的最短路径是否仍为原最短路径，为什么？"><a href="#4、编程实现单源最短路径Dijkstra算法，并回答如果将图中所有边的权重-1，所得到的最短路径是否仍为原最短路径，为什么？" class="headerlink" title="4、编程实现单源最短路径Dijkstra算法，并回答如果将图中所有边的权重+1，所得到的最短路径是否仍为原最短路径，为什么？"></a>4、编程实现单源最短路径Dijkstra算法，并回答如果将图中所有边的权重+1，所得到的最短路径是否仍为原最短路径，为什么？</h2><h2 id="5、证明题：请证明利用贪心算法构造的霍夫曼编码的正确性。"><a href="#5、证明题：请证明利用贪心算法构造的霍夫曼编码的正确性。" class="headerlink" title="5、证明题：请证明利用贪心算法构造的霍夫曼编码的正确性。"></a>5、证明题：请证明利用贪心算法构造的霍夫曼编码的正确性。</h2><p>三、实验内容及结果<br><em>1、情侣牵手<br>问题描述：N 对情侣坐在连续排列的 2N 个座位上，想要牵到对方的手。 计算最少交换座位的次数，以便每对情侣可以并肩坐在一起。<br>一次交换可选择任意两人，让他们站起来交换座位。人和座位用 0 到 2N-1 的整数表示，情侣们按顺序编号，第一对是 (0, 1)，第二对是 (2, 3)，以此类推，最后一对是 (2N-2, 2N-1)。这些情侣的初始座位  row[i] 是由最初始坐在第 i 个座位上的人决定的。<br>示例1：输入: row &#x3D; [0, 2, 1, 3]    输出: 1     解释: 我们只需要交换row[1]和row[2]的位置即可。<br>示例2：输入: row &#x3D; [3, 2, 0, 1]    输出: 0    解释: 无需交换座位，所有的情侣都已经可以手牵手了。</em></p>
+<p>利用贪心算法，想到当找到一对座位上的人不是一对情侣时，则遍历后面的每个座位直到找到情侣与第二个座位上的人相互调换，而在代码中寻找情侣时使用x^1，x异或1即x为奇数即为x-1，x为偶数即为x+1，能得到相应的情侣，由贪心算法这样就能得到最少交换次数。<br><img data-src="https://img-blog.csdnimg.cn/20210520190710408.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><img data-src="https://img-blog.csdnimg.cn/2021052019071567.png" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">minSwapsCouples</span>(<span class="params">row</span>):</span><br><span class="line">    num=<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(row),<span class="number">2</span>):<span class="comment">#每次遍历2个位置</span></span><br><span class="line">        x=row[i]<span class="comment">#x为第一个位置的值</span></span><br><span class="line">        <span class="keyword">if</span> row[i+<span class="number">1</span>]==x^<span class="number">1</span>:<span class="comment">#x^1异或操作当x为奇数即为x-1，x为偶数即为x+1，可以完美表示x的情侣的序号</span></span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        num+=<span class="number">1</span><span class="comment">#当没有coninue重新循环说明row[i+1]不是情侣，则num+1</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i+<span class="number">2</span>,<span class="built_in">len</span>(row)):</span><br><span class="line">            <span class="comment">#对i+2后的数遍历，找到情侣交换而且由贪心算法可得出该方式为最少的交换方式</span></span><br><span class="line">            <span class="keyword">if</span> row[j] == x^<span class="number">1</span>:</span><br><span class="line">                row[i+<span class="number">1</span>],row[j] = row[j],row[i+<span class="number">1</span>]</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">return</span> num</span><br><span class="line">row1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">0</span>,<span class="number">3</span>]</span><br><span class="line"><span class="built_in">print</span>(minSwapsCouples(row1))</span><br><span class="line">row2 = [<span class="number">3</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line"><span class="built_in">print</span>(minSwapsCouples(row2))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>2、分发糖果<br>问题描述：老师想给孩子们分发糖果，有 N 个孩子站成了一条直线，老师会根据每个孩子的表现，预先给他们评分。你需要按照以下要求，帮助老师给这些孩子分发糖果：（1）每个孩子至少分配到 1 个糖果；（2）相邻的孩子中，评分高的孩子必须获得更多的糖果。那么这样下来，老师至少需要准备多少颗糖果呢？<br>示例 1: 输入: [1,0,2]    输出: 5    解释: 你可以分别给这三个孩子分发 2、1、2 颗糖果。<br>示例 2: 输入: [1,2,2]    输出: 4    解释: 你可以分别给这三个孩子分发 1、2、1 颗糖果。 第三个孩子只得到 1 颗糖果，这已满足上述两个条件。</p>
+<p>分发糖果，先从左边遍历，比左边分数高，则糖果为左边的糖果加1，比左边的小即仍为1，再从右边遍历，如果左边分数更高但是右边糖果数多时，说明没有符合分数高的糖果多的原则，则等于糖果数等于右边的加1.<br><img data-src="https://img-blog.csdnimg.cn/20210520190726368.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20210520190906472.png" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">distributeCandy</span>(<span class="params">scores</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(scores)&lt;=<span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(scores)</span><br><span class="line">    candy=[<span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(scores))]<span class="comment">#candy[i]记录第i个人该分的糖果</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(scores)):</span><br><span class="line">        <span class="comment">#从左向右遍历，当右边的分数高时，candy[i]=candy[i-1]+1</span></span><br><span class="line">        <span class="keyword">if</span> scores[i]&gt;scores[i-<span class="number">1</span>]:</span><br><span class="line">            candy[i]=candy[i-<span class="number">1</span>]+<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(scores)-<span class="number">2</span>,-<span class="number">1</span>,-<span class="number">1</span>):</span><br><span class="line">        <span class="comment">#从右到左遍历，当左边分数高且右边的糖果多时，重新记录candy[i]=candy[i+1]+1</span></span><br><span class="line">        <span class="keyword">if</span> scores[i]&gt;scores[i+<span class="number">1</span>] <span class="keyword">and</span> candy[i]&lt;=candy[i+<span class="number">1</span>]:</span><br><span class="line">            candy[i]=candy[i+<span class="number">1</span>]+<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sum</span>(candy)</span><br><span class="line">scores1=[<span class="number">1</span>,<span class="number">0</span>,<span class="number">2</span>]</span><br><span class="line"><span class="built_in">print</span>(distributeCandy(scores1))</span><br><span class="line">scores1=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>]</span><br><span class="line"><span class="built_in">print</span>(distributeCandy(scores1))</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>3、跳跃游戏<br>问题描述：给定一个非负整数数组，你最初位于数组的第一个位置。数组中的每个元素代表你在该位置可以跳跃的最大长度。你的目标是使用最少的跳跃次数到达数组的最后一个位置。<br>示例: 输入: [2,3,1,1,4]   输出: 2     解释: 跳到最后一个位置的最小跳跃数是 2。从下标为 0 跳到下标为 1 的位置，跳 1 步，然后跳 3 步到达数组的最后一个位置。<br>说明: 假设你总是可以到达数组的最后一个位置。</p>
+<p>3.从1遍历，每次加上该点跳跃的求出所能到达的最远距离reach，n表示跳的次数+1，当最远距离reach大于最远点时，说明可以到达，返回n<br><img data-src="https://img-blog.csdnimg.cn/20210520190954966.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20210520190958868.png" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">jump</span>(<span class="params">nums</span>):</span><br><span class="line">    leng,reach,n=<span class="built_in">len</span>(nums),<span class="number">0</span>,<span class="number">0</span><span class="comment">#leng为数组的长度，reach为到达的最远距离，n为跳跃的最小次数</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(leng):</span><br><span class="line">        <span class="comment">#对数组依次遍历，当i&lt;=reach时，重新记录所能跳跃的最远点reach，n+1</span></span><br><span class="line">        <span class="keyword">if</span> i&lt;=reach:</span><br><span class="line">            reach=<span class="built_in">max</span>(reach,i+nums[i])</span><br><span class="line">            n+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> reach&gt;=leng-<span class="number">1</span>:<span class="comment">#当reach大于等于最远点时，返回n</span></span><br><span class="line">                <span class="keyword">return</span> n</span><br><span class="line">nums=[<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">4</span>]</span><br><span class="line"><span class="built_in">print</span>(jump(nums))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>4、编程实现单源最短路径Dijkstra算法，并回答如果将图中所有边的权重+1，所得到的最短路径是否仍为原最短路径，为什么？</p>
+<p>Dijkstra算法，单源最短路径每次寻找路径中最短的点u，用松弛操作一一遍历出发点s到该点u加上到其他点v的距离与出发点s到点v的距离，由于对每个点都遍历了Q中的所有点，就相当于对s到v的每条路径都进行了遍历找到最近的距离，这样就可以找到Q里面剩下的v到s的最短距离。<br>将图中所有边的权重+1，所得到的最短路径不是原最短路径，因为到最短路径的边数可能很多，只不过每条边都很短，比其他路径长的路径距离更短，但加上1即加上路径的边数，这样原来的最短路径就可能比别的路径长度更长。<br><img data-src="https://img-blog.csdnimg.cn/20210520190945954.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">Dijkstra</span>(<span class="params">G,s</span>):</span><br><span class="line">    numVertex = <span class="built_in">len</span>(G)<span class="comment">#邻接矩阵的长度即点的个数</span></span><br><span class="line">    Q=[]<span class="comment">#记录尚未找到最短路径各个结点</span></span><br><span class="line">    D = &#123;&#125; <span class="comment">#记录s到各点的最短路径</span></span><br><span class="line">    precursorNode = &#123;&#125; <span class="comment">#表示每个结点最短路径的前驱结点</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(numVertex):<span class="comment">#初始化Q，D，precursorNode </span></span><br><span class="line">        Q.append(i)</span><br><span class="line">        D[i] = <span class="number">2</span>**<span class="number">32</span> - <span class="number">1</span></span><br><span class="line">        precursorNode[i] = <span class="string">&#x27;null&#x27;</span></span><br><span class="line">    D[s] = <span class="number">0</span> <span class="comment">#s到s的距离为0</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(Q):<span class="comment">#当Q未完全遍历完时</span></span><br><span class="line">        u=extract_min_queue(Q,D)<span class="comment">#首先找到剩下的点中到s路径最短的点</span></span><br><span class="line">        <span class="keyword">for</span> v <span class="keyword">in</span> <span class="built_in">range</span>(numVertex):<span class="comment">#v遍历所有的点，经过多次松弛可以对每条路径都进行遍历从而找到各个点的最短路径</span></span><br><span class="line">            <span class="keyword">if</span> G[u][v] == <span class="number">0</span>: <span class="comment"># G[u][v] == 0说明点u与点v不可到达</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            realx(D,G,precursorNode,u,v)<span class="comment">#当u与v有路径到达时，对（u，v）进行松弛操作</span></span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;distance:&#x27;</span>, D)<span class="comment">#输出各个点的最短路径</span></span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;precursorNode:&#x27;</span>, precursorNode)<span class="comment">#输出各个点最短路径的前驱结点</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">extract_min_queue</span>(<span class="params">Q,D</span>):<span class="comment">#提取Q中最短路径的点</span></span><br><span class="line">    min_dist = <span class="number">2</span>**<span class="number">32</span> - <span class="number">1</span><span class="comment">#最短路径长度</span></span><br><span class="line">    min_index = <span class="literal">None</span><span class="comment">#最短路径的点</span></span><br><span class="line">    <span class="keyword">for</span> vertex <span class="keyword">in</span> Q:<span class="comment">#在尚未找到最短路径的结点中找到路径最短的点，并记录min_dist，min_index</span></span><br><span class="line">        <span class="keyword">if</span> D[vertex] &lt; min_dist:</span><br><span class="line">            min_dist = D[vertex]</span><br><span class="line">            min_index = vertex</span><br><span class="line">    Q.remove(min_index)<span class="comment">#当找到最短路径的点后从Q中删除这个点</span></span><br><span class="line">    <span class="keyword">return</span> min_index<span class="comment">#返回最短路径的点</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">realx</span>(<span class="params">D,G,precursorNode,u,v</span>):<span class="comment">#松弛(u,v)可以更新s到v的最短路径与前驱结点</span></span><br><span class="line">    <span class="keyword">if</span> D[v] &gt; D[u] + G[u][v]:<span class="comment">#如果（s，v）的距离大于（s，u）的距离加上（u，v）的距离则更新D[v]与前驱结点</span></span><br><span class="line">        D[v] = D[u] + G[u][v]</span><br><span class="line">        precursorNode[v] = u</span><br><span class="line">G = [[<span class="number">0</span>,<span class="number">3</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">5</span>],</span><br><span class="line">    [<span class="number">0</span>,<span class="number">0</span>,<span class="number">6</span>,<span class="number">0</span>,<span class="number">2</span>],</span><br><span class="line">    [<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">2</span>,<span class="number">0</span>],</span><br><span class="line">    [<span class="number">3</span>,<span class="number">0</span>,<span class="number">7</span>,<span class="number">0</span>,<span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">0</span>]]</span><br><span class="line">Dijkstra(G, <span class="number">0</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>证明题：请证明利用贪心算法构造的霍夫曼编码的正确性。<br>首先知道霍夫曼编码有贪心选择和最优子结构心智，那么用反证法，假设利用贪心算法得到的霍夫曼编码不是最优编码，设利用贪心算法得到的编码树为T1，就存在最优编码树T2满足B（T1）&gt;B(T2)，那么将T2与T1其中一个不同的子节点x与x在T1上的位置的结点y对换，有贪心算法知x&lt;y，而对换后的树设为T3，易知B（T2）&gt;B(T3)&gt;&#x3D;B(T1),所以不存在其他的最优霍夫曼树，即由贪心算法构造的霍夫曼树为最佳树，也证明了利用贪心算法构造的霍夫曼编码的正确性</li>
+</ol>
+<p>四、实验总结<br>   （根据实验写出一些心得或分析等）<br>  本次实验让我更加理解了贪心算法以及单源最短路径的算法与霍夫曼树的构造，让我在面对一些问题时有了新的思考方法。</p>
+
+    </div>
+
+    
+    
+    
+ <div>
+    
+       <div>
+      
+          <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+      
+  </div>
+    
+  </div>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Pistachiout
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://pistachiout.github.io/wiki/%E6%83%85%E4%BE%A3%E7%89%B5%E6%89%8B%EF%BC%8C%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C%EF%BC%8C%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F%EF%BC%8C%E5%8D%95%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84Dijkstra%E7%AE%97%E6%B3%95%EF%BC%8C%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E6%9E%84%E9%80%A0%E9%9C%8D%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81/" title="">https://pistachiout.github.io/wiki/情侣牵手，分发糖果，跳跃游戏，单源最短路径Dijkstra算法，贪心算法构造霍夫曼编码/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/wiki/%E6%9C%80%E5%A4%A7%E5%AD%90%E6%AE%B5%E5%92%8C%E9%97%AE%E9%A2%98%EF%BC%8C%E6%8B%BE%E6%8D%A1%E7%A1%AC%E5%B8%81%E9%97%AE%E9%A2%98%EF%BC%8C%20%E7%9F%A9%E9%98%B5%E8%BF%9E%E4%B9%98%E9%97%AE%E9%A2%98%EF%BC%8C%E6%9C%80%E7%9F%AD%E5%85%AC%E5%85%B1%E8%B6%85%E5%BA%8F%E5%88%97%E9%97%AE%E9%A2%98%EF%BC%8C%E6%9C%80%E4%BC%98%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2%E6%A0%91%EF%BC%8C%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA%EF%BC%8C%E5%A4%A9%E5%B9%B3%E7%A7%A4%E9%87%91%E6%9D%A1%E9%97%AE%E9%A2%98%EF%BC%8C%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E8%A7%A3%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/wiki/%E5%9B%BE%E7%9A%84%E7%9D%80%E8%89%B2%E9%97%AE%E9%A2%98%EF%BC%8C0-1%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%EF%BC%8C%E5%8D%95%E8%AF%8D%E5%BF%85%E9%A1%BB%E6%8C%89%E7%85%A7%E5%AD%97%E6%AF%8D%E9%A1%BA%E5%BA%8F%EF%BC%8C%E6%89%80%E6%9C%89%E5%AD%A6%E7%94%9F%E4%B8%AD%E7%9A%84%E5%B7%B2%E7%9F%A5%E7%9A%84%E6%9C%8B%E5%8F%8B%E5%9C%88%E6%80%BB%E6%95%B0%EF%BC%8C%E8%AE%A1%E7%AE%97%E7%9F%A9%E9%98%B5%E4%B8%AD%E6%89%80%E6%9C%89%E6%B1%A0%E5%A1%98%E7%9A%84%E5%A4%A7%E5%B0%8F/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E6%83%85%E4%BE%A3%E7%89%B5%E6%89%8B"><span class="nav-text">1、情侣牵手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C"><span class="nav-text">2、分发糖果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F"><span class="nav-text">3、跳跃游戏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81%E7%BC%96%E7%A8%8B%E5%AE%9E%E7%8E%B0%E5%8D%95%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84Dijkstra%E7%AE%97%E6%B3%95%EF%BC%8C%E5%B9%B6%E5%9B%9E%E7%AD%94%E5%A6%82%E6%9E%9C%E5%B0%86%E5%9B%BE%E4%B8%AD%E6%89%80%E6%9C%89%E8%BE%B9%E7%9A%84%E6%9D%83%E9%87%8D-1%EF%BC%8C%E6%89%80%E5%BE%97%E5%88%B0%E7%9A%84%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E6%98%AF%E5%90%A6%E4%BB%8D%E4%B8%BA%E5%8E%9F%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-text">4、编程实现单源最短路径Dijkstra算法，并回答如果将图中所有边的权重+1，所得到的最短路径是否仍为原最短路径，为什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E3%80%81%E8%AF%81%E6%98%8E%E9%A2%98%EF%BC%9A%E8%AF%B7%E8%AF%81%E6%98%8E%E5%88%A9%E7%94%A8%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E6%9E%84%E9%80%A0%E7%9A%84%E9%9C%8D%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%80%A7%E3%80%82"><span class="nav-text">5、证明题：请证明利用贪心算法构造的霍夫曼编码的正确性。</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Pistachiout"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Pistachiout</p>
+  <div class="site-description" itemprop="description">Pistachiout的学习博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Pistachiout" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Pistachiout" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/qq_45808700?spm=1010.2135.3001.5343" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_45808700?spm&#x3D;1010.2135.3001.5343" rel="noopener" target="_blank"><i class="fa csdn fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pistachiout</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">263k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">3:59</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+<!-- <br /> -->
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<!-- <span id="times">载入时分秒...</span> -->
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("02/15/2023 8:00:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); 
+        if(String(snum).length ==1 ){snum = "0" + snum;}
+        // var times = document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "+hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+  
+
+  
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":140,"height":240},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

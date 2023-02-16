@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-flash.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"pistachiout.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1、二分查找问题：一个无重复的有序整数数组中查找某个数的位置，如果找到则返回下标，否则返回-1。 123456789101112131415161718def BinarySearch(Arr,x):#二分查找    if len(Arr)&#x3D;&#x3D;0:       return -1    left&#x3D;0    right&#x3D;len(Arr)-1    while right&gt;&#x3D;left:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pistachiout的博客">
+<meta property="og:url" content="https://pistachiout.github.io/wiki/%E6%9C%89_%E6%97%A0%E9%87%8D%E5%A4%8D%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%EF%BC%8C%E7%9F%A9%E9%98%B5%E6%9F%A5%E6%89%BE%EF%BC%8C%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E4%BD%8D%E6%95%B0%EF%BC%8C%E6%8E%A5%E9%9B%A8%E6%B0%B4%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="Pistachiout的博客">
+<meta property="og:description" content="1、二分查找问题：一个无重复的有序整数数组中查找某个数的位置，如果找到则返回下标，否则返回-1。 123456789101112131415161718def BinarySearch(Arr,x):#二分查找    if len(Arr)&#x3D;&#x3D;0:       return -1    left&#x3D;0    right&#x3D;len(Arr)-1    while right&gt;&#x3D;left:">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210519231400759.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210519231408401.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210519231451889.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2021051923143530.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210519231509480.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210519231516740.png">
+<meta property="article:published_time" content="2023-02-16T10:54:54.804Z">
+<meta property="article:modified_time" content="2023-02-15T02:21:24.644Z">
+<meta property="article:author" content="Pistachiout">
+<meta property="article:tag" content="博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210519231400759.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
+
+<link rel="canonical" href="https://pistachiout.github.io/wiki/%E6%9C%89_%E6%97%A0%E9%87%8D%E5%A4%8D%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%EF%BC%8C%E7%9F%A9%E9%98%B5%E6%9F%A5%E6%89%BE%EF%BC%8C%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E4%BD%8D%E6%95%B0%EF%BC%8C%E6%8E%A5%E9%9B%A8%E6%B0%B4%E7%AE%97%E6%B3%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | Pistachiout的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Pistachiout的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a target="_blank" rel="noopener" href="https://github.com/Pistachiout" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Pistachiout的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">每天多学一点知识,就少写一行代码</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+    <link rel="stylesheet" href="/dist/APlayer.min.css">
+        <div id="aplayer"></div>
+        <script type="text/javascript" src="/dist/APlayer.min.js"></script>
+        <script type="text/javascript" src="/dist/music.js"></script>
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pistachiout.github.io/wiki/%E6%9C%89_%E6%97%A0%E9%87%8D%E5%A4%8D%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%EF%BC%8C%E7%9F%A9%E9%98%B5%E6%9F%A5%E6%89%BE%EF%BC%8C%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E4%BD%8D%E6%95%B0%EF%BC%8C%E6%8E%A5%E9%9B%A8%E6%B0%B4%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Pistachiout">
+      <meta itemprop="description" content="Pistachiout的学习博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pistachiout的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-02-16 18:54:54" itemprop="dateCreated datePublished" datetime="2023-02-16T18:54:54+08:00">2023-02-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-15 10:21:24" itemprop="dateModified" datetime="2023-02-15T10:21:24+08:00">2023-02-15</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="1、二分查找问题："><a href="#1、二分查找问题：" class="headerlink" title="1、二分查找问题："></a>1、二分查找问题：</h2><p>一个无重复的有序整数数组中查找某个数的位置，如果找到则返回下标，否则返回-1。<br><img data-src="https://img-blog.csdnimg.cn/20210519231400759.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">def <span class="title function_">BinarySearch</span><span class="params">(Arr,x)</span>:#二分查找</span><br><span class="line">    <span class="keyword">if</span> <span class="title function_">len</span><span class="params">(Arr)</span>==<span class="number">0</span>:</span><br><span class="line">       <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">    left=<span class="number">0</span></span><br><span class="line">    right=len(Arr)<span class="number">-1</span></span><br><span class="line">    <span class="keyword">while</span> right&gt;=left:</span><br><span class="line">        mid=(<span class="type">int</span>)((left+right)/<span class="number">2</span>)</span><br><span class="line">        <span class="keyword">if</span> Arr[mid]&lt;x:</span><br><span class="line">            left=mid+<span class="number">1</span></span><br><span class="line">        elif Arr[mid]&gt;x:</span><br><span class="line">            right=mid<span class="number">-1</span></span><br><span class="line">        <span class="keyword">else</span>: </span><br><span class="line">            <span class="keyword">return</span> mid</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">Array=[<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">10</span>,<span class="number">55</span>]</span><br><span class="line">print(Array)</span><br><span class="line">print(BinarySearch(Array,<span class="number">5</span>))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>二分查找算法，每次循环都相当于去掉一半的值，并将剩下一半的值内设好right，left，mid等索引，然后在剩下一半的值内查找，直到找到值，由此可以很快的找到所要找的值.</p>
+<h2 id="2、-有重复的二分查找"><a href="#2、-有重复的二分查找" class="headerlink" title="2、 有重复的二分查找"></a>2、 有重复的二分查找</h2><p>：在一个可重复的升序的整数数组中查找某个数的开始位置和结束位置。 如果数组中不存在，则返回 [-1, -1]。 算法时间复杂度要求为 O(log n) 。<br>示例1：<br>输入：nums &#x3D; [5,7,7,8,8,10]<br>           target &#x3D; 8<br>输出：[3,4]<br>示例2：<br>输入：nums &#x3D; [5,7,7,8,8,10]<br>           target &#x3D; 6<br>输出：[-1,-1]<br><img data-src="https://img-blog.csdnimg.cn/20210519231408401.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p> -<br>   在看到这道题时，我马上想到还是使用二分法查找到所要找的target的其中一个，然后再依次查找所找到target的索引两边的值，直到索引左边或右边的值不再是所查值target时，但很快便发现这样的时间复杂度不是O(log n)，于是只好改变算法。<br>因此想到用二分查找法找到其中一个Arr[mid]&#x3D;target后，不查找到target的所有范围，而只是对比target左边或右边一个位置的值，如果Arr[mid]左边还有target，则将right等于mid-1，循环将在已找到的target左边继续查找，直到Arr[mid]左边不是target，这样返回的mid则是target在数组中在开始的索引；如果Arr[mid]右边还有target，则将left等于mid+1，循环将在已找到的target右边继续查找，直到Arr[mid]右边不是target，这样返回的mid则是target在数组中最后的索引，而且由于每次循环仅判断target左边或右边一次的值，故数据循环度还是O(log n).这样将找到开始值与结束值分别用函数表示出来，从而得到target的范围，这样完成了有重复的某个数的开始位置和结束位置的查找，且时间复杂度符合要求。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">searchFirstIndex</span>(<span class="params">Arr,target</span>):<span class="comment">#定义函数得到查找数的开始位置</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(Arr)==<span class="number">0</span>:<span class="comment">#如果数组不存在，返回-1</span></span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">    left=<span class="number">0</span></span><br><span class="line">    right=<span class="built_in">len</span>(Arr)-<span class="number">1</span><span class="comment">#设置左、右两个坐标</span></span><br><span class="line">    <span class="keyword">while</span> right&gt;=left:<span class="comment">#循环条件为右坐标大于左坐标</span></span><br><span class="line">        mid=left+(right-left)//<span class="number">2</span><span class="comment">#每次循环重新取mid为left与right的中值</span></span><br><span class="line">        <span class="keyword">if</span> Arr[mid]&gt;target:<span class="comment">#如果mid的值小于target的值，则x位于mid右边,left+1</span></span><br><span class="line">            right=mid-<span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> Arr[mid]&lt;target:<span class="comment">#如果mid的值大于target的值，则x位于mid左边,right-1</span></span><br><span class="line">            left=mid+<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> mid==left <span class="keyword">or</span> Arr[mid-<span class="number">1</span>]!=target:<span class="comment">#如果mid已是所查数的开始位置</span></span><br><span class="line">                <span class="keyword">return</span> mid</span><br><span class="line">            right=mid-<span class="number">1</span></span><br><span class="line">			<span class="comment">#mid左边还有target，则将right等于mid-1，循环将在已找到的target左边继续查找，直到mid左边不是target</span></span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">searchLastIndex</span>(<span class="params">Arr,target</span>):<span class="comment">#定义函数得到查找数的结束位置</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(Arr)==<span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">    left=<span class="number">0</span></span><br><span class="line">    right=<span class="built_in">len</span>(Arr)-<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> right&gt;=left:</span><br><span class="line">        mid=left+(right-left)//<span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> Arr[mid]&gt;target:</span><br><span class="line">            right=mid-<span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> Arr[mid]&lt;target:</span><br><span class="line">            left=mid+<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> mid==left <span class="keyword">or</span> Arr[mid-<span class="number">1</span>]!=target:<span class="comment">#如果mid已是所查数的最后位置</span></span><br><span class="line">                <span class="keyword">return</span> mid</span><br><span class="line">            left=mid+<span class="number">1</span></span><br><span class="line">			<span class="comment">#mid右边还有target，则将left等于mid+1，循环将在已找到的target右边继续查找，直到mid右边不是target</span></span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">searchRange</span>(<span class="params">Arr,target</span>):<span class="comment">#定义函数得到查找数的范围</span></span><br><span class="line">    first=searchFirstIndex(Arr,target)</span><br><span class="line">    last=searchLastIndex(Arr,target)</span><br><span class="line">    <span class="keyword">return</span> [first,last]</span><br><span class="line">Arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>]</span><br><span class="line"><span class="built_in">print</span> (searchRange(Arr,<span class="number">5</span>))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="3、矩阵查找问题："><a href="#3、矩阵查找问题：" class="headerlink" title="3、矩阵查找问题："></a>3、矩阵查找问题：</h2><p>在一个 m x n 的有序整数矩阵中查找某个数。有序矩阵是指每行中的整数从左到右为升序排列、每行的第一个整数大于前一行的最后一个整数。找到返回true，否则返回false。<br>示例1：<br>输入：matrix &#x3D; [  [1,   3,  5,  7],<br>                              [10, 11, 16, 20],<br>                              [23, 30, 34, 50]]<br>           target &#x3D; 3<br>输出：true<br>示例2：<br>输入：matrix &#x3D; [  [1,   3,  5,  7],<br>                               [10, 11, 16, 20],<br>                               [23, 30, 34, 50]]<br>          target &#x3D; 13<br>输出：false<br><img data-src="https://img-blog.csdnimg.cn/20210519231451889.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>首先想到将矩阵转换为数组，对数组进行二分查找找到所查的数，而且也很好实现。<br><img data-src="https://img-blog.csdnimg.cn/2021051923143530.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>之后又想到一种方法，由于有序矩阵是指每行中的整数从左到右为升序排列、每行的第一个整数大于前一行的最后一个整数，因此我们可以先对每一行最后一列的值与所查的值比较，这样就能找到所查值所在的行，然后再在该行进行遍历，便能找到所查的值是否存在。存在则返回true，否则返回false。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">searchMatrix</span>(<span class="params">matrix,num</span>):</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    j = <span class="built_in">len</span>(matrix[<span class="number">0</span>]) - <span class="number">1</span><span class="comment">#j为列值</span></span><br><span class="line">    max_i = <span class="built_in">len</span>(matrix) - <span class="number">1</span><span class="comment">#行值</span></span><br><span class="line">    <span class="keyword">while</span> i &lt;= max_i <span class="keyword">and</span> j &gt;= <span class="number">0</span>:<span class="comment">#循环条件</span></span><br><span class="line">        <span class="keyword">if</span> matrix[i][j] == num:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span><span class="comment">#存在返回true</span></span><br><span class="line">        <span class="keyword">elif</span> matrix[i][j] &lt;num:<span class="comment">#当值比所求值小，则增加行数，得到所求值的行数</span></span><br><span class="line">            i = i + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:<span class="comment">#在行内减少列数，得到是否存在所求值</span></span><br><span class="line">            j = j - <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span><span class="comment">#不存在返回false</span></span><br><span class="line">matrix=[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],[<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>],[<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>]]</span><br><span class="line"><span class="built_in">print</span>(searchMatrix(matrix,<span class="number">5</span>))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+<h2 id="4、-寻找两个有序数组的中位数"><a href="#4、-寻找两个有序数组的中位数" class="headerlink" title="4、 寻找两个有序数组的中位数"></a>4、 寻找两个有序数组的中位数</h2><p>：给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。 找出这两个有序数组的中位数， 假设 nums1 和 nums2 不会同时为空，要求算法的时间复杂度为 O(log(m + n))。<br>示例1：输入：nums1 &#x3D; [1, 3]           nums2 &#x3D; [2]          输出：2.0<br>示例2：输入：nums1 &#x3D; [1, 2]           nums2 &#x3D; [3, 4]      输出：2.5<br><img data-src="https://img-blog.csdnimg.cn/20210519231509480.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<ul>
+<li>看到2个有序数组，由于学习过归并排序的缘故马上想到将两个数组归并到一个数组后使用得到中位数，但要求算法的时间复杂度为 O(log(m + n))，很明显归并法并不满足。<br>在进过星期三递归算法的学习后，知道递归算法的时间复杂度是log类型的，于是考虑使用递归法求解，但还是没有想到算法。于是百度后发现有很多不同的解析，有些解析写得很深奥，我认真学习了其中最容易懂的算法。<br>该方法的关键函数就是找到2个有序数组中第k大值（从1开始）的函数，该函数就是运用了递归法，先将所求2个数组的num【k&#x2F;&#x2F;2-1】进行比较看，哪个数组的num【k&#x2F;&#x2F;2-1】小，而两个k&#x2F;&#x2F;2的数最多k个数，则第k大的数必不在num【k&#x2F;&#x2F;2-1】小的前k&#x2F;&#x2F;2个数内，故递归，对该数组从num【k&#x2F;&#x2F;2+1】与另一数组再次使用函数，并使k&#x3D;k-k&#x2F;&#x2F;2，一直循环，直到k&#x3D;1时返回2个数组中最小的值，这就是2个有序数组中第k大的值。如[1,2,3,4]与[5,6,7]两个数组，对比nums【4&#x2F;&#x2F;2-1】，明显知道[1,2,3,4]内2比[5,6,7]中6小，因此2必是比第k个数小的数，因此去掉1,2，递归继续在[3,4]与[5,6,7]内找到第4-2&#x3D;2大的数。<br>若两数组总长度length为奇数，查找中位数即找到两个数组第length&#x2F;&#x2F;2大的数，两数组总长度length为奇数length为偶数，查找中位数即找到两个数组第length&#x2F;&#x2F;2与第length&#x2F;&#x2F;2+1个数的平均值。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">findkth</span>(<span class="params">nums1,nums2,k</span>):<span class="comment">#递归找到两个数组中第k大的数</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(nums1)&gt;<span class="built_in">len</span>(nums2):<span class="comment">#保证nums1的长度比nums2的长度短</span></span><br><span class="line">        <span class="keyword">return</span> findkth(nums2,nums1,k)</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">len</span>(nums1)==<span class="number">0</span>):<span class="comment">#如果nums1为空，则返回nums2的第k大的数</span></span><br><span class="line">        <span class="keyword">return</span> nums2[k-<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">if</span> k==<span class="number">1</span>:<span class="comment">#k=1时，返回最小的值</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">min</span>(nums1[<span class="number">0</span>],nums2[<span class="number">0</span>])</span><br><span class="line">    i=k//<span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span> nums1[i-<span class="number">1</span>]&gt;nums2[i-<span class="number">1</span>]:</span><br><span class="line">    <span class="comment">#比较数组的第i个数，如果nums1[i-1]大，而两个i的数组内最多k个数，</span></span><br><span class="line">    <span class="comment">#则第k大的数必不在nums2的前k//2个数内，故返回num1与nums2[i:]的第k-1个小的数</span></span><br><span class="line">        <span class="keyword">return</span> findkth(nums1,nums2[i:],k-i)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> findkth(nums1[i:],nums2,k-i)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">findmid</span>(<span class="params">nums1,nums2</span>):</span><br><span class="line">    length=<span class="built_in">len</span>(nums1)+<span class="built_in">len</span>(nums2)</span><br><span class="line">    <span class="keyword">if</span> length%<span class="number">2</span>==<span class="number">1</span>:<span class="comment">#length为奇数，查找中位数即找到两个数组第length//2大的数</span></span><br><span class="line">        <span class="keyword">return</span> findkth(nums1,nums2,length//<span class="number">2</span>+<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">elif</span> length%<span class="number">2</span>==<span class="number">0</span>:<span class="comment">#length为偶数，查找中位数即找到两个数组第length//2与第length//2+1个数的平均值</span></span><br><span class="line">        <span class="keyword">return</span> (findkth(nums1,nums2,length//<span class="number">2</span>)+findkth(nums1,nums2,length//<span class="number">2</span>+<span class="number">1</span>))/<span class="number">2.0</span></span><br><span class="line"></span><br><span class="line">nums1=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">nums2=[<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">11</span>]</span><br><span class="line"><span class="built_in">print</span>(findmid(nums1,nums2))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="5、-假设给定的一个数组描述了-n-个宽度为-1-的柱子高度，请求出按此排列的柱子，下雨之后能接多少雨水。"><a href="#5、-假设给定的一个数组描述了-n-个宽度为-1-的柱子高度，请求出按此排列的柱子，下雨之后能接多少雨水。" class="headerlink" title="5、 假设给定的一个数组描述了 n 个宽度为 1 的柱子高度，请求出按此排列的柱子，下雨之后能接多少雨水。"></a>5、 假设给定的一个数组描述了 n 个宽度为 1 的柱子高度，请求出按此排列的柱子，下雨之后能接多少雨水。</h2><p>示例：<br>输入： [0,1,0,2,1,0,1,3,2,1,2,1]<br>输出： 6<br>示例图：<br><img data-src="https://img-blog.csdnimg.cn/20210519231516740.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>刚看到该题时，以为改题目很难，但认真想了一会便发现很简单，将接到水按每一高度来算，在这一高度想要接到水，至少这一高度要有2个该高度的柱子，且接到水的量等于两个柱子索引的差再减一，即类似种树问题。因此，从数组最大值到1进行遍历，每次遍历找到数组中等于该值的所有索引，再将该高度的水全加起来，如高度&#x3D;2时，数组值等于2的下标为[3, 7, 8, 10]，3到7有3格水，7到8接不到水，8到10一格水，则2这一高度共有4格水。因此将高度从最大值到1每一高度的水加起来就能得到接到水的总量</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">def <span class="title function_">sumOfWater</span><span class="params">(nums)</span>:</span><br><span class="line">    num=max(nums)<span class="meta">#num为遍历的值，从最大值开始遍历</span></span><br><span class="line">    sum=<span class="number">0</span><span class="meta">#sum表示接到水的重量</span></span><br><span class="line">    <span class="keyword">for</span> num in range (max(nums),<span class="number">0</span>,<span class="number">-1</span>):#对数组按值从最大值到<span class="number">1</span>遍历，每次循环sum增加所遍历高度能接到的水</span><br><span class="line">        temp=[]#数组temp用来记录大于等于遍历值的数组索引</span><br><span class="line">        <span class="keyword">for</span> j in range (<span class="number">0</span>,len(nums)):#下标遍历数组，temp记录索引</span><br><span class="line">            <span class="keyword">if</span> nums[j]&gt;=num:</span><br><span class="line">                temp.append(j)</span><br><span class="line">        print(temp)#输出数组便于观察</span><br><span class="line">        <span class="keyword">if</span> len(temp)&gt;<span class="number">1</span>:#当数组中遍历的值的个数大于<span class="number">1</span>时</span><br><span class="line">            <span class="keyword">for</span> index in range (<span class="number">0</span>,len(temp)<span class="number">-1</span>):#分别求出该遍历高度每<span class="number">2</span>个索引间的水数</span><br><span class="line">                sum=sum+temp[index+<span class="number">1</span>]-temp[index]<span class="number">-1</span></span><br><span class="line">				#如num=<span class="number">2</span>时，temp为[<span class="number">3</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">10</span>]，<span class="number">3</span>到<span class="number">7</span>有<span class="number">3</span>格水，<span class="number">7</span>到<span class="number">8</span>没水，<span class="number">8</span>到<span class="number">10</span>一格水</span><br><span class="line">    <span class="keyword">return</span> sum</span><br><span class="line">nums= [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>]</span><br><span class="line">print(sumOfWater(nums))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+ <div>
+    
+       <div>
+      
+          <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+      
+  </div>
+    
+  </div>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Pistachiout
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://pistachiout.github.io/wiki/%E6%9C%89_%E6%97%A0%E9%87%8D%E5%A4%8D%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%EF%BC%8C%E7%9F%A9%E9%98%B5%E6%9F%A5%E6%89%BE%EF%BC%8C%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E4%BD%8D%E6%95%B0%EF%BC%8C%E6%8E%A5%E9%9B%A8%E6%B0%B4%E7%AE%97%E6%B3%95/" title="">https://pistachiout.github.io/wiki/有_无重复二分查找，矩阵查找，有序数组中位数，接雨水算法/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/wiki/P%E3%80%81V%E6%93%8D%E4%BD%9C%E4%B8%8Ec++%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E7%88%B8%E7%88%B8%E6%94%BE%E8%8B%B9%E6%9E%9C%EF%BC%8C%E5%A6%88%E5%A6%88%E6%94%BE%E6%A1%94%E5%AD%90%EF%BC%8C%E4%B8%A4%E4%B8%AA%E5%84%BF%E5%AD%90%E4%B8%93%E5%90%83%E7%9B%98%E5%AD%90%E4%B8%AD%E6%A1%94%E5%AD%90%EF%BC%8C%E4%B8%A4%E4%B8%AA%E5%A5%B3%E5%84%BF%E4%B8%93%E5%90%83%E7%9B%98%E5%AD%90%E4%B8%AD%E8%8B%B9%E6%9E%9C%E9%97%AE%E9%A2%98/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/wiki/%E9%80%86%E5%BA%8F%E9%97%AE%E9%A2%98%EF%BC%8C%E6%9C%80%E5%A4%A7%E9%97%B4%E9%9A%99%E9%97%AE%E9%A2%98%EF%BC%8C%E6%A3%8B%E7%9B%98%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98%EF%BC%8C%E6%9C%80%E6%8E%A5%E8%BF%91%E7%82%B9%E5%AF%B9%E9%97%AE%E9%A2%98/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-text">1、二分查找问题：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81-%E6%9C%89%E9%87%8D%E5%A4%8D%E7%9A%84%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="nav-text">2、 有重复的二分查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E7%9F%A9%E9%98%B5%E6%9F%A5%E6%89%BE%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-text">3、矩阵查找问题：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81-%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0"><span class="nav-text">4、 寻找两个有序数组的中位数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E3%80%81-%E5%81%87%E8%AE%BE%E7%BB%99%E5%AE%9A%E7%9A%84%E4%B8%80%E4%B8%AA%E6%95%B0%E7%BB%84%E6%8F%8F%E8%BF%B0%E4%BA%86-n-%E4%B8%AA%E5%AE%BD%E5%BA%A6%E4%B8%BA-1-%E7%9A%84%E6%9F%B1%E5%AD%90%E9%AB%98%E5%BA%A6%EF%BC%8C%E8%AF%B7%E6%B1%82%E5%87%BA%E6%8C%89%E6%AD%A4%E6%8E%92%E5%88%97%E7%9A%84%E6%9F%B1%E5%AD%90%EF%BC%8C%E4%B8%8B%E9%9B%A8%E4%B9%8B%E5%90%8E%E8%83%BD%E6%8E%A5%E5%A4%9A%E5%B0%91%E9%9B%A8%E6%B0%B4%E3%80%82"><span class="nav-text">5、 假设给定的一个数组描述了 n 个宽度为 1 的柱子高度，请求出按此排列的柱子，下雨之后能接多少雨水。</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Pistachiout"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Pistachiout</p>
+  <div class="site-description" itemprop="description">Pistachiout的学习博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Pistachiout" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Pistachiout" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/qq_45808700?spm=1010.2135.3001.5343" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_45808700?spm&#x3D;1010.2135.3001.5343" rel="noopener" target="_blank"><i class="fa csdn fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pistachiout</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">263k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">3:59</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+<!-- <br /> -->
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<!-- <span id="times">载入时分秒...</span> -->
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("02/15/2023 8:00:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); 
+        if(String(snum).length ==1 ){snum = "0" + snum;}
+        // var times = document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "+hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+  
+
+  
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":140,"height":240},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
