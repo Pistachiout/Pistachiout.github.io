@@ -22,12 +22,12 @@
     var CONFIG = {"hostname":"pistachiout.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="一、实验目的及要求 1、世界地图上相邻国家需要用不同的颜色标注以示区别，但最多只需要选取四种颜色即可。请编程实现图的着色问题。2、编程实现0-1背包问题，至少两种算法。3、给定一个二维网格和一个单词，找出该单词是否存在于网格中。说明：单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。示例：board &amp;#x">
+  <meta name="description" content="python实现图的着色问题，0-1背包问题，单词必须按照字母顺序，所有学生中的已知的朋友圈总数，计算矩阵中所有池塘的大小">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Pistachiout的博客">
+<meta property="og:title" content="图的着色问题，0-1背包问题，单词必须按照字母顺序，所有学生中的已知的朋友圈总数，计算矩阵中所有池塘的大小">
 <meta property="og:url" content="https://pistachiout.github.io/wiki/%E5%9B%BE%E7%9A%84%E7%9D%80%E8%89%B2%E9%97%AE%E9%A2%98%EF%BC%8C0-1%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%EF%BC%8C%E5%8D%95%E8%AF%8D%E5%BF%85%E9%A1%BB%E6%8C%89%E7%85%A7%E5%AD%97%E6%AF%8D%E9%A1%BA%E5%BA%8F%EF%BC%8C%E6%89%80%E6%9C%89%E5%AD%A6%E7%94%9F%E4%B8%AD%E7%9A%84%E5%B7%B2%E7%9F%A5%E7%9A%84%E6%9C%8B%E5%8F%8B%E5%9C%88%E6%80%BB%E6%95%B0%EF%BC%8C%E8%AE%A1%E7%AE%97%E7%9F%A9%E9%98%B5%E4%B8%AD%E6%89%80%E6%9C%89%E6%B1%A0%E5%A1%98%E7%9A%84%E5%A4%A7%E5%B0%8F/index.html">
 <meta property="og:site_name" content="Pistachiout的博客">
-<meta property="og:description" content="一、实验目的及要求 1、世界地图上相邻国家需要用不同的颜色标注以示区别，但最多只需要选取四种颜色即可。请编程实现图的着色问题。2、编程实现0-1背包问题，至少两种算法。3、给定一个二维网格和一个单词，找出该单词是否存在于网格中。说明：单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。示例：board &amp;#x">
+<meta property="og:description" content="python实现图的着色问题，0-1背包问题，单词必须按照字母顺序，所有学生中的已知的朋友圈总数，计算矩阵中所有池塘的大小">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210520192411628.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210520192419761.png">
@@ -42,9 +42,10 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210520192515327.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210520192701962.png">
 <meta property="article:published_time" content="2023-02-16T10:54:54.871Z">
-<meta property="article:modified_time" content="2023-02-15T02:20:55.129Z">
+<meta property="article:modified_time" content="2023-02-17T06:58:33.598Z">
 <meta property="article:author" content="Pistachiout">
-<meta property="article:tag" content="博客">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210520192411628.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
 
@@ -61,7 +62,7 @@
   };
 </script>
 
-  <title> | Pistachiout的博客</title>
+  <title>图的着色问题，0-1背包问题，单词必须按照字母顺序，所有学生中的已知的朋友圈总数，计算矩阵中所有池塘的大小 | Pistachiout的博客</title>
   
 
 
@@ -199,7 +200,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
+          图的着色问题，0-1背包问题，单词必须按照字母顺序，所有学生中的已知的朋友圈总数，计算矩阵中所有池塘的大小
         </h1>
 
         <div class="post-meta">
@@ -216,8 +217,29 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-15 10:20:55" itemprop="dateModified" datetime="2023-02-15T10:20:55+08:00">2023-02-15</time>
+                <time title="修改时间：2023-02-17 14:58:33" itemprop="dateModified" datetime="2023-02-17T14:58:33+08:00">2023-02-17</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">计算机基础知识</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -234,6 +256,7 @@
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               <span>7 分钟</span>
             </span>
+            <div class="post-description">python实现图的着色问题，0-1背包问题，单词必须按照字母顺序，所有学生中的已知的朋友圈总数，计算矩阵中所有池塘的大小</div>
 
         </div>
       </header>
@@ -247,8 +270,7 @@
         <p>一、实验目的及要求</p>
 <h2 id="1、世界地图上相邻国家需要用不同的颜色标注以示区别，但最多只需要选取四种颜色即可。请编程实现图的着色问题。"><a href="#1、世界地图上相邻国家需要用不同的颜色标注以示区别，但最多只需要选取四种颜色即可。请编程实现图的着色问题。" class="headerlink" title="1、世界地图上相邻国家需要用不同的颜色标注以示区别，但最多只需要选取四种颜色即可。请编程实现图的着色问题。"></a>1、世界地图上相邻国家需要用不同的颜色标注以示区别，但最多只需要选取四种颜色即可。请编程实现图的着色问题。</h2><h2 id="2、编程实现0-1背包问题，至少两种算法。"><a href="#2、编程实现0-1背包问题，至少两种算法。" class="headerlink" title="2、编程实现0-1背包问题，至少两种算法。"></a>2、编程实现0-1背包问题，至少两种算法。</h2><h2 id="3、给定一个二维网格和一个单词，找出该单词是否存在于网格中。说明：单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。"><a href="#3、给定一个二维网格和一个单词，找出该单词是否存在于网格中。说明：单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。" class="headerlink" title="3、给定一个二维网格和一个单词，找出该单词是否存在于网格中。说明：单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。"></a>3、给定一个二维网格和一个单词，找出该单词是否存在于网格中。说明：单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。</h2><p>示例：board &#x3D;[  [‘A’,’B’,’C’,’E’], [‘S’,’F’,’C’,’S’], [‘A’,’D’,’E’,’E’]] ，给定 word &#x3D; “ABCCED”, 返回 true， 给定 word &#x3D; “SEE”, 返回 true， 给定 word &#x3D; “ABCB”, 返回 false。</p>
 <h2 id="4、班上有-N-名学生。其中有些人是朋友，有些则不是。他们的友谊具有是传递性。如果已知-A-是-B-的朋友，B-是-C-的朋友，那么我们可以认为-A-也是-C-的朋友。所谓的朋友圈，是指所有朋友的集合。给定一个-N-N-的矩阵-M，表示班级中学生之间的朋友关系。如果M-i-j-x3D-1，表示已知第-i-个和-j-个学生互为朋友关系，否则为不知道。你必须输出所有学生中的已知的朋友圈总数。"><a href="#4、班上有-N-名学生。其中有些人是朋友，有些则不是。他们的友谊具有是传递性。如果已知-A-是-B-的朋友，B-是-C-的朋友，那么我们可以认为-A-也是-C-的朋友。所谓的朋友圈，是指所有朋友的集合。给定一个-N-N-的矩阵-M，表示班级中学生之间的朋友关系。如果M-i-j-x3D-1，表示已知第-i-个和-j-个学生互为朋友关系，否则为不知道。你必须输出所有学生中的已知的朋友圈总数。" class="headerlink" title="4、班上有 N 名学生。其中有些人是朋友，有些则不是。他们的友谊具有是传递性。如果已知 A 是 B 的朋友，B 是 C 的朋友，那么我们可以认为 A 也是 C 的朋友。所谓的朋友圈，是指所有朋友的集合。给定一个 N * N 的矩阵 M，表示班级中学生之间的朋友关系。如果M[i][j] &#x3D; 1，表示已知第 i 个和 j 个学生互为朋友关系，否则为不知道。你必须输出所有学生中的已知的朋友圈总数。"></a>4、班上有 N 名学生。其中有些人是朋友，有些则不是。他们的友谊具有是传递性。如果已知 A 是 B 的朋友，B 是 C 的朋友，那么我们可以认为 A 也是 C 的朋友。所谓的朋友圈，是指所有朋友的集合。给定一个 N * N 的矩阵 M，表示班级中学生之间的朋友关系。如果M[i][j] &#x3D; 1，表示已知第 i 个和 j 个学生互为朋友关系，否则为不知道。你必须输出所有学生中的已知的朋友圈总数。</h2><p>示例1：输入: [[1,1,0], [1,1,0], [0,0,1]]       输出: 2      说明：已知学生0和学生1互为朋友，他们在一个朋友圈。第2个学生自己在一个朋友圈。所以返回2。<br>示例2：输入: [[1,1,0],   [1,1,1],  [0,1,1]]       输出: 1      说明：已知学生0和学生1互为朋友，学生1和学生2互为朋友，所以学生0和学生2也是朋友，所以他们三个在一个朋友圈，返回1。</p>
-<h2 id="5、你有一个用于表示一片土地的整数矩阵land，该矩阵中每个点的值代表对应地点的海拔高度。若值为0则表示水域。由垂直、水平或对角连接的水域为池塘。池塘的大小是指相连接的水域的个数。编写一个方法来计算矩阵中所有池塘的大小，返回值需要从小到大排序。"><a href="#5、你有一个用于表示一片土地的整数矩阵land，该矩阵中每个点的值代表对应地点的海拔高度。若值为0则表示水域。由垂直、水平或对角连接的水域为池塘。池塘的大小是指相连接的水域的个数。编写一个方法来计算矩阵中所有池塘的大小，返回值需要从小到大排序。" class="headerlink" title="5、你有一个用于表示一片土地的整数矩阵land，该矩阵中每个点的值代表对应地点的海拔高度。若值为0则表示水域。由垂直、水平或对角连接的水域为池塘。池塘的大小是指相连接的水域的个数。编写一个方法来计算矩阵中所有池塘的大小，返回值需要从小到大排序。"></a>5、你有一个用于表示一片土地的整数矩阵land，该矩阵中每个点的值代表对应地点的海拔高度。若值为0则表示水域。由垂直、水平或对角连接的水域为池塘。池塘的大小是指相连接的水域的个数。编写一个方法来计算矩阵中所有池塘的大小，返回值需要从小到大排序。</h2><p>示例：输入：[[0,2,1,0],   [0,1,0,1],  [1,1,0,1],  [0,1,0,1]]      输出： [1,2,4]</p>
-<p>三、实验内容及结果<br>（包括实验过程、实验数据、实验结果及分析，实验代码另外单独附页）<br>1、世界地图上相邻国家需要用不同的颜色标注以示区别，但最多只需要选取四种颜色即可。请编程实现图的着色问题。</p>
+<h2 id="5、你有一个用于表示一片土地的整数矩阵land，该矩阵中每个点的值代表对应地点的海拔高度。若值为0则表示水域。由垂直、水平或对角连接的水域为池塘。池塘的大小是指相连接的水域的个数。编写一个方法来计算矩阵中所有池塘的大小，返回值需要从小到大排序。"><a href="#5、你有一个用于表示一片土地的整数矩阵land，该矩阵中每个点的值代表对应地点的海拔高度。若值为0则表示水域。由垂直、水平或对角连接的水域为池塘。池塘的大小是指相连接的水域的个数。编写一个方法来计算矩阵中所有池塘的大小，返回值需要从小到大排序。" class="headerlink" title="5、你有一个用于表示一片土地的整数矩阵land，该矩阵中每个点的值代表对应地点的海拔高度。若值为0则表示水域。由垂直、水平或对角连接的水域为池塘。池塘的大小是指相连接的水域的个数。编写一个方法来计算矩阵中所有池塘的大小，返回值需要从小到大排序。"></a>5、你有一个用于表示一片土地的整数矩阵land，该矩阵中每个点的值代表对应地点的海拔高度。若值为0则表示水域。由垂直、水平或对角连接的水域为池塘。池塘的大小是指相连接的水域的个数。编写一个方法来计算矩阵中所有池塘的大小，返回值需要从小到大排序。</h2><p>示例：输入：[[0,2,1,0],   [0,1,0,1],  [1,1,0,1],  [0,1,0,1]]      输出： [1,2,4]<br>​<br>三、实验内容及结果<br>（包括实验过程、实验数据、实验结果及分析，实验代码另外单独附页）<br>1、世界地图上相邻国家需要用不同的颜色标注以示区别，但最多只需要选取四种颜色即可。请编程实现图的着色问题。</p>
 <p>使用回溯法，有1,2,3,4四种颜色，而地图如关系矩阵所示。从第一个位置颜色为1，接着依次往下遍历，使用与相邻的不同的颜色，如果这样下去无法满足4种颜色填色，则说明之前填色有误，<br>回溯到之前一个位置，如果该位置4种颜色都不行，则继续回溯直到满足条件。当关系矩阵M如图中所示时，地图的各个位置颜色如输出所示。<br><img data-src="https://img-blog.csdnimg.cn/20210520192411628.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20210520192419761.png" alt="在这里插入图片描述"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">FourColorLabel</span>(<span class="params">M</span>):<span class="comment">#回溯法地图四色</span></span><br><span class="line">    Num=<span class="built_in">len</span>(M)</span><br><span class="line">    Color=[-<span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(Num)]</span><br><span class="line">    n=m=<span class="number">1</span></span><br><span class="line">    <span class="comment">#染色第一个区域，先设置为1</span></span><br><span class="line">    <span class="keyword">while</span> m&lt;=Num:</span><br><span class="line">        <span class="keyword">while</span> n&lt;=<span class="number">4</span> <span class="keyword">and</span> m&lt;=Num:</span><br><span class="line">            flag=<span class="literal">True</span></span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(m-<span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> M[m-<span class="number">1</span>][k]==<span class="number">1</span> <span class="keyword">and</span> Color[k]==n:<span class="comment">#如果与第m-1个点接触且颜色相同则回溯</span></span><br><span class="line">                    flag=<span class="literal">False</span>  </span><br><span class="line">                    n+=<span class="number">1</span></span><br><span class="line">                    <span class="keyword">break</span>    </span><br><span class="line">            <span class="keyword">if</span> flag:<span class="comment">#flag为true,则涂色</span></span><br><span class="line">                Color[m-<span class="number">1</span>]=n;</span><br><span class="line">                m+=<span class="number">1</span></span><br><span class="line">                n=<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> n&gt;<span class="number">4</span>:     <span class="comment">#颜色使用超过4种，说明之前涂色有问题，回溯</span></span><br><span class="line">            m-=<span class="number">1</span></span><br><span class="line">            n=Color[m-<span class="number">1</span>]+<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> Color</span><br><span class="line"> </span><br><span class="line">M=[</span><br><span class="line">                [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>],</span><br><span class="line">                [<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>],</span><br><span class="line">                [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>],</span><br><span class="line">                [<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>],</span><br><span class="line">                [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>],</span><br><span class="line">                [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>],</span><br><span class="line">                [<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>]</span><br><span class="line">             ]<span class="comment">#关系矩阵，M[i][j]为1则表示i与j相邻，为0则表示不相邻</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> FourColorLabel(M):</span><br><span class="line"><span class="built_in">print</span>(i)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -294,7 +316,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://pistachiout.github.io/wiki/%E5%9B%BE%E7%9A%84%E7%9D%80%E8%89%B2%E9%97%AE%E9%A2%98%EF%BC%8C0-1%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%EF%BC%8C%E5%8D%95%E8%AF%8D%E5%BF%85%E9%A1%BB%E6%8C%89%E7%85%A7%E5%AD%97%E6%AF%8D%E9%A1%BA%E5%BA%8F%EF%BC%8C%E6%89%80%E6%9C%89%E5%AD%A6%E7%94%9F%E4%B8%AD%E7%9A%84%E5%B7%B2%E7%9F%A5%E7%9A%84%E6%9C%8B%E5%8F%8B%E5%9C%88%E6%80%BB%E6%95%B0%EF%BC%8C%E8%AE%A1%E7%AE%97%E7%9F%A9%E9%98%B5%E4%B8%AD%E6%89%80%E6%9C%89%E6%B1%A0%E5%A1%98%E7%9A%84%E5%A4%A7%E5%B0%8F/" title="">https://pistachiout.github.io/wiki/图的着色问题，0-1背包问题，单词必须按照字母顺序，所有学生中的已知的朋友圈总数，计算矩阵中所有池塘的大小/</a>
+    <a href="https://pistachiout.github.io/wiki/%E5%9B%BE%E7%9A%84%E7%9D%80%E8%89%B2%E9%97%AE%E9%A2%98%EF%BC%8C0-1%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%EF%BC%8C%E5%8D%95%E8%AF%8D%E5%BF%85%E9%A1%BB%E6%8C%89%E7%85%A7%E5%AD%97%E6%AF%8D%E9%A1%BA%E5%BA%8F%EF%BC%8C%E6%89%80%E6%9C%89%E5%AD%A6%E7%94%9F%E4%B8%AD%E7%9A%84%E5%B7%B2%E7%9F%A5%E7%9A%84%E6%9C%8B%E5%8F%8B%E5%9C%88%E6%80%BB%E6%95%B0%EF%BC%8C%E8%AE%A1%E7%AE%97%E7%9F%A9%E9%98%B5%E4%B8%AD%E6%89%80%E6%9C%89%E6%B1%A0%E5%A1%98%E7%9A%84%E5%A4%A7%E5%B0%8F/" title="图的着色问题，0-1背包问题，单词必须按照字母顺序，所有学生中的已知的朋友圈总数，计算矩阵中所有池塘的大小">https://pistachiout.github.io/wiki/图的着色问题，0-1背包问题，单词必须按照字母顺序，所有学生中的已知的朋友圈总数，计算矩阵中所有池塘的大小/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -304,6 +326,10 @@
 
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+              <a href="/tags/Python/" rel="tag"># Python</a>
+          </div>
 
         
 
@@ -311,12 +337,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/wiki/%E6%83%85%E4%BE%A3%E7%89%B5%E6%89%8B%EF%BC%8C%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C%EF%BC%8C%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F%EF%BC%8C%E5%8D%95%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84Dijkstra%E7%AE%97%E6%B3%95%EF%BC%8C%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E6%9E%84%E9%80%A0%E9%9C%8D%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81/" rel="prev" title="">
-      <i class="fa fa-chevron-left"></i> 
+    <a href="/wiki/%E6%83%85%E4%BE%A3%E7%89%B5%E6%89%8B%EF%BC%8C%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C%EF%BC%8C%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F%EF%BC%8C%E5%8D%95%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84Dijkstra%E7%AE%97%E6%B3%95%EF%BC%8C%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E6%9E%84%E9%80%A0%E9%9C%8D%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81/" rel="prev" title="情侣牵手，分发糖果，跳跃游戏，单源最短路径Dijkstra算法，贪心算法构造霍夫曼编码">
+      <i class="fa fa-chevron-left"></i> 情侣牵手，分发糖果，跳跃游戏，单源最短路径Dijkstra算法，贪心算法构造霍夫曼编码
     </a></div>
       <div class="post-nav-item">
-    <a href="/wiki/%E9%80%92%E5%BD%92+%E5%9B%9E%E6%BA%AF%E6%B3%95/" rel="next" title="">
-       <i class="fa fa-chevron-right"></i>
+    <a href="/wiki/%E9%80%92%E5%BD%92+%E5%9B%9E%E6%BA%AF%E6%B3%95/" rel="next" title="递归+回溯法总结">
+      递归+回溯法总结 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -392,17 +418,21 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">分类</span>
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">标签</span>
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -484,13 +514,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">263k</span>
+    <span title="站点总字数">244k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">3:59</span>
+    <span title="站点阅读时长">3:42</span>
 </div>
 
 <!--

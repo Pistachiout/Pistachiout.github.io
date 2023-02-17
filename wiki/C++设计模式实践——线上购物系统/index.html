@@ -22,12 +22,12 @@
     var CONFIG = {"hostname":"pistachiout.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="一、系统的主要目标与功能　 　&amp;emsp;  在本次设计中，考虑到目前疫情反复不断，为了方便群众，超市都推出在线购物并有配送员送货，于是我设计了一个超市在线网上购物送货的系统，这个系统的主要目标是帮助人们在家里购买自己需要的套餐，充值账户，同时该系统能查看自己的历史金额变动记录，也能够撤销前一次操作，这样能够帮助疫情期间的人们快速购物，也能够减少疫情期间出门购物的可能带来的危害。本超市目前">
+  <meta name="description" content="利用状态模式、建筑者模式、观察者模式、单例模式、策略模式、备忘录模式实现一个线上购物系统">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Pistachiout的博客">
+<meta property="og:title" content="C++设计模式实践——线上购物系统">
 <meta property="og:url" content="https://pistachiout.github.io/wiki/C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AE%9E%E8%B7%B5%E2%80%94%E2%80%94%E7%BA%BF%E4%B8%8A%E8%B4%AD%E7%89%A9%E7%B3%BB%E7%BB%9F/index.html">
 <meta property="og:site_name" content="Pistachiout的博客">
-<meta property="og:description" content="一、系统的主要目标与功能　 　&amp;emsp;  在本次设计中，考虑到目前疫情反复不断，为了方便群众，超市都推出在线购物并有配送员送货，于是我设计了一个超市在线网上购物送货的系统，这个系统的主要目标是帮助人们在家里购买自己需要的套餐，充值账户，同时该系统能查看自己的历史金额变动记录，也能够撤销前一次操作，这样能够帮助疫情期间的人们快速购物，也能够减少疫情期间出门购物的可能带来的危害。本超市目前">
+<meta property="og:description" content="利用状态模式、建筑者模式、观察者模式、单例模式、策略模式、备忘录模式实现一个线上购物系统">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/29e716d5d65f48d99204337830559ccc.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/26ccc7b527f34157b74efdbf82c669bf.png">
@@ -76,9 +76,10 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/30d1a910fe4c4d13b779cafbcf78f63a.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/d34b4e06cb0446d5857abc91aac6d1f1.png">
 <meta property="article:published_time" content="2023-02-16T10:54:55.668Z">
-<meta property="article:modified_time" content="2023-02-15T01:52:14.622Z">
+<meta property="article:modified_time" content="2023-02-17T03:35:33.838Z">
 <meta property="article:author" content="Pistachiout">
-<meta property="article:tag" content="博客">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/29e716d5d65f48d99204337830559ccc.png">
 
@@ -95,7 +96,7 @@
   };
 </script>
 
-  <title> | Pistachiout的博客</title>
+  <title>C++设计模式实践——线上购物系统 | Pistachiout的博客</title>
   
 
 
@@ -233,7 +234,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
+          C++设计模式实践——线上购物系统
         </h1>
 
         <div class="post-meta">
@@ -250,8 +251,37 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-15 09:52:14" itemprop="dateModified" datetime="2023-02-15T09:52:14+08:00">2023-02-15</time>
+                <time title="修改时间：2023-02-17 11:35:33" itemprop="dateModified" datetime="2023-02-17T11:35:33+08:00">2023-02-17</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">计算机基础知识</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">软件项目</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" itemprop="url" rel="index"><span itemprop="name">面向对象</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE/%E8%AF%BE%E7%A8%8B%E5%AE%9E%E9%AA%8C/" itemprop="url" rel="index"><span itemprop="name">课程实验</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -268,6 +298,7 @@
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               <span>5 分钟</span>
             </span>
+            <div class="post-description">利用状态模式、建筑者模式、观察者模式、单例模式、策略模式、备忘录模式实现一个线上购物系统</div>
 
         </div>
       </header>
@@ -279,15 +310,14 @@
 
       
         <h2 id="一、系统的主要目标与功能"><a href="#一、系统的主要目标与功能" class="headerlink" title="一、系统的主要目标与功能"></a>一、系统的主要目标与功能</h2><p>　 　&amp;emsp;  在本次设计中，考虑到目前疫情反复不断，为了方便群众，超市都推出在线购物并有配送员送货，于是我设计了一个超市在线网上购物送货的系统，这个系统的主要目标是帮助人们在家里购买自己需要的套餐，充值账户，同时该系统能查看自己的历史金额变动记录，也能够撤销前一次操作，这样能够帮助疫情期间的人们快速购物，也能够减少疫情期间出门购物的可能带来的危害。本超市目前功能如下：</p>
-<ol>
-<li>查看超市套餐 </li>
-<li>购买超市套餐 </li>
-<li>给账户充值 </li>
-<li>查看历史余额记录 </li>
-<li>撤回上次操作  </li>
-<li>系统自动提示配送员</li>
-<li>退出本超市在线购物系</li>
-</ol>
+<pre><code>1. 查看超市套餐 
+2. 购买超市套餐 
+3. 给账户充值 
+4. 查看历史余额记录 
+5. 撤回上次操作  
+6. 系统自动提示配送员
+7. 退出本超市在线购物系
+</code></pre>
 <p>系统运行比较简单，且每一步完成后都会有提示信息，按照提示信息一步一步运行即可。</p>
 <h2 id="二-、系统中使用的设计模式（UML类图、详细描述场景、解决的问题、模式的效果及意义）"><a href="#二-、系统中使用的设计模式（UML类图、详细描述场景、解决的问题、模式的效果及意义）" class="headerlink" title="二 、系统中使用的设计模式（UML类图、详细描述场景、解决的问题、模式的效果及意义）"></a>二 、系统中使用的设计模式（UML类图、详细描述场景、解决的问题、模式的效果及意义）</h2><p><img data-src="https://img-blog.csdnimg.cn/29e716d5d65f48d99204337830559ccc.png" alt="在这里插入图片描述"></p>
 <h2 id="•1-状态模式："><a href="#•1-状态模式：" class="headerlink" title="•1.状态模式："></a><strong>•1.状态模式</strong>：</h2><p>　　&amp;emsp;对有状态的对象，把复杂的“判断逻辑”提取到不同的状态对象中，允许状态对象在其内部状态发生改变时改变其行为。在一个对象内在状态改变时也改变了其行为，这个对象看起来像改变了其类，因此选择使用状态模式。<br>•<img data-src="https://img-blog.csdnimg.cn/26ccc7b527f34157b74efdbf82c669bf.png" alt="在这里插入图片描述"></p>
@@ -352,7 +382,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://pistachiout.github.io/wiki/C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AE%9E%E8%B7%B5%E2%80%94%E2%80%94%E7%BA%BF%E4%B8%8A%E8%B4%AD%E7%89%A9%E7%B3%BB%E7%BB%9F/" title="">https://pistachiout.github.io/wiki/C++设计模式实践——线上购物系统/</a>
+    <a href="https://pistachiout.github.io/wiki/C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AE%9E%E8%B7%B5%E2%80%94%E2%80%94%E7%BA%BF%E4%B8%8A%E8%B4%AD%E7%89%A9%E7%B3%BB%E7%BB%9F/" title="C++设计模式实践——线上购物系统">https://pistachiout.github.io/wiki/C++设计模式实践——线上购物系统/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -362,6 +392,10 @@
 
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag"># 设计模式</a>
+          </div>
 
         
 
@@ -369,12 +403,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/wiki/C++%E9%87%8D%E8%BD%BD%E5%AE%9E%E7%8E%B0m_n_k%E4%B8%89%E7%BB%B4%E7%9F%A9%E9%98%B5%EF%BC%8C%E4%B8%94%E7%9F%A9%E9%98%B5%E5%85%83%E7%B4%A0%E4%B8%BA%E5%A4%8D%E6%95%B0/" rel="prev" title="">
-      <i class="fa fa-chevron-left"></i> 
+    <a href="/wiki/C++%E9%87%8D%E8%BD%BD%E5%AE%9E%E7%8E%B0m_n_k%E4%B8%89%E7%BB%B4%E7%9F%A9%E9%98%B5%EF%BC%8C%E4%B8%94%E7%9F%A9%E9%98%B5%E5%85%83%E7%B4%A0%E4%B8%BA%E5%A4%8D%E6%95%B0/" rel="prev" title="C++重载实现m_n_k三维复数元素矩阵">
+      <i class="fa fa-chevron-left"></i> C++重载实现m_n_k三维复数元素矩阵
     </a></div>
       <div class="post-nav-item">
-    <a href="/wiki/Golang%E7%89%88LeetCode%E5%9F%BA%E6%9C%AC%E7%AE%97%E6%B3%95%E5%87%BD%E6%95%B0/" rel="next" title="">
-       <i class="fa fa-chevron-right"></i>
+    <a href="/wiki/Golang%E7%89%88LeetCode%E5%9F%BA%E6%9C%AC%E7%AE%97%E6%B3%95%E5%87%BD%E6%95%B0/" rel="next" title="Golange刷题语法笔记">
+      Golange刷题语法笔记 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -450,17 +484,21 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">分类</span>
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">标签</span>
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -542,13 +580,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">263k</span>
+    <span title="站点总字数">244k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">3:59</span>
+    <span title="站点阅读时长">3:42</span>
 </div>
 
 <!--

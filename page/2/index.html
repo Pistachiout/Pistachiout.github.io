@@ -170,266 +170,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://pistachiout.github.io/wiki/Java%E5%8F%8D%E5%B0%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Pistachiout">
-      <meta itemprop="description" content="Pistachiout的学习博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pistachiout的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/wiki/Java%E5%8F%8D%E5%B0%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-02-16 18:54:55" itemprop="dateCreated datePublished" datetime="2023-02-16T18:54:55+08:00">2023-02-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-15 09:54:27" itemprop="dateModified" datetime="2023-02-15T09:54:27+08:00">2023-02-15</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>418</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-反射概念"><a href="#1-反射概念" class="headerlink" title="1.反射概念"></a>1.反射概念</h2><p>JVM为每个加载的class创建了对应的Class实例，并在实例中保存了该class的所有信息，通过Class实例获取class信息的方法称为<strong>反射（Reflection）</strong>。</p>
-<p>JVM总是动态加载class，可以在运行期根据条件来控制加载class。 </p>
-<p><img data-src="https://img-blog.csdnimg.cn/08d5fe35cb2d42aa881f518fb8a6d04a.png" alt="在这里插入图片描述"></p>
-<h2 id="2-获取字段"><a href="#2-获取字段" class="headerlink" title="2.获取字段"></a>2.获取字段</h2><p><img data-src="https://img-blog.csdnimg.cn/5d1318e803bc48f7896cc40fe0657a8e.png" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/7285b9d59e2245e8ad772c60f66ef8db.png" alt="在这里插入图片描述"></p>
-<p>先获取Class实例，再获取Field实例，然后调用Field.setAccessible(true)，用Field.get(Object)获取指定实例的指定字段的值。<br><img data-src="https://img-blog.csdnimg.cn/d83b3586dc394ffea47fc14cc3a0b122.png" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/0813128058b449cca55369856608e234.png" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/426195b5bccc444196dc4c64bf109c34.png" alt="在这里插入图片描述"></p>
-<h2 id="3-调用方法"><a href="#3-调用方法" class="headerlink" title="3.调用方法"></a>3.调用方法</h2><p><img data-src="https://img-blog.csdnimg.cn/f3f0f6df4b8746d8ae8211ca793809f2.png" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/4ee7261e973d4d72872ce01deb7aedca.png" alt="在这里插入图片描述"></p>
-<h2 id="4-调用构造方法"><a href="#4-调用构造方法" class="headerlink" title="4.调用构造方法"></a>4.调用构造方法</h2><p><img data-src="https://img-blog.csdnimg.cn/f7f9cccd1e044a759ca400955a5a1ed7.png" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/fd6a75d7726d4d24b89eb2977138dc82.png" alt="在这里插入图片描述"></p>
-<h2 id="5-获取继承关系"><a href="#5-获取继承关系" class="headerlink" title="5.获取继承关系"></a>5.获取继承关系</h2><p><img data-src="https://img-blog.csdnimg.cn/806e06b48e3c4d06a5ffb533f06142f7.png" alt="在这里插入图片描述"></p>
-<h2 id="6-动态代理"><a href="#6-动态代理" class="headerlink" title="6.动态代理"></a>6.动态代理</h2><p>Java标准库提供了一种动态代理（Dynamic Proxy）的机制：可以在运行期动态创建某个interface的实例。直接通过JDK提供的一个Proxy.newProxyInstance()创建了一个Hello接口对象。这种没有实现类但是在运行期动态创建了一个接口对象的方式，我们称为动态代码。JDK提供的动态创建接口对象的方式，就叫动态代理。<br><img data-src="https://img-blog.csdnimg.cn/a697f0dd2d284380872aa8eaa065c75e.png" alt="在这里插入图片描述"></p>
-
-      
-    </div>
-
-    
-    
-    
- <div>
-    
-  </div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://pistachiout.github.io/wiki/%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AArandomValue%E5%80%BC%E7%9A%84%E6%AF%94%E8%BE%83%E5%99%A8%EF%BC%8C%E7%94%9F%E6%88%90%E4%B8%80%E5%89%AF%E7%89%8C%E5%90%8E%E7%94%A8%E6%AD%A4%E6%AF%94%E8%BE%83%E5%99%A8%E6%B4%97%E7%89%8C%EF%BC%8C%E7%84%B6%E5%90%8E%E8%BE%93%E5%87%BA%E6%B4%97%E5%A5%BD%E7%9A%84%E6%95%B4%E5%89%AF%E7%89%8C%E3%80%82/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Pistachiout">
-      <meta itemprop="description" content="Pistachiout的学习博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pistachiout的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/wiki/%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AArandomValue%E5%80%BC%E7%9A%84%E6%AF%94%E8%BE%83%E5%99%A8%EF%BC%8C%E7%94%9F%E6%88%90%E4%B8%80%E5%89%AF%E7%89%8C%E5%90%8E%E7%94%A8%E6%AD%A4%E6%AF%94%E8%BE%83%E5%99%A8%E6%B4%97%E7%89%8C%EF%BC%8C%E7%84%B6%E5%90%8E%E8%BE%93%E5%87%BA%E6%B4%97%E5%A5%BD%E7%9A%84%E6%95%B4%E5%89%AF%E7%89%8C%E3%80%82/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-02-16 18:54:55" itemprop="dateCreated datePublished" datetime="2023-02-16T18:54:55+08:00">2023-02-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-15 09:54:39" itemprop="dateModified" datetime="2023-02-15T09:54:39+08:00">2023-02-15</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="2-现有扑克牌类设计一个此类对randomValue值的比较器，生成一副牌后用此比较器洗牌，然后输出洗好的整副牌。"><a href="#2-现有扑克牌类设计一个此类对randomValue值的比较器，生成一副牌后用此比较器洗牌，然后输出洗好的整副牌。" class="headerlink" title="2.现有扑克牌类设计一个此类对randomValue值的比较器，生成一副牌后用此比较器洗牌，然后输出洗好的整副牌。"></a>2.现有扑克牌类设计一个此类对randomValue值的比较器，生成一副牌后用此比较器洗牌，然后输出洗好的整副牌。</h2><p>设计对rank值的比较器，然后对整副牌进行排序输出，观察效果。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Card</span> <span class="keyword">implements</span> <span class="title class_">Comparable</span>&lt;Card&gt;&#123;</span><br><span class="line">	<span class="type">char</span> suit;</span><br><span class="line">	<span class="type">char</span> rank;</span><br><span class="line">	<span class="type">double</span> randomValue;</span><br><span class="line">	Card(<span class="type">char</span> aSuit,<span class="type">char</span> aRank)</span><br><span class="line">	&#123;</span><br><span class="line">		suit=aSuit;</span><br><span class="line">		rank=aRank;</span><br><span class="line">		randomValue=Math.random();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">void</span> <span class="title function_">dispaly</span><span class="params">()</span></span><br><span class="line">	&#123;		System.out.print( Character.toString(suit)+Character.toString(rank)+<span class="string">&#x27; &#x27;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compareTo</span><span class="params">(Card card)</span></span><br><span class="line">	&#123;</span><br><span class="line">		 <span class="keyword">return</span> <span class="built_in">this</span>.randomValue&gt;card.randomValue?<span class="number">1</span>:(<span class="built_in">this</span>.randomValue&lt;card.randomValue?-<span class="number">1</span>:<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CompareRank</span> <span class="keyword">implements</span> <span class="title class_">Comparator</span>&lt;Card&gt;</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compare</span><span class="params">(Card a,Card b)</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> a.rank&gt;b.rank?<span class="number">1</span>:(a.rank&lt;b.rank?-<span class="number">1</span>:<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CardSort</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		<span class="type">char</span>[] suits= &#123;<span class="string">&#x27;梅&#x27;</span>,<span class="string">&#x27;方&#x27;</span>,<span class="string">&#x27;桃&#x27;</span>,<span class="string">&#x27;心&#x27;</span>&#125;;</span><br><span class="line">		<span class="type">char</span>[] values= &#123;<span class="string">&#x27;A&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;3&#x27;</span>,<span class="string">&#x27;4&#x27;</span>,<span class="string">&#x27;5&#x27;</span>,<span class="string">&#x27;6&#x27;</span>,<span class="string">&#x27;7&#x27;</span>,<span class="string">&#x27;8&#x27;</span>,<span class="string">&#x27;9&#x27;</span>,<span class="string">&#x27;T&#x27;</span>,<span class="string">&#x27;J&#x27;</span>,<span class="string">&#x27;Q&#x27;</span>,<span class="string">&#x27;K&#x27;</span>&#125;;</span><br><span class="line">		List&lt;Card&gt; cards=<span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;Card&gt;();</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">13</span>;i++)</span><br><span class="line">		&#123; <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">4</span>;j++)</span><br><span class="line">		  &#123; cards.add(<span class="keyword">new</span> <span class="title class_">Card</span>(suits[j],values[i]));</span><br><span class="line">		  &#125;</span><br><span class="line">		&#125;</span><br><span class="line">		cards.add(<span class="keyword">new</span> <span class="title class_">Card</span>(<span class="string">&#x27;小&#x27;</span>,<span class="string">&#x27;鬼&#x27;</span>));</span><br><span class="line">		cards.add(<span class="keyword">new</span> <span class="title class_">Card</span>(<span class="string">&#x27;大&#x27;</span>,<span class="string">&#x27;鬼&#x27;</span>));</span><br><span class="line">		Collections.sort(cards);</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">54</span>;i++)</span><br><span class="line">		&#123;cards.get(i).dispaly();	</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println();</span><br><span class="line">		Collections.sort(cards,<span class="keyword">new</span> <span class="title class_">CompareRank</span>());</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">54</span>;i++)</span><br><span class="line">		&#123;cards.get(i).dispaly();	</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://img-blog.csdnimg.cn/20210601231323286.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-
-      
-    </div>
-
-    
-    
-    
- <div>
-    
-  </div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://pistachiout.github.io/wiki/%E8%BE%93%E5%85%A5%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AD%90%E7%9B%AE%E5%BD%95%EF%BC%8C%E7%BC%96%E7%A8%8B%E5%BA%8F%E5%B0%86%E5%85%B6%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E5%86%85%E5%AE%B9%E7%9A%84%E5%90%8D%E5%AD%97%E8%BE%93%E5%87%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Pistachiout">
-      <meta itemprop="description" content="Pistachiout的学习博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pistachiout的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/wiki/%E8%BE%93%E5%85%A5%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AD%90%E7%9B%AE%E5%BD%95%EF%BC%8C%E7%BC%96%E7%A8%8B%E5%BA%8F%E5%B0%86%E5%85%B6%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E5%86%85%E5%AE%B9%E7%9A%84%E5%90%8D%E5%AD%97%E8%BE%93%E5%87%BA/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-02-16 18:54:55" itemprop="dateCreated datePublished" datetime="2023-02-16T18:54:55+08:00">2023-02-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-15 09:54:53" itemprop="dateModified" datetime="2023-02-15T09:54:53+08:00">2023-02-15</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>765</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="输入一个文件系统的子目录，编程序将其中的所有内容的名字输出到console上，要求："><a href="#输入一个文件系统的子目录，编程序将其中的所有内容的名字输出到console上，要求：" class="headerlink" title="输入一个文件系统的子目录，编程序将其中的所有内容的名字输出到console上，要求："></a>输入一个文件系统的子目录，编程序将其中的所有内容的名字输出到console上，要求：</h2><p>a、使用泛型的动态数组作为工具；<br>b、使用课本193页的File对象及其方法；<br>c、将此子目录下的所有子目录（可能有很多层）及其中的所有文件的文件名输出；<br>d、输出目录名和文件名时，用前缀空格显示出层次关系；</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OutputFiles</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		ArrayList&lt;File&gt; files=<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;File&gt;();</span><br><span class="line">		File myFile=<span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;D:\\Documents\\FileRecv\\学习&quot;</span>);</span><br><span class="line">		files.add(myFile);</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;files.size();i++)</span><br><span class="line">		&#123;</span><br><span class="line">		 <span class="keyword">if</span>(files.get(i).isDirectory())</span><br><span class="line">		 &#123;File[] ListFiles=files.get(i).listFiles();</span><br><span class="line">		  <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;ListFiles.length;j++)</span><br><span class="line">		  &#123;files.add(ListFiles[j]);</span><br><span class="line">		  &#125;</span><br><span class="line">		 &#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;files.size();i++)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(files.get(i).getName());</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://img-blog.csdnimg.cn/2021060123135142.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-
-      
-    </div>
-
-    
-    
-    
- <div>
-    
-  </div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://pistachiout.github.io/wiki/%E7%94%A8Java%20I0%20api%E5%B0%86SomeData.txt%E5%85%B6%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%87%BA%EF%BC%8C%E8%AE%A1%E7%AE%97%E5%87%BA%E6%AF%8F%E4%B8%80%E8%A1%8C%E7%9A%84%E5%90%8E4%E5%88%97%E6%95%B0%E6%8D%AE%E7%9A%84%E5%B9%B3%E5%9D%87%E5%80%BC%EF%BC%8C%E5%AD%98%E6%94%BE%E5%88%B0%E6%96%B0%E6%96%87%E4%BB%B6AvgSomeData.txt%E6%96%87%E4%BB%B6%E4%B8%AD%20(1)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -444,7 +184,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/wiki/%E7%94%A8Java%20I0%20api%E5%B0%86SomeData.txt%E5%85%B6%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%87%BA%EF%BC%8C%E8%AE%A1%E7%AE%97%E5%87%BA%E6%AF%8F%E4%B8%80%E8%A1%8C%E7%9A%84%E5%90%8E4%E5%88%97%E6%95%B0%E6%8D%AE%E7%9A%84%E5%B9%B3%E5%9D%87%E5%80%BC%EF%BC%8C%E5%AD%98%E6%94%BE%E5%88%B0%E6%96%B0%E6%96%87%E4%BB%B6AvgSomeData.txt%E6%96%87%E4%BB%B6%E4%B8%AD%20(1)/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/wiki/%E7%94%A8Java%20I0%20api%E5%B0%86SomeData.txt%E5%85%B6%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%87%BA%EF%BC%8C%E8%AE%A1%E7%AE%97%E5%87%BA%E6%AF%8F%E4%B8%80%E8%A1%8C%E7%9A%84%E5%90%8E4%E5%88%97%E6%95%B0%E6%8D%AE%E7%9A%84%E5%B9%B3%E5%9D%87%E5%80%BC%EF%BC%8C%E5%AD%98%E6%94%BE%E5%88%B0%E6%96%B0%E6%96%87%E4%BB%B6AvgSomeData.txt%E6%96%87%E4%BB%B6%E4%B8%AD%20(1)/" class="post-title-link" itemprop="url">Java10 API实验</a>
         </h2>
 
         <div class="post-meta">
@@ -461,8 +201,25 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-15 09:55:44" itemprop="dateModified" datetime="2023-02-15T09:55:44+08:00">2023-02-15</time>
+                <time title="修改时间：2023-02-17 15:00:12" itemprop="dateModified" datetime="2023-02-17T15:00:12+08:00">2023-02-17</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">计算机基础知识</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">算法笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%EF%BC%8CJava/" itemprop="url" rel="index"><span itemprop="name">编程语言，Java</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -489,10 +246,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="查看文本文件SomeData-txt中的数据并分析其格式，用Java-I0-api将其中的所有数据读出，计算出每一行的后4列数据的平均值，存放到新文件AvgSomeData-txt文件中，存放时每一行前面要加上行号（行号占3位，右对齐），平均值放到行末并左对齐。"><a href="#查看文本文件SomeData-txt中的数据并分析其格式，用Java-I0-api将其中的所有数据读出，计算出每一行的后4列数据的平均值，存放到新文件AvgSomeData-txt文件中，存放时每一行前面要加上行号（行号占3位，右对齐），平均值放到行末并左对齐。" class="headerlink" title="查看文本文件SomeData.txt中的数据并分析其格式，用Java I0 api将其中的所有数据读出，计算出每一行的后4列数据的平均值，存放到新文件AvgSomeData.txt文件中，存放时每一行前面要加上行号（行号占3位，右对齐），平均值放到行末并左对齐。"></a>查看文本文件SomeData.txt中的数据并分析其格式，用Java I0 api将其中的所有数据读出，计算出每一行的后4列数据的平均值，存放到新文件AvgSomeData.txt文件中，存放时每一行前面要加上行号（行号占3位，右对齐），平均值放到行末并左对齐。</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FIleStream</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		</span><br><span class="line">		FileReader inReader;</span><br><span class="line">		FileWriter outWriter;</span><br><span class="line">		<span class="keyword">try</span>&#123;</span><br><span class="line">			inReader=<span class="keyword">new</span> <span class="title class_">FileReader</span>(<span class="string">&quot;D:\\Documents\\SomeData.txt&quot;</span>);</span><br><span class="line">			outWriter=<span class="keyword">new</span> <span class="title class_">FileWriter</span>(<span class="string">&quot;D:\\Documents\\SomeData2.txt&quot;</span>);</span><br><span class="line">			<span class="comment">//inReader.</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">catch</span> (IOException e)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;File can&#x27;t be found or File creates error.&quot;</span>);</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line">		BufferedReader in=<span class="keyword">new</span>  <span class="title class_">BufferedReader</span>(inReader);<span class="comment">//???????????????????????</span></span><br><span class="line">		BufferedWriter out=<span class="keyword">new</span> <span class="title class_">BufferedWriter</span>(outWriter);<span class="comment">//????????????????????????</span></span><br><span class="line">		String str;</span><br><span class="line">		<span class="type">int</span> lineNo=<span class="number">0</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//inStream.read</span></span><br><span class="line">		</span><br><span class="line">		<span class="keyword">try</span>&#123;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">while</span> ((str=in.readLine())!=<span class="literal">null</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				System.out.print(str);</span><br><span class="line">				String[] splits=str.split(<span class="string">&quot;\t&quot;</span>);</span><br><span class="line">				System.out.println(<span class="string">&quot;  &quot;</span>+(<span class="type">int</span>)(Double.parseDouble(splits[<span class="number">3</span>])+Double.parseDouble(splits[<span class="number">4</span>])+Double.parseDouble(splits[<span class="number">5</span>])+Double.parseDouble(splits[<span class="number">6</span>]))/<span class="number">4</span>);</span><br><span class="line">				out.write(String.format(<span class="string">&quot;%1$03d&quot;</span>, lineNo++)+<span class="string">&quot;  &quot;</span>+str+<span class="string">&quot;\t&quot;</span>+(<span class="type">int</span>)(Double.parseDouble(splits[<span class="number">3</span>])+Double.parseDouble(splits[<span class="number">4</span>])+Double.parseDouble(splits[<span class="number">5</span>])+Double.parseDouble(splits[<span class="number">6</span>]))/<span class="number">4</span>+<span class="string">&quot;\r\n&quot;</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			in.close();</span><br><span class="line">			out.close();</span><br><span class="line">			inReader.close();</span><br><span class="line">			outWriter.close();</span><br><span class="line">		&#125;<span class="keyword">catch</span>(IOException e)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;\nIO Errors.&quot;</span>);</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">&quot;\n\n\nDone!&quot;</span>);</span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://img-blog.csdnimg.cn/20210601231425337.png" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20210601231429776.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-
+          <p>查看文本文件SomeData.txt中的数据并分析其格式，用Java I0 api将其中的所有数据读出，计算出每一行的后4列数据的平均值，存放到新文件AvgSomeData.txt文件中，存放时每一行前面要加上行号（行号占3位，右对齐），平均值放到行末并左对齐。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/wiki/%E7%94%A8Java%20I0%20api%E5%B0%86SomeData.txt%E5%85%B6%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%87%BA%EF%BC%8C%E8%AE%A1%E7%AE%97%E5%87%BA%E6%AF%8F%E4%B8%80%E8%A1%8C%E7%9A%84%E5%90%8E4%E5%88%97%E6%95%B0%E6%8D%AE%E7%9A%84%E5%B9%B3%E5%9D%87%E5%80%BC%EF%BC%8C%E5%AD%98%E6%94%BE%E5%88%B0%E6%96%B0%E6%96%87%E4%BB%B6AvgSomeData.txt%E6%96%87%E4%BB%B6%E4%B8%AD%20(1)/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -528,7 +290,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/wiki/%E6%B3%9B%E5%9E%8B%E9%9B%86%E5%90%88%E7%B1%BB%E4%B8%AD%E7%9A%84%E9%93%BE%E8%A1%A8%E7%B1%BB%E9%9A%8F%E6%9C%BA%E4%BA%A7%E7%94%9F100%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B4%E6%95%B0%EF%BC%88%E5%8D%95%E8%AF%8D%EF%BC%89%E7%9A%84%E9%93%BE%E8%A1%A8/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/wiki/%E6%B3%9B%E5%9E%8B%E9%9B%86%E5%90%88%E7%B1%BB%E4%B8%AD%E7%9A%84%E9%93%BE%E8%A1%A8%E7%B1%BB%E9%9A%8F%E6%9C%BA%E4%BA%A7%E7%94%9F100%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B4%E6%95%B0%EF%BC%88%E5%8D%95%E8%AF%8D%EF%BC%89%E7%9A%84%E9%93%BE%E8%A1%A8/" class="post-title-link" itemprop="url">选择泛型集合类中的链表类</a>
         </h2>
 
         <div class="post-meta">
@@ -545,8 +307,25 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-15 09:56:37" itemprop="dateModified" datetime="2023-02-15T09:56:37+08:00">2023-02-15</time>
+                <time title="修改时间：2023-02-17 11:46:06" itemprop="dateModified" datetime="2023-02-17T11:46:06+08:00">2023-02-17</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">计算机基础知识</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">算法笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%EF%BC%8CJava/" itemprop="url" rel="index"><span itemprop="name">编程语言，Java</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -573,272 +352,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="选择泛型集合类中的链表类"><a href="#选择泛型集合类中的链表类" class="headerlink" title="选择泛型集合类中的链表类"></a>选择泛型集合类中的链表类</h2><p>用此类：a、随机产生100个整数（范围自定）的链表，在生成的过程中从小到大排列，然后输出；b、随机产生100个6个英文字母的单词的链表，在生成的过程中从小到大排列，然后用链表方式输出。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">import</span> java.util.LinkedList;</span><br><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CollectionsSort_IntAndStr</span> &#123;</span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">			<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">			link100Int();</span><br><span class="line">			link100String();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">link100Int</span><span class="params">()</span></span><br><span class="line">		&#123;</span><br><span class="line">				LinkedList&lt;Integer&gt; linkInt=<span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;Integer&gt;();</span><br><span class="line">				Random random=<span class="keyword">new</span> <span class="title class_">Random</span>();</span><br><span class="line">				<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++)</span><br><span class="line">				&#123;</span><br><span class="line">					linkInt.add(random.nextInt(<span class="number">1001</span>));<span class="comment">//random.nextInt(n)产生随机值【0，n）</span></span><br><span class="line">				&#125;</span><br><span class="line">				Collections.sort(linkInt);<span class="comment">//Collections.sort排序</span></span><br><span class="line">				System.out.println(<span class="string">&quot;整数排序后&quot;</span>);</span><br><span class="line">				<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++)</span><br><span class="line">				&#123;</span><br><span class="line">					System.out.print(linkInt.get(i)+<span class="string">&quot;  &quot;</span>);</span><br><span class="line">					<span class="keyword">if</span>((i+<span class="number">1</span>)%<span class="number">10</span>==<span class="number">0</span>)</span><br><span class="line">						System.out.println();</span><br><span class="line">				&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">link100String</span><span class="params">()</span></span><br><span class="line">		&#123;</span><br><span class="line">				LinkedList&lt;String&gt; linkStr=<span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;String&gt;();</span><br><span class="line">				<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++)</span><br><span class="line">				&#123;StringBuffer StrB=<span class="keyword">new</span> <span class="title class_">StringBuffer</span>();</span><br><span class="line">				 <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">6</span>;j++)</span><br><span class="line">				 &#123;</span><br><span class="line">				  StrB.append((<span class="type">char</span>)(<span class="string">&#x27;a&#x27;</span>+(Math.random()*<span class="number">26</span>)));</span><br><span class="line">				 &#125;</span><br><span class="line">				 linkStr.add(StrB.toString());</span><br><span class="line">				&#125;</span><br><span class="line">				Collections.sort(linkStr);<span class="comment">//Collections.sort排序</span></span><br><span class="line">				System.out.println(<span class="string">&quot;String排序后&quot;</span>);</span><br><span class="line">				<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++)</span><br><span class="line">				&#123;</span><br><span class="line">					System.out.print(linkStr.get(i)+<span class="string">&quot;  &quot;</span>);</span><br><span class="line">					<span class="keyword">if</span>((i+<span class="number">1</span>)%<span class="number">10</span>==<span class="number">0</span>)</span><br><span class="line">						System.out.println();</span><br><span class="line">				&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://img-blog.csdnimg.cn/2021060123141266.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-
-      
-    </div>
-
-    
-    
-    
- <div>
-    
-  </div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://pistachiout.github.io/wiki/%E6%95%B0%E7%BB%84%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA50%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%A0%86%E6%A0%88%EF%BC%8C%E4%BD%BF%E7%94%A8%E5%A0%86%E6%A0%88%EF%BC%8C%E5%B0%86%E4%B8%AD%E7%BC%80%E7%AE%97%E6%9C%AF%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BD%AC%E6%8D%A2%E6%88%90%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E3%80%82/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Pistachiout">
-      <meta itemprop="description" content="Pistachiout的学习博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pistachiout的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/wiki/%E6%95%B0%E7%BB%84%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA50%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%A0%86%E6%A0%88%EF%BC%8C%E4%BD%BF%E7%94%A8%E5%A0%86%E6%A0%88%EF%BC%8C%E5%B0%86%E4%B8%AD%E7%BC%80%E7%AE%97%E6%9C%AF%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BD%AC%E6%8D%A2%E6%88%90%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E3%80%82/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-02-16 18:54:55" itemprop="dateCreated datePublished" datetime="2023-02-16T18:54:55+08:00">2023-02-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-15 09:56:47" itemprop="dateModified" datetime="2023-02-15T09:56:47+08:00">2023-02-15</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1、用数组模拟实现一个50个字符串的堆栈，并使这个堆栈有如下方法和参数："><a href="#1、用数组模拟实现一个50个字符串的堆栈，并使这个堆栈有如下方法和参数：" class="headerlink" title="1、用数组模拟实现一个50个字符串的堆栈，并使这个堆栈有如下方法和参数："></a>1、用数组模拟实现一个50个字符串的堆栈，并使这个堆栈有如下方法和参数：</h2><p>myStack：数组名，使用时不能直接对这个数组进行存取操作，存取操作都通过pop()和push()完成。<br>实现pop(): 弹出<br>实现push()：压入<br>实现isFull()：是否已满<br>实现isEmpty()：是否为空<br>实现length()：已有多少元素</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StackImiate</span> &#123; </span><br><span class="line">		<span class="keyword">public</span> <span class="type">int</span> maxSize;</span><br><span class="line">		<span class="keyword">public</span> <span class="type">char</span>[] a;</span><br><span class="line">		<span class="keyword">public</span> <span class="type">int</span> top;</span><br><span class="line">		StackImiate(<span class="type">int</span> maxSize) &#123;</span><br><span class="line">			<span class="built_in">this</span>.maxSize=maxSize;</span><br><span class="line">			a=<span class="keyword">new</span> <span class="title class_">char</span>[maxSize];</span><br><span class="line">			top=-<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">push</span><span class="params">(<span class="type">char</span> str)</span> &#123;</span><br><span class="line">			a[++top]=str;</span><br><span class="line">		&#125;	</span><br><span class="line">		<span class="keyword">public</span> <span class="type">char</span> <span class="title function_">pop</span><span class="params">()</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> a[top--];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isEmpty</span><span class="params">()</span> &#123;</span><br><span class="line">			<span class="keyword">return</span>(top==-<span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isFull</span><span class="params">()</span> &#123;</span><br><span class="line">			<span class="keyword">return</span>(top==maxSize);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">length</span><span class="params">()</span> </span><br><span class="line">		   &#123;<span class="keyword">return</span> top+<span class="number">1</span>;&#125;</span><br><span class="line">		<span class="keyword">public</span> <span class="type">char</span> <span class="title function_">peek</span><span class="params">()</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> a[top];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">public</span> <span class="type">char</span> <span class="title function_">peekN</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">			<span class="comment">//System.out.println(a[n]);</span></span><br><span class="line">			<span class="keyword">return</span> a[n];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">displayStack</span><span class="params">(String s)</span> &#123;</span><br><span class="line">			System.out.print(s);</span><br><span class="line">			System.out.print(<span class="string">&quot; Stack (bottom--&gt;top): &quot;</span>);</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;maxSize;j++) &#123;</span><br><span class="line">				System.out.print(peekN(j)+<span class="string">&quot; &quot;</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2、使用堆栈，将中缀算术表达式转换成后缀表达式。"><a href="#2、使用堆栈，将中缀算术表达式转换成后缀表达式。" class="headerlink" title="2、使用堆栈，将中缀算术表达式转换成后缀表达式。"></a>2、使用堆栈，将中缀算术表达式转换成后缀表达式。</h2><p>A、表达式中只有＋、－、×，&#x2F;，％，（，）六种运算符<br>B、变量名为以英文字母开头的字母数字串<br>C、表达式中可以出现不带符号的常数<br>D、适当判断表达式中的语法错误<br>E、不计算结果</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">InToPost</span> &#123;		</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		String strResult=<span class="keyword">new</span> <span class="title class_">String</span>();</span><br><span class="line">		String  Input=<span class="string">&quot;a+b*c+(d*e+f)*g&quot;</span>;</span><br><span class="line">		strResult=strResult+doTrans(Input);</span><br><span class="line">		System.out.println();</span><br><span class="line">		System.out.println(strResult);</span><br><span class="line">	&#125;</span><br><span class="line">			<span class="keyword">public</span> <span class="keyword">static</span> StringBuffer <span class="title function_">doTrans</span><span class="params">(String  Input)</span> &#123;<span class="comment">//返回strResult的函数</span></span><br><span class="line">				StackImiate  str=<span class="keyword">new</span> <span class="title class_">StackImiate</span>(<span class="number">50</span>);</span><br><span class="line">				StringBuffer strResultTemp=<span class="keyword">new</span> <span class="title class_">StringBuffer</span>();</span><br><span class="line">				<span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt;Input.length(); i++) &#123;</span><br><span class="line">					<span class="type">char</span> <span class="variable">ch</span> <span class="operator">=</span> Input.charAt(i);</span><br><span class="line">					str.displayStack(<span class="string">&quot;Get &quot;</span> + ch + <span class="string">&quot; &quot;</span>);</span><br><span class="line">					<span class="keyword">switch</span> (ch) &#123;</span><br><span class="line">					<span class="keyword">case</span> <span class="string">&#x27;+&#x27;</span>:</span><br><span class="line">					<span class="keyword">case</span> <span class="string">&#x27;-&#x27;</span>:</span><br><span class="line">						gotOper(ch, <span class="number">1</span>,str,strResultTemp);				</span><br><span class="line">						<span class="keyword">break</span>;</span><br><span class="line">					<span class="keyword">case</span> <span class="string">&#x27;*&#x27;</span>:</span><br><span class="line">					<span class="keyword">case</span> <span class="string">&#x27;/&#x27;</span>:</span><br><span class="line">					<span class="keyword">case</span> <span class="string">&#x27;%&#x27;</span>:</span><br><span class="line">						gotOper(ch, <span class="number">2</span>,str,strResultTemp);				</span><br><span class="line">						<span class="keyword">break</span>;</span><br><span class="line">					<span class="keyword">case</span> <span class="string">&#x27;(&#x27;</span>:					</span><br><span class="line">						str.push(ch);</span><br><span class="line">						<span class="keyword">break</span>;</span><br><span class="line">					<span class="keyword">case</span> <span class="string">&#x27;)&#x27;</span>:</span><br><span class="line">						gotParen(ch,str,strResultTemp);				</span><br><span class="line">						<span class="keyword">break</span>;</span><br><span class="line">					<span class="keyword">default</span>:					</span><br><span class="line">						strResultTemp =strResultTemp.append(ch);</span><br><span class="line">						<span class="keyword">break</span>;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">while</span> (!str.isEmpty()) &#123;</span><br><span class="line">					str.displayStack(<span class="string">&quot;out &quot;</span>);</span><br><span class="line">					strResultTemp = strResultTemp.append(str.pop());</span><br><span class="line">				&#125;</span><br><span class="line">				str.displayStack(<span class="string">&quot;End  &quot;</span>);				</span><br><span class="line">				<span class="keyword">return</span> strResultTemp;						</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">gotParen</span><span class="params">(<span class="type">char</span> ch,StackImiate  str,StringBuffer strResultTemp)</span> &#123;<span class="comment">//对括号进行处理的函数</span></span><br><span class="line">				<span class="keyword">while</span> (!str.isEmpty()) &#123;</span><br><span class="line">					<span class="type">char</span> <span class="variable">chx</span> <span class="operator">=</span> (<span class="type">char</span>) str.pop();		</span><br><span class="line">					<span class="keyword">if</span> (chx == <span class="string">&#x27;(&#x27;</span>) &#123;</span><br><span class="line">						<span class="keyword">break</span>;</span><br><span class="line">					&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">						strResultTemp =strResultTemp.append(chx);			</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">gotOper</span><span class="params">(<span class="type">char</span> ch, <span class="type">int</span> i,StackImiate  str,StringBuffer strResultTemp)</span> &#123;<span class="comment">//对运算符的优先级处理</span></span><br><span class="line">				<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">				<span class="keyword">while</span> (!str.isEmpty()) &#123;		</span><br><span class="line">					<span class="type">char</span> <span class="variable">opTop</span> <span class="operator">=</span> (<span class="type">char</span>) str.pop();</span><br><span class="line">					<span class="keyword">if</span> (opTop == <span class="string">&#x27;(&#x27;</span>) &#123;		</span><br><span class="line">						str.push(<span class="string">&#x27;(&#x27;</span>);</span><br><span class="line">						<span class="keyword">break</span>;</span><br><span class="line">					&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">						<span class="type">int</span> k;</span><br><span class="line">						<span class="keyword">if</span> (opTop == <span class="string">&#x27;+&#x27;</span> || opTop == <span class="string">&#x27;-&#x27;</span>) &#123;</span><br><span class="line">							k = <span class="number">1</span>;</span><br><span class="line">						&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">							k = <span class="number">2</span>;</span><br><span class="line">						&#125;</span><br><span class="line">						<span class="keyword">if</span> (k &lt; i) &#123;		</span><br><span class="line">							str.push(opTop);</span><br><span class="line">							<span class="keyword">break</span>;</span><br><span class="line">						&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">							strResultTemp = strResultTemp.append(opTop);	</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				str.push(ch);				</span><br><span class="line">			&#125;</span><br><span class="line">		 </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://img-blog.csdnimg.cn/2021062316550374.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-
-      
-    </div>
-
-    
-    
-    
- <div>
-    
-  </div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://pistachiout.github.io/wiki/%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E5%B0%8F%E8%8B%B1%E6%B1%89%E8%AF%8D%E5%85%B8%EF%BC%8C%E5%85%B6%E4%B8%AD%E8%8B%B1%E6%96%87%E5%8D%95%E8%AF%8D%E7%9A%84%E4%B8%AA%E6%95%B0%E4%B8%BA30%EF%BC%88%E5%8D%95%E8%AF%8D%E5%8F%AF%E8%87%AA%E5%B7%B1%E4%BB%BB%E9%80%89%EF%BC%89%EF%BC%8C%E4%BB%8E%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%E5%8D%95%E8%AF%8D%EF%BC%8C%E7%A8%8B%E5%BA%8F%E5%B0%86%E5%8D%95%E8%AF%8D%E7%9A%84%E4%B8%AD%E6%96%87%E8%A7%A3%E9%87%8A%E8%BE%93%E5%87%BA%EF%BC%8C%E8%8B%A5%E6%B2%A1%E6%9C%89%E6%89%BE%E5%88%B0%EF%BC%8C%E5%88%99%E8%BE%93%E5%87%BA%EF%BC%9Anot%20found%20in%20our%20dictionary%EF%BC%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Pistachiout">
-      <meta itemprop="description" content="Pistachiout的学习博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pistachiout的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/wiki/%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E5%B0%8F%E8%8B%B1%E6%B1%89%E8%AF%8D%E5%85%B8%EF%BC%8C%E5%85%B6%E4%B8%AD%E8%8B%B1%E6%96%87%E5%8D%95%E8%AF%8D%E7%9A%84%E4%B8%AA%E6%95%B0%E4%B8%BA30%EF%BC%88%E5%8D%95%E8%AF%8D%E5%8F%AF%E8%87%AA%E5%B7%B1%E4%BB%BB%E9%80%89%EF%BC%89%EF%BC%8C%E4%BB%8E%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%E5%8D%95%E8%AF%8D%EF%BC%8C%E7%A8%8B%E5%BA%8F%E5%B0%86%E5%8D%95%E8%AF%8D%E7%9A%84%E4%B8%AD%E6%96%87%E8%A7%A3%E9%87%8A%E8%BE%93%E5%87%BA%EF%BC%8C%E8%8B%A5%E6%B2%A1%E6%9C%89%E6%89%BE%E5%88%B0%EF%BC%8C%E5%88%99%E8%BE%93%E5%87%BA%EF%BC%9Anot%20found%20in%20our%20dictionary%EF%BC%81/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-02-16 18:54:55" itemprop="dateCreated datePublished" datetime="2023-02-16T18:54:55+08:00">2023-02-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-15 09:58:06" itemprop="dateModified" datetime="2023-02-15T09:58:06+08:00">2023-02-15</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="设计一个小英汉词典，其中英文单词的个数为30（单词可自己任选），编程序，从键盘输入单词，程序将单词的中文解释输出，若没有找到，则输出：not-found-in-our-dictionary！"><a href="#设计一个小英汉词典，其中英文单词的个数为30（单词可自己任选），编程序，从键盘输入单词，程序将单词的中文解释输出，若没有找到，则输出：not-found-in-our-dictionary！" class="headerlink" title="设计一个小英汉词典，其中英文单词的个数为30（单词可自己任选），编程序，从键盘输入单词，程序将单词的中文解释输出，若没有找到，则输出：not found in our dictionary！"></a>设计一个小英汉词典，其中英文单词的个数为30（单词可自己任选），编程序，从键盘输入单词，程序将单词的中文解释输出，若没有找到，则输出：not found in our dictionary！</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//import java.io.*;</span></span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="comment">//import java.util.Scanner;</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UseOfDictionary</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		String[] englishWords=<span class="keyword">new</span> <span class="title class_">String</span>[]&#123;<span class="string">&quot;computer&quot;</span>,<span class="string">&quot;university&quot;</span>,<span class="string">&quot;people&quot;</span>,<span class="string">&quot;student&quot;</span>,<span class="string">&quot;economics&quot;</span>,<span class="string">&quot;me&quot;</span>,<span class="string">&quot;our&quot;</span>,<span class="string">&quot;so&quot;</span>,<span class="string">&quot;import&quot;</span>,<span class="string">&quot;implments&quot;</span>,<span class="string">&quot;interface&quot;</span>,<span class="string">&quot;final&quot;</span>,<span class="string">&quot;public&quot;</span>,<span class="string">&quot;dictionary&quot;</span>,<span class="string">&quot;english&quot;</span>,<span class="string">&quot;chinses&quot;</span>,<span class="string">&quot;simple&quot;</span>,<span class="string">&quot;social&quot;</span>,<span class="string">&quot;why&quot;</span>,<span class="string">&quot;difficult&quot;</span>,<span class="string">&quot;simple&quot;</span>,<span class="string">&quot;close&quot;</span>,<span class="string">&quot;beautiful&quot;</span>,<span class="string">&quot;omit&quot;</span>,<span class="string">&quot;adequate&quot;</span>,<span class="string">&quot;circumstance&quot;</span>,<span class="string">&quot;abolish&quot;</span>,<span class="string">&quot;vacant&quot;</span>,<span class="string">&quot;reluctant&quot;</span>,<span class="string">&quot;excessive&quot;</span>&#125;;</span><br><span class="line">		String[] chineseTranslation=<span class="keyword">new</span> <span class="title class_">String</span>[]&#123;<span class="string">&quot;n.计算机&quot;</span>,<span class="string">&quot;n.综合性大学&quot;</span>,<span class="string">&quot;n.人们、人民&quot;</span>,<span class="string">&quot;n.大学生&quot;</span>,<span class="string">&quot;n.经济学&quot;</span>,<span class="string">&quot;n.我&quot;</span>,<span class="string">&quot;n.我们的&quot;</span>,<span class="string">&quot;n.所以&quot;</span>,<span class="string">&quot;n.传入;引入&quot;</span>,<span class="string">&quot;n.实施;执行;实现&quot;</span>,<span class="string">&quot;与…连接;接合&quot;</span>,<span class="string">&quot;最后的;&quot;</span>,<span class="string">&quot;公众的&quot;</span>,<span class="string">&quot;词典&quot;</span>,<span class="string">&quot;英语&quot;</span>,<span class="string">&quot;中文&quot;</span>,<span class="string">&quot;简单的&quot;</span>,<span class="string">&quot;社会的&quot;</span>,<span class="string">&quot;为什么&quot;</span>,<span class="string">&quot;困难的&quot;</span>,<span class="string">&quot;简单的&quot;</span>,<span class="string">&quot;近的&quot;</span>,<span class="string">&quot;漂亮的&quot;</span>,<span class="string">&quot;遗漏&quot;</span>,<span class="string">&quot;充足的&quot;</span>,<span class="string">&quot;情况&quot;</span>,<span class="string">&quot;废除&quot;</span>,<span class="string">&quot;空闲的&quot;</span>,<span class="string">&quot;不情愿的&quot;</span>,<span class="string">&quot;过多的&quot;</span>&#125;;</span><br><span class="line">		Map&lt;String,String&gt; dictionary=<span class="keyword">new</span> <span class="title class_">TreeMap</span>&lt;String,String&gt;();</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;englishWords.length;i++)</span><br><span class="line">			dictionary.put(englishWords[i], chineseTranslation[i]);</span><br><span class="line">		System.out.println(<span class="string">&quot;请从键盘上输入你想要翻译的单词：&quot;</span>);</span><br><span class="line">		Scanner input=<span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">		String userword=input.next();<span class="comment">//输入数据</span></span><br><span class="line">		<span class="keyword">if</span>(dictionary.get(userword)!=<span class="literal">null</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(dictionary.get(userword));</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> </span><br><span class="line">			System.out.println(<span class="string">&quot;not found in our dictionary！&quot;</span>);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://img-blog.csdnimg.cn/20210601231416793.png" alt="在这里插入图片描述"></p>
-
-      
-    </div>
-
-    
-    
-    
- <div>
-    
-  </div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://pistachiout.github.io/wiki/%E9%80%92%E5%BD%92+%E5%9B%9E%E6%BA%AF%E6%B3%95%20-%20%E5%89%AF%E6%9C%AC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Pistachiout">
-      <meta itemprop="description" content="Pistachiout的学习博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pistachiout的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/wiki/%E9%80%92%E5%BD%92+%E5%9B%9E%E6%BA%AF%E6%B3%95%20-%20%E5%89%AF%E6%9C%AC/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-02-16 18:54:55" itemprop="dateCreated datePublished" datetime="2023-02-16T18:54:55+08:00">2023-02-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-15 09:58:18" itemprop="dateModified" datetime="2023-02-15T09:58:18+08:00">2023-02-15</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.3k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>1、假设A、B、C、D、E各城市间路费如下表所列，左起一列是起点，上面一行是终点，即从A到B的旅费是7，从B到A时6。某人想从一个城市出发游览各城市一遍，在回到出发地，而所用的旅费最少。请编写一程序，求出从各地出发回到出发地的所有最佳路线。<br><img data-src="https://img-blog.csdnimg.cn/e0e4d8bd2c0446dbad1a216f9b730f6a.png" alt="在这里插入图片描述"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">work1</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">static</span>  <span class="type">int</span> N=<span class="number">5</span>;</span><br><span class="line">	<span class="type">int</span> Max=Integer.MAX_VALUE;</span><br><span class="line">	<span class="type">char</span>[] City=<span class="keyword">new</span> <span class="title class_">char</span>[]&#123;<span class="string">&#x27;A&#x27;</span>,<span class="string">&#x27;B&#x27;</span>,<span class="string">&#x27;C&#x27;</span>,<span class="string">&#x27;D&#x27;</span>,<span class="string">&#x27;E&#x27;</span>&#125;;</span><br><span class="line">	<span class="type">int</span> map[][]=&#123;&#123;Max,<span class="number">7</span>,<span class="number">3</span>,<span class="number">10</span>,<span class="number">15</span>&#125;,&#123;<span class="number">6</span>,Max,<span class="number">5</span>,<span class="number">13</span>,<span class="number">12</span>&#125;,&#123;<span class="number">4</span>,<span class="number">8</span>,Max,<span class="number">5</span>,<span class="number">10</span>&#125;,&#123;<span class="number">9</span>,<span class="number">11</span>,<span class="number">6</span>,Max,<span class="number">11</span>&#125;,&#123;<span class="number">17</span>,<span class="number">14</span>,<span class="number">9</span>,<span class="number">8</span>,Max&#125;&#125;;</span><br><span class="line">	<span class="type">int</span>[] visited=<span class="keyword">new</span> <span class="title class_">int</span>[N]; <span class="comment">//该城市是否访问</span></span><br><span class="line">	<span class="type">int</span>[] visit=<span class="keyword">new</span> <span class="title class_">int</span>[N];; <span class="comment">//记录第i次去的城市</span></span><br><span class="line">	<span class="type">int</span>[] road=<span class="keyword">new</span> <span class="title class_">int</span>[N];; <span class="comment">//路线</span></span><br><span class="line">	<span class="type">int</span> cost; <span class="comment">//费用</span></span><br><span class="line">	<span class="type">int</span> start;<span class="comment">//起点城市</span></span><br><span class="line">	<span class="type">int</span> c;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//输出行程</span></span><br><span class="line">	<span class="keyword">void</span> <span class="title function_">print</span><span class="params">()</span>&#123;</span><br><span class="line">		System.out.print(<span class="string">&quot;从城市&quot;</span>+City[start]+<span class="string">&quot;出发的最短行程为：&quot;</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;N;j++)</span><br><span class="line">		System.out.print(City[road[j]]+<span class="string">&quot;-&gt;&quot;</span>);</span><br><span class="line">	System.out.print(City[start]);</span><br><span class="line">	System.out.println(<span class="string">&quot;费用为：&quot;</span>+cost);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//初始化</span></span><br><span class="line">	<span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span>&#123;</span><br><span class="line">	cost=Max;</span><br><span class="line">	c=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;N;i++)&#123;</span><br><span class="line">		visited[i]=<span class="number">0</span>;</span><br><span class="line">		visit[i]=-<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">void</span> <span class="title function_">Travel</span><span class="params">(<span class="type">int</span> n)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n==N)&#123; <span class="comment">//全部城市旅游完</span></span><br><span class="line">		<span class="keyword">if</span>(c+map[visit[n-<span class="number">1</span>]][start]&lt;cost)&#123; <span class="comment">//返回起点且总费用最少</span></span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>; j&lt;n; j++) road[j]=visit[j];</span><br><span class="line">			cost=c+map[visit[n-<span class="number">1</span>]][start];</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;N;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(visited[i]==<span class="number">0</span>&amp;&amp;c+map[visit[n-<span class="number">1</span>]][i]&lt;cost) &#123;</span><br><span class="line">				visit[n]=i;</span><br><span class="line">				visited[visit[n]]=<span class="number">1</span>;</span><br><span class="line">				c+=map[visit[n-<span class="number">1</span>]][i];</span><br><span class="line">				Travel(n+<span class="number">1</span>);<span class="comment">//搜索下一个城市</span></span><br><span class="line">				c-=map[visit[n-<span class="number">1</span>]][i]; <span class="comment">//返回，删除节点</span></span><br><span class="line">				visited[visit[n]]=<span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		work1 work=<span class="keyword">new</span> <span class="title class_">work1</span>();</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;N;i++)&#123;</span><br><span class="line">		work.init();</span><br><span class="line">		work.start=i;</span><br><span class="line">		work.visit[<span class="number">0</span>]=i;<span class="comment">//设置出发点</span></span><br><span class="line">		work.visited[work.start]=<span class="number">1</span>;</span><br><span class="line">		work.Travel(<span class="number">1</span>);</span><br><span class="line">		work.print();</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img data-src="https://img-blog.csdnimg.cn/2e341d67f03f43feb9faeffd1cffe111.png" alt="在这里插入图片描述"></p>
-<p>2、一块土地上，农民可以种水稻、大豆、燕麦或牧草这四种作物。一年的收益不仅与当年种什么有关，还与去年种什么有关。它们之间的关系如下表。如果农民作一个五年生产计划，已知第一年种植之前种的是牧草。问各年应种什么，使收益最大？<br>         <img data-src="https://img-blog.csdnimg.cn/d0bd8e39d9cf40c0a3a451844811824e.png" alt="在这里插入图片描述"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">work4</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">static</span>  <span class="type">int</span> N=<span class="number">5</span>;</span><br><span class="line">	String[] X=<span class="keyword">new</span> <span class="title class_">String</span>[]&#123;<span class="string">&quot;水稻&quot;</span>,<span class="string">&quot;大豆&quot;</span>,<span class="string">&quot;燕麦&quot;</span>,<span class="string">&quot;牧草&quot;</span>&#125;;</span><br><span class="line">	<span class="type">int</span> map[][]=&#123;&#123;<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>&#125;,&#123;<span class="number">15</span>,<span class="number">1</span>,<span class="number">17</span>,<span class="number">7</span>&#125;,&#123;<span class="number">9</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">5</span>&#125;,&#123;<span class="number">11</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">3</span>&#125;&#125;;</span><br><span class="line">	<span class="type">int</span>[] visit=<span class="keyword">new</span> <span class="title class_">int</span>[N+<span class="number">1</span>];; <span class="comment">//记录第i次暂时种的作物</span></span><br><span class="line">	<span class="type">int</span>[] Crops=<span class="keyword">new</span> <span class="title class_">int</span>[N+<span class="number">1</span>];; <span class="comment">//记录最大值时每年种的作物</span></span><br><span class="line">	<span class="type">int</span> money; <span class="comment">//收益</span></span><br><span class="line">	<span class="type">int</span> temp;</span><br><span class="line">	<span class="keyword">void</span> <span class="title function_">print</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;N+<span class="number">1</span>;j++)</span><br><span class="line">		System.out.print(<span class="string">&quot;第&quot;</span>+j+<span class="string">&quot;年种&quot;</span>+X[Crops[j]]+<span class="string">&quot;-&gt;&quot;</span>);</span><br><span class="line">	System.out.println(<span class="string">&quot;收货为：&quot;</span>+money);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span>&#123;<span class="comment">//初始化</span></span><br><span class="line">	money=<span class="number">0</span>;</span><br><span class="line">	temp=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;N;i++)&#123;</span><br><span class="line">		visit[i]=-<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">void</span> <span class="title function_">crop</span><span class="params">(<span class="type">int</span> n)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n==N)</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(temp+map[visit[N-<span class="number">1</span>]][i]&gt;money)&#123; </span><br><span class="line">				<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>; j&lt;n; j++) Crops[j]=visit[j];</span><br><span class="line">				money=temp+map[visit[n-<span class="number">1</span>]][i];</span><br><span class="line">				<span class="keyword">return</span>;			</span><br><span class="line">		&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">				visit[n]=i;</span><br><span class="line">				temp+=map[visit[n-<span class="number">1</span>]][i];</span><br><span class="line">				crop(n+<span class="number">1</span>);<span class="comment">//下一年</span></span><br><span class="line">				temp-=map[visit[n-<span class="number">1</span>]][i]; <span class="comment">//返回，删除节点</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		work4 work=<span class="keyword">new</span> <span class="title class_">work4</span>();</span><br><span class="line">		work.init();</span><br><span class="line">		work.visit[<span class="number">0</span>]=<span class="number">3</span>;<span class="comment">//设置出发点</span></span><br><span class="line">		work.crop(<span class="number">1</span>);</span><br><span class="line">		work.print();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://img-blog.csdnimg.cn/4d79f14122e144a18770be7895dc053e.png" alt="在这里插入图片描述"></p>
-<p>二、代码思路<br>总结一下回溯法的关键，首先需要一个temp函数来记录目前的花费或收益，最后输出的变量result；对于像第一题这种遍历过后不用重复遍历的，需要用visited[]来记录当前结点是否被访问过，若被访问过则不再访问，而第2题可重复遍历则不用使用visited[]记录；此外还必须使用visit[]记录当前访问的结点路径，这是类似temp来暂存访问路径的数组，然后在有一个最后输出的数组road[]。之后有一个递归函数，在函数中更新temp，visited[]与visit[]，且递归函数一定要有递归退出条件，如这两道题中的n&#x3D;&#x3D;N判断是否递归退出，在退出时判断temp与result，如果当前的temp较大，则把visit[]与temp赋值给road[]与result，这样重复递归遍历多次，最后递归完成的result则为所求的最值。</p>
-
+          <p>选择泛型集合类中的链表类，用此类：a、随机产生100个整数（范围自定）的链表，在生成的过程中从小到大排列，然后输出；b、随机产生100个6个英文字母的单词的链表，在生成的过程中从小到大排列，然后用链表方式输出。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/wiki/%E6%B3%9B%E5%9E%8B%E9%9B%86%E5%90%88%E7%B1%BB%E4%B8%AD%E7%9A%84%E9%93%BE%E8%A1%A8%E7%B1%BB%E9%9A%8F%E6%9C%BA%E4%BA%A7%E7%94%9F100%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B4%E6%95%B0%EF%BC%88%E5%8D%95%E8%AF%8D%EF%BC%89%E7%9A%84%E9%93%BE%E8%A1%A8/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -874,7 +396,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/wiki/%E7%94%A8Python%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E5%AE%9E%E7%8E%B0%E8%87%B3%E5%B0%917%E7%A7%8D%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/wiki/%E7%94%A8Python%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E5%AE%9E%E7%8E%B0%E8%87%B3%E5%B0%917%E7%A7%8D%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">用Python语言编程实现至少7种排序算法</a>
         </h2>
 
         <div class="post-meta">
@@ -891,8 +413,29 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-15 10:02:13" itemprop="dateModified" datetime="2023-02-15T10:02:13+08:00">2023-02-15</time>
+                <time title="修改时间：2023-02-17 15:00:58" itemprop="dateModified" datetime="2023-02-17T15:00:58+08:00">2023-02-17</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">计算机基础知识</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -919,44 +462,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="一、实验目的及要求"><a href="#一、实验目的及要求" class="headerlink" title="一、实验目的及要求"></a>一、实验目的及要求</h2><p>1、用Python语言编程实现二分搜索算法：<br>已知不重复且已经按从小到大排好的m个整数的数组A[1..m]（设m&#x3D;2 k，k是一个确定的非负整数）。对于给定的整数c，要求寻找一个下标i，使得A[i]&#x3D;c；若找不到，则返回一个0。<br>2、用Python语言编程实现至少7种排序算法。<br><img data-src="https://img-blog.csdnimg.cn/20210519201853395.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20210519202016901.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20210519202025747.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/202105192020342.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20210519202041348.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20210519202049198.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20210519202056330.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20210519202104402.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p><img data-src="https://img-blog.csdnimg.cn/20210519202218871.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20210519202254242.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20210519202258791.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```c</span><br><span class="line">def BinarySearch(Arr,c):</span><br><span class="line">    if len(Arr)==0:</span><br><span class="line">       return -1</span><br><span class="line">    left=0</span><br><span class="line">    right=len(Arr)-1</span><br><span class="line">    while right&gt;left</span><br><span class="line">        mid=(left+right)//2</span><br><span class="line">        if Arr[mid]&lt;c:</span><br><span class="line">            left=mid+1</span><br><span class="line">        elif Arr[mid]&gt;x:</span><br><span class="line">            right=mid-1</span><br><span class="line">        else: </span><br><span class="line">            return mid</span><br><span class="line">return -1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def bubbleSort(nums):</span><br><span class="line">    for i in range(len(nums) - 1): # 遍历 len(nums)-1 次</span><br><span class="line">        for j in range(len(nums) - i - 1): # 已排好序的部分不用再次遍历</span><br><span class="line">            if nums[j] &gt; nums[j+1]:</span><br><span class="line">                nums[j], nums[j+1] = nums[j+1], nums[j] # Python 交换两个数不用中间变量</span><br><span class="line">    return nums</span><br><span class="line"></span><br><span class="line">def countingSort(nums):</span><br><span class="line">    bucket = [0] * (max(nums) + 1) # 桶的个数</span><br><span class="line">    for num in nums:  # 将元素值作为键值存储在桶中，记录其出现的次数</span><br><span class="line">        bucket[num] += 1</span><br><span class="line">    i = 0  # nums 的索引</span><br><span class="line">    for j in range(len(bucket)):</span><br><span class="line">        while bucket[j] &gt; 0:</span><br><span class="line">            nums[i] = j</span><br><span class="line">            bucket[j] -= 1</span><br><span class="line">            i += 1</span><br><span class="line">    return nums</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def shellSort(nums):</span><br><span class="line">    step = len(nums)</span><br><span class="line">    while True:</span><br><span class="line">        step = int(step / 3 + 1)#增量序列依次减少</span><br><span class="line">        for n in range(step):   #希尔排序即在每个分组内用插入排序，增量从1变为step</span><br><span class="line">            for i in range(n + step, len(nums), step):</span><br><span class="line">                temp=nums[i]</span><br><span class="line">                j=i-step</span><br><span class="line">                while j&gt;=n and temp&lt;nums[j]:</span><br><span class="line">                    nums[j+step]=nums[j]</span><br><span class="line">                    j=j-step</span><br><span class="line">                    nums[j+step]=temp</span><br><span class="line">                    print(nums)     #插入排序</span><br><span class="line">        if step &lt;= 1:</span><br><span class="line">            break</span><br><span class="line">    </span><br><span class="line">def selectionSort(nums):</span><br><span class="line">    for i in range(len(nums)-1):#遍历len（nums）-1次</span><br><span class="line">        minIndex=i #最小值的下表</span><br><span class="line">        for j in range(i+1,len(nums))#在i到len（nums）之间找到最小值</span><br><span class="line">            if nums[j]&lt;num&#123;minIndex]</span><br><span class="line">                minIndex=j</span><br><span class="line">        nums[i],nums[minIndex]=nums[minIndex],nums[i]# 把最小值放在i位置之后i+1</span><br><span class="line">    return nums</span><br><span class="line">def quicksort(nums, ipos, epos):</span><br><span class="line">    if epos - ipos &lt;= 1:</span><br><span class="line">        return nums</span><br><span class="line">    beg = ipos</span><br><span class="line">    end = epos</span><br><span class="line">    while ipos &lt; epos:</span><br><span class="line">        while nums[ipos] &lt; nums[epos]:</span><br><span class="line">            epos -= 1</span><br><span class="line">        nums[ipos], nums[epos] = nums[epos], nums[ipos]</span><br><span class="line">        while nums[epos] &gt; nums[ipos]:</span><br><span class="line">            ipos += 1</span><br><span class="line">        nums[ipos], nums[epos] = nums[epos], nums[ipos]</span><br><span class="line">    quicksort(nums, beg, ipos)</span><br><span class="line">    quicksort(nums, ipos + 1, end)</span><br><span class="line">def MergeSort(lists):</span><br><span class="line">    if len(lists) &lt;= 1:</span><br><span class="line">        return lists</span><br><span class="line">    num = int( len(lists) / 2 )</span><br><span class="line">    left = MergeSort(lists[:num])</span><br><span class="line">    right = MergeSort(lists[num:])</span><br><span class="line">    return Merge(left, right)</span><br><span class="line">def Merge(left,right):</span><br><span class="line">    r, l=0, 0</span><br><span class="line">    result=[]</span><br><span class="line">    while l&lt;len(left) and r&lt;len(right):</span><br><span class="line">        if left[l] &lt;= right[r]:</span><br><span class="line">            result.append(left[l])</span><br><span class="line">            l += 1</span><br><span class="line">        else:</span><br><span class="line">            result.append(right[r])</span><br><span class="line">            r += 1</span><br><span class="line">    result += list(left[l:])</span><br><span class="line">    result += list(right[r:])</span><br><span class="line">    return result</span><br><span class="line"></span><br><span class="line">def insertionSort(lst):</span><br><span class="line">    if len(lst) == 1:</span><br><span class="line">        return lst</span><br><span class="line">    for i in range(1, len(lst)):#插入排序i从1开始到len-1</span><br><span class="line">        temp = lst[i]</span><br><span class="line">        j = i - 1         #而j从0开始，从而对lit[0]也参与排序</span><br><span class="line">        while j &gt;= 0 and temp &lt; lst[j]:  </span><br><span class="line">            lst[j + 1] = lst[j]#将list[j]往后移</span><br><span class="line">            j -= 1</span><br><span class="line">            lst[j + 1] = temp#因为j=j-1，所以每次循环相当于新的j与temp换位置,直到排序完成（即相当于将list[i]大的数依次往后移使list[i]完成插入）</span><br><span class="line">            print(lst)</span><br><span class="line">    return lst```</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<p>.</p>
-
+          <p>用Python语言编程实现至少7种排序算法</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/wiki/%E7%94%A8Python%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E5%AE%9E%E7%8E%B0%E8%87%B3%E5%B0%917%E7%A7%8D%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -992,7 +506,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/wiki/%E5%88%A9%E7%94%A8python%E7%88%AC%E5%8F%96%E6%96%B0%E5%9E%8B%E5%86%A0%E7%8A%B6%E8%82%BA%E7%82%8E%E7%96%AB%E6%83%85%E5%8F%91%E7%94%9F%E4%BB%A5%E6%9D%A5%E7%9A%84%E5%AE%9E%E6%97%B6%E6%95%B0%E6%8D%AE%EF%BC%8C%E5%B9%B6%E8%BF%9B%E8%A1%8C%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B1%95%E7%A4%BA%E3%80%82/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/wiki/%E5%88%A9%E7%94%A8python%E7%88%AC%E5%8F%96%E6%96%B0%E5%9E%8B%E5%86%A0%E7%8A%B6%E8%82%BA%E7%82%8E%E7%96%AB%E6%83%85%E5%8F%91%E7%94%9F%E4%BB%A5%E6%9D%A5%E7%9A%84%E5%AE%9E%E6%97%B6%E6%95%B0%E6%8D%AE%EF%BC%8C%E5%B9%B6%E8%BF%9B%E8%A1%8C%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B1%95%E7%A4%BA%E3%80%82/" class="post-title-link" itemprop="url">利用python爬取新型冠状肺炎疫情发生以来的实时数据，并进行可视化展示。</a>
         </h2>
 
         <div class="post-meta">
@@ -1009,8 +523,33 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-15 10:02:42" itemprop="dateModified" datetime="2023-02-15T10:02:42+08:00">2023-02-15</time>
+                <time title="修改时间：2023-02-17 14:49:31" itemprop="dateModified" datetime="2023-02-17T14:49:31+08:00">2023-02-17</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">计算机基础知识</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">软件项目</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE/%E8%AF%BE%E7%A8%8B%E5%AE%9E%E9%AA%8C/" itemprop="url" rel="index"><span itemprop="name">课程实验</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -1037,15 +576,659 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="内容：利用python爬取新型冠状肺炎疫情发生以来的实时数据，并进行可视化展示。"><a href="#内容：利用python爬取新型冠状肺炎疫情发生以来的实时数据，并进行可视化展示。" class="headerlink" title="内容：利用python爬取新型冠状肺炎疫情发生以来的实时数据，并进行可视化展示。"></a>内容：利用python爬取新型冠状肺炎疫情发生以来的实时数据，并进行可视化展示。</h2><p>要求：数据源可自己选择，可视化的内容尽量丰富，除了简单的直方图、曲线图外，还可以有新增确诊&#x2F;疑似病例图、地理分布图、传播动态图等，具体功能自行设计。以Matplotlib为主，可利用Pyecharts等为补充。暂不要求页面部署及用户交互。</p>
-<p>   在这次实验中，我有了上次实验中学习python的经验，在了解这次实验是爬虫算法后，我就在b站看学习爬虫的视频，了解了爬取代码与正则表达式等内容，但在之后开始自己写爬虫后却发现并不像自己想象的那么简单，而且对于如何可视化也没有头绪，于是只好在网上查找新冠疫情爬取的代码，在查找代码的过程中我发现了一个很好的实时疫情网站，里面的数据规律明显很容易爬取，于是我借鉴代码写出了爬虫程序，并将数据放入到excel表中，但在可视化的过程中任然不知道怎么做，之后我学习了一点可视化的内容，但写出代码运行仍然有问题，考虑到时间问题之后放弃可视化。</p>
-<p><img data-src="https://img-blog.csdnimg.cn/20210519213241228.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>四、实验总结</p>
-<p>   这次实验给了我很多启示，在刚开始看到实验内容时，我认为爬虫很难学习，但发现自己在网上看视频后发现爬虫不像想象的那么难学，代码并不是很复杂，关键是找到正则表达式，之后自己在写的过程中更是发现不同网站源代码的爬取难易度大不相同，在网上学习别人的代码也学习很多，对python的理解也多了很多。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">import requests,os</span><br><span class="line">import re</span><br><span class="line">import xlwt#写入excel库</span><br><span class="line">import time#格式化时间</span><br><span class="line">import json#字符串转字典</span><br><span class="line">file_path = <span class="string">&#x27;E:/新冠疫情/&#x27;</span></span><br><span class="line"><span class="keyword">if</span> not os.path.exists(file_path):</span><br><span class="line">    os.makedirs(file_path)</span><br><span class="line">    print(<span class="string">&#x27;======数据文件夹不存在=======&#x27;</span>)</span><br><span class="line">    print(<span class="string">&#x27;======数据文件夹创建成功======&#x27;</span>)</span><br><span class="line">    print(<span class="string">&#x27;======创建目录为%s======&#x27;</span>%(file_path))</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">&#x27;======数据保存在目录：%s======&#x27;</span> % (file_path))</span><br><span class="line">#检查并创建数据目录</span><br><span class="line">headers = &#123;<span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.163 Safari/535.1&#x27;</span>&#125;</span><br><span class="line">response = requests.get(<span class="string">&#x27;https://ncov.dxy.cn/ncovh5/view/pneumonia?from=timeline&amp;isappinstalled=0&#x27;</span>, headers=headers, timeout=<span class="number">3</span>)</span><br><span class="line"># 请求页面</span><br><span class="line">response = str(response.content, <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"># 中文重新编码</span><br><span class="line">areas_type_dic_raw = re.findall(<span class="string">&#x27;try &#123; window.getAreaStat = (.*?)&#125;catch\(e\)&#x27;</span>,response)</span><br><span class="line">areas_type_dic = json.loads(areas_type_dic_raw[<span class="number">0</span>])#将json对象转变为python对象</span><br><span class="line">count = <span class="number">2</span>#数据写入行数记录</span><br><span class="line">newworkbook = xlwt.Workbook()</span><br><span class="line">worksheet = newworkbook.add_sheet(<span class="string">&#x27;all_data&#x27;</span>)</span><br><span class="line"># 打开工作簿，创建工作表</span><br><span class="line">worksheet.write(<span class="number">1</span>, <span class="number">2</span>, <span class="string">&#x27;省份名称&#x27;</span>)</span><br><span class="line">worksheet.write(<span class="number">1</span>, <span class="number">3</span>, <span class="string">&#x27;省份简称或城市名称&#x27;</span>)</span><br><span class="line">worksheet.write(<span class="number">1</span>, <span class="number">4</span>, <span class="string">&#x27;确诊人数&#x27;</span>)</span><br><span class="line">worksheet.write(<span class="number">1</span>, <span class="number">5</span>, <span class="string">&#x27;疑似人数&#x27;</span>)</span><br><span class="line">worksheet.write(<span class="number">1</span>, <span class="number">6</span>, <span class="string">&#x27;治愈人数&#x27;</span>)</span><br><span class="line">worksheet.write(<span class="number">1</span>, <span class="number">7</span>, <span class="string">&#x27;死亡人数&#x27;</span>)</span><br><span class="line">worksheet.write(<span class="number">1</span>, <span class="number">8</span>, <span class="string">&#x27;地区ID编码&#x27;</span>)</span><br><span class="line">#写入数据列标签</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> province_data in areas_type_dic:</span><br><span class="line">    provincename = province_data[<span class="string">&#x27;provinceName&#x27;</span>]</span><br><span class="line">    provinceshortName = province_data[<span class="string">&#x27;provinceShortName&#x27;</span>]</span><br><span class="line">    p_confirmedcount = province_data[<span class="string">&#x27;confirmedCount&#x27;</span>]</span><br><span class="line">    p_suspectedcount = province_data[<span class="string">&#x27;suspectedCount&#x27;</span>]</span><br><span class="line">    p_curedcount = province_data[<span class="string">&#x27;curedCount&#x27;</span>]</span><br><span class="line">    p_deadcount = province_data[<span class="string">&#x27;deadCount&#x27;</span>]</span><br><span class="line">    p_locationid = province_data[<span class="string">&#x27;locationId&#x27;</span>]</span><br><span class="line">    #用循环获取省级以及该省以下城市的数据</span><br><span class="line">    worksheet.write(count, <span class="number">2</span>, provincename)</span><br><span class="line">    worksheet.write(count, <span class="number">3</span>, provinceshortName)</span><br><span class="line">    worksheet.write(count, <span class="number">4</span>, p_confirmedcount)</span><br><span class="line">    worksheet.write(count, <span class="number">5</span>, p_suspectedcount)</span><br><span class="line">    worksheet.write(count, <span class="number">6</span>, p_curedcount)</span><br><span class="line">    worksheet.write(count, <span class="number">7</span>, p_deadcount)</span><br><span class="line">    worksheet.write(count, <span class="number">8</span>, p_locationid)</span><br><span class="line">                    #在工作表里写入省级数据</span><br><span class="line"></span><br><span class="line">    count += <span class="number">1</span></span><br><span class="line">                    #此处为写入行数累加，province部分循环</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> citiy_data in province_data[<span class="string">&#x27;cities&#x27;</span>]:</span><br><span class="line">        cityname = citiy_data[<span class="string">&#x27;cityName&#x27;</span>]</span><br><span class="line">        c_confirmedcount = citiy_data[<span class="string">&#x27;confirmedCount&#x27;</span>]</span><br><span class="line">        c_suspectedcount = citiy_data[<span class="string">&#x27;suspectedCount&#x27;</span>]</span><br><span class="line">        c_curedcount = citiy_data[<span class="string">&#x27;curedCount&#x27;</span>]</span><br><span class="line">        c_deadcount = citiy_data[<span class="string">&#x27;deadCount&#x27;</span>]</span><br><span class="line">        c_locationid = citiy_data[<span class="string">&#x27;locationId&#x27;</span>]</span><br><span class="line">                            #该部分获取某个省下某城市的数据</span><br><span class="line"></span><br><span class="line">        worksheet.write(count, <span class="number">3</span>, cityname)</span><br><span class="line">        worksheet.write(count, <span class="number">4</span>, c_confirmedcount)</span><br><span class="line">        worksheet.write(count, <span class="number">5</span>, c_suspectedcount)</span><br><span class="line">        worksheet.write(count, <span class="number">6</span>, c_curedcount)</span><br><span class="line">        worksheet.write(count, <span class="number">7</span>, c_deadcount)</span><br><span class="line">        worksheet.write(count, <span class="number">8</span>, c_locationid)</span><br><span class="line">                            #该部分在工作表里写入某城市的数据</span><br><span class="line"></span><br><span class="line">        count += <span class="number">1</span></span><br><span class="line">                            #此处为写入行数累加，cities部分循环</span><br><span class="line">current_time = time.strftime(<span class="string">&quot;%Y-%m-%d-%H-%M-%S&quot;</span>, time.localtime())</span><br><span class="line">newworkbook.save(<span class="string">&#x27;E:\新冠疫情\疫情实时爬取-%s.xls&#x27;</span> % (current_time))</span><br><span class="line">print(<span class="string">&#x27;======数据爬取成功======&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+          <p>利用python爬取新型冠状肺炎疫情发生以来的实时数据，并进行可视化展示。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/wiki/%E5%88%A9%E7%94%A8python%E7%88%AC%E5%8F%96%E6%96%B0%E5%9E%8B%E5%86%A0%E7%8A%B6%E8%82%BA%E7%82%8E%E7%96%AB%E6%83%85%E5%8F%91%E7%94%9F%E4%BB%A5%E6%9D%A5%E7%9A%84%E5%AE%9E%E6%97%B6%E6%95%B0%E6%8D%AE%EF%BC%8C%E5%B9%B6%E8%BF%9B%E8%A1%8C%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B1%95%E7%A4%BA%E3%80%82/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
 
-<p>爬取结果：<br><a target="_blank" rel="noopener" href="https://download.csdn.net/download/qq_45808700/19598095?spm=1001.2014.3001.5503">https://download.csdn.net/download/qq_45808700&#x2F;19598095?spm&#x3D;1001.2014.3001.5503</a></p>
+    
+    
+    
+ <div>
+    
+  </div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pistachiout.github.io/wiki/Nginx%E9%AB%98%E5%B9%B6%E5%8F%91%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Pistachiout">
+      <meta itemprop="description" content="Pistachiout的学习博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pistachiout的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/wiki/Nginx%E9%AB%98%E5%B9%B6%E5%8F%91%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">Nginx高并发实现原理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-02-16 18:54:55" itemprop="dateCreated datePublished" datetime="2023-02-16T18:54:55+08:00">2023-02-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-17 11:01:22" itemprop="dateModified" datetime="2023-02-17T11:01:22+08:00">2023-02-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%BA%E6%96%87%E7%A0%94%E7%A9%B6/" itemprop="url" rel="index"><span itemprop="name">论文研究</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Nginx 作为当下的高并发连接的负载均衡服务器因其极强的性能得到广泛的使用。本文主要对高并发Nginx进行详细的介绍，重点说明使用Nginx实现Web系统的高并发的原理。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/wiki/Nginx%E9%AB%98%E5%B9%B6%E5%8F%91%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+ <div>
+    
+  </div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pistachiout.github.io/wiki/%E4%BD%BF%E7%94%A8nvm%E7%AE%A1%E7%90%86node%E7%89%88%E6%9C%AC%EF%BC%8C%E5%AE%9E%E7%8E%B0%E9%AB%98%E7%89%88%E6%9C%AC%E4%B8%8E%E4%BD%8E%E7%89%88%E6%9C%ACnode%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Pistachiout">
+      <meta itemprop="description" content="Pistachiout的学习博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pistachiout的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/wiki/%E4%BD%BF%E7%94%A8nvm%E7%AE%A1%E7%90%86node%E7%89%88%E6%9C%AC%EF%BC%8C%E5%AE%9E%E7%8E%B0%E9%AB%98%E7%89%88%E6%9C%AC%E4%B8%8E%E4%BD%8E%E7%89%88%E6%9C%ACnode%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2/" class="post-title-link" itemprop="url">使用nvm管理node版本，实现高版本与低版本node之间的转换</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-02-16 18:54:55" itemprop="dateCreated datePublished" datetime="2023-02-16T18:54:55+08:00">2023-02-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-17 14:55:55" itemprop="dateModified" datetime="2023-02-17T14:55:55+08:00">2023-02-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AE%9E%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%8F%8A%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">实用软件及工具</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>nvm使用教程</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/wiki/%E4%BD%BF%E7%94%A8nvm%E7%AE%A1%E7%90%86node%E7%89%88%E6%9C%AC%EF%BC%8C%E5%AE%9E%E7%8E%B0%E9%AB%98%E7%89%88%E6%9C%AC%E4%B8%8E%E4%BD%8E%E7%89%88%E6%9C%ACnode%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+ <div>
+    
+  </div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pistachiout.github.io/wiki/UNIX%E7%AE%80%E5%8D%95%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Pistachiout">
+      <meta itemprop="description" content="Pistachiout的学习博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pistachiout的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/wiki/UNIX%E7%AE%80%E5%8D%95%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="post-title-link" itemprop="url">Linux简单文件系统设计与实现</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-02-16 18:54:55" itemprop="dateCreated datePublished" datetime="2023-02-16T18:54:55+08:00">2023-02-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-17 11:19:50" itemprop="dateModified" datetime="2023-02-17T11:19:50+08:00">2023-02-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">计算机基础知识</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">软件项目</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE/%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">项目</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>12k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>11 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在内存中开辟一个虚拟磁盘空间作为文件存储分区，在其上实现一个简单的基于多级目录的单用户单任务系统中的文件系统，并实现创建、打开、关闭、写、读、删除文件及目录的功能，在退出该文件系统的使用时，应将该虚拟文件系统以一个文件的方式保存到磁盘上，以便下次可以再将它恢复到内存的虚拟磁盘空间中。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/wiki/UNIX%E7%AE%80%E5%8D%95%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+ <div>
+    
+  </div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pistachiout.github.io/wiki/%E5%9F%BA%E4%BA%8Essm%E7%9A%84%E5%9C%A8%E7%BA%BF%E6%8F%90%E9%97%AE%E3%80%81%E5%9B%9E%E7%AD%94%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Pistachiout">
+      <meta itemprop="description" content="Pistachiout的学习博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pistachiout的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/wiki/%E5%9F%BA%E4%BA%8Essm%E7%9A%84%E5%9C%A8%E7%BA%BF%E6%8F%90%E9%97%AE%E3%80%81%E5%9B%9E%E7%AD%94%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">基于SSM的在线提问、回答系统</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-02-16 18:54:55" itemprop="dateCreated datePublished" datetime="2023-02-16T18:54:55+08:00">2023-02-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-17 14:47:17" itemprop="dateModified" datetime="2023-02-17T14:47:17+08:00">2023-02-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">计算机基础知识</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">软件项目</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE/%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">项目</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>297</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>基于SSM的在线提问、回答系统</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/wiki/%E5%9F%BA%E4%BA%8Essm%E7%9A%84%E5%9C%A8%E7%BA%BF%E6%8F%90%E9%97%AE%E3%80%81%E5%9B%9E%E7%AD%94%E7%B3%BB%E7%BB%9F/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+ <div>
+    
+  </div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pistachiout.github.io/wiki/%E5%9F%BA%E4%BA%8ESSM%E6%A1%86%E6%9E%B6%E7%9A%84%E7%BD%91%E4%B8%8A%E8%B4%AD%E7%89%A9%E9%80%81%E8%B4%A7%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Pistachiout">
+      <meta itemprop="description" content="Pistachiout的学习博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pistachiout的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/wiki/%E5%9F%BA%E4%BA%8ESSM%E6%A1%86%E6%9E%B6%E7%9A%84%E7%BD%91%E4%B8%8A%E8%B4%AD%E7%89%A9%E9%80%81%E8%B4%A7%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">基于SSM框架的网上购物送货系统</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-02-16 18:54:55" itemprop="dateCreated datePublished" datetime="2023-02-16T18:54:55+08:00">2023-02-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-17 15:12:32" itemprop="dateModified" datetime="2023-02-17T15:12:32+08:00">2023-02-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">计算机基础知识</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">软件项目</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE/%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">项目</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>基于SSM框架的网上购物送货系统。系统参与角色：管理者、购物者、送货员。1. 管理者：负责管理商品，提供商品信息，处理订单事务，系统的日常维护，控制超市状态。   2. 购物者：在线注册账户，更新个人信息，管理账户，搜索浏览商品，管理购物车，支付订单，申请退款，留言以及售后评价。3. 送货员：注册成为送货员，更新个人信息，查看订单信息。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/wiki/%E5%9F%BA%E4%BA%8ESSM%E6%A1%86%E6%9E%B6%E7%9A%84%E7%BD%91%E4%B8%8A%E8%B4%AD%E7%89%A9%E9%80%81%E8%B4%A7%E7%B3%BB%E7%BB%9F/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+ <div>
+    
+  </div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pistachiout.github.io/wiki/Shiro%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Pistachiout">
+      <meta itemprop="description" content="Pistachiout的学习博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pistachiout的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/wiki/Shiro%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">Shiro学习笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-02-16 18:54:55" itemprop="dateCreated datePublished" datetime="2023-02-16T18:54:55+08:00">2023-02-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-17 11:10:42" itemprop="dateModified" datetime="2023-02-17T11:10:42+08:00">2023-02-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AE%9E%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%8F%8A%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">实用软件及工具</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Shiro 是一款主流的 Java 安全框架，它不依赖任何容器，可以独立运行在 Java SE 和 Java EE 项目中，它的主要作用是对访问系统的用户进行身份认证（身份认证也就是登录）、授权、会话管理、加密等操作,用来解决安全管理的系统化框架。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/wiki/Shiro%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1066,7 +1249,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1134,17 +1317,21 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">分类</span>
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">标签</span>
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -1226,13 +1413,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">263k</span>
+    <span title="站点总字数">244k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">3:59</span>
+    <span title="站点阅读时长">3:42</span>
 </div>
 
 <!--

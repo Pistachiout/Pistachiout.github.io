@@ -22,19 +22,20 @@
     var CONFIG = {"hostname":"pistachiout.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="查看文本文件SomeData.txt中的数据并分析其格式，用Java I0 api将其中的所有数据读出，计算出每一行的后4列数据的平均值，存放到新文件AvgSomeData.txt文件中，存放时每一行前面要加上行号（行号占3位，右对齐），平均值放到行末并左对齐。123456789101112131415161718192021222324252627282930313233343536373839">
+  <meta name="description" content="查看文本文件SomeData.txt中的数据并分析其格式，用Java I0 api将其中的所有数据读出，计算出每一行的后4列数据的平均值，存放到新文件AvgSomeData.txt文件中，存放时每一行前面要加上行号（行号占3位，右对齐），平均值放到行末并左对齐。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Pistachiout的博客">
+<meta property="og:title" content="Java10 API实验">
 <meta property="og:url" content="https://pistachiout.github.io/wiki/%E7%94%A8Java%20I0%20api%E5%B0%86SomeData.txt%E5%85%B6%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%87%BA%EF%BC%8C%E8%AE%A1%E7%AE%97%E5%87%BA%E6%AF%8F%E4%B8%80%E8%A1%8C%E7%9A%84%E5%90%8E4%E5%88%97%E6%95%B0%E6%8D%AE%E7%9A%84%E5%B9%B3%E5%9D%87%E5%80%BC%EF%BC%8C%E5%AD%98%E6%94%BE%E5%88%B0%E6%96%B0%E6%96%87%E4%BB%B6AvgSomeData.txt%E6%96%87%E4%BB%B6%E4%B8%AD%20(1)/index.html">
 <meta property="og:site_name" content="Pistachiout的博客">
-<meta property="og:description" content="查看文本文件SomeData.txt中的数据并分析其格式，用Java I0 api将其中的所有数据读出，计算出每一行的后4列数据的平均值，存放到新文件AvgSomeData.txt文件中，存放时每一行前面要加上行号（行号占3位，右对齐），平均值放到行末并左对齐。123456789101112131415161718192021222324252627282930313233343536373839">
+<meta property="og:description" content="查看文本文件SomeData.txt中的数据并分析其格式，用Java I0 api将其中的所有数据读出，计算出每一行的后4列数据的平均值，存放到新文件AvgSomeData.txt文件中，存放时每一行前面要加上行号（行号占3位，右对齐），平均值放到行末并左对齐。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210601231425337.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210601231429776.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
 <meta property="article:published_time" content="2023-02-16T10:54:55.355Z">
-<meta property="article:modified_time" content="2023-02-15T01:55:44.318Z">
+<meta property="article:modified_time" content="2023-02-17T07:00:12.526Z">
 <meta property="article:author" content="Pistachiout">
-<meta property="article:tag" content="博客">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210601231425337.png">
 
@@ -51,7 +52,7 @@
   };
 </script>
 
-  <title> | Pistachiout的博客</title>
+  <title>Java10 API实验 | Pistachiout的博客</title>
   
 
 
@@ -189,7 +190,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
+          Java10 API实验
         </h1>
 
         <div class="post-meta">
@@ -206,8 +207,25 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-15 09:55:44" itemprop="dateModified" datetime="2023-02-15T09:55:44+08:00">2023-02-15</time>
+                <time title="修改时间：2023-02-17 15:00:12" itemprop="dateModified" datetime="2023-02-17T15:00:12+08:00">2023-02-17</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">计算机基础知识</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">算法笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%EF%BC%8CJava/" itemprop="url" rel="index"><span itemprop="name">编程语言，Java</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -224,6 +242,7 @@
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               <span>1 分钟</span>
             </span>
+            <div class="post-description">查看文本文件SomeData.txt中的数据并分析其格式，用Java I0 api将其中的所有数据读出，计算出每一行的后4列数据的平均值，存放到新文件AvgSomeData.txt文件中，存放时每一行前面要加上行号（行号占3位，右对齐），平均值放到行末并左对齐。</div>
 
         </div>
       </header>
@@ -234,7 +253,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="查看文本文件SomeData-txt中的数据并分析其格式，用Java-I0-api将其中的所有数据读出，计算出每一行的后4列数据的平均值，存放到新文件AvgSomeData-txt文件中，存放时每一行前面要加上行号（行号占3位，右对齐），平均值放到行末并左对齐。"><a href="#查看文本文件SomeData-txt中的数据并分析其格式，用Java-I0-api将其中的所有数据读出，计算出每一行的后4列数据的平均值，存放到新文件AvgSomeData-txt文件中，存放时每一行前面要加上行号（行号占3位，右对齐），平均值放到行末并左对齐。" class="headerlink" title="查看文本文件SomeData.txt中的数据并分析其格式，用Java I0 api将其中的所有数据读出，计算出每一行的后4列数据的平均值，存放到新文件AvgSomeData.txt文件中，存放时每一行前面要加上行号（行号占3位，右对齐），平均值放到行末并左对齐。"></a>查看文本文件SomeData.txt中的数据并分析其格式，用Java I0 api将其中的所有数据读出，计算出每一行的后4列数据的平均值，存放到新文件AvgSomeData.txt文件中，存放时每一行前面要加上行号（行号占3位，右对齐），平均值放到行末并左对齐。</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FIleStream</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		</span><br><span class="line">		FileReader inReader;</span><br><span class="line">		FileWriter outWriter;</span><br><span class="line">		<span class="keyword">try</span>&#123;</span><br><span class="line">			inReader=<span class="keyword">new</span> <span class="title class_">FileReader</span>(<span class="string">&quot;D:\\Documents\\SomeData.txt&quot;</span>);</span><br><span class="line">			outWriter=<span class="keyword">new</span> <span class="title class_">FileWriter</span>(<span class="string">&quot;D:\\Documents\\SomeData2.txt&quot;</span>);</span><br><span class="line">			<span class="comment">//inReader.</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">catch</span> (IOException e)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;File can&#x27;t be found or File creates error.&quot;</span>);</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line">		BufferedReader in=<span class="keyword">new</span>  <span class="title class_">BufferedReader</span>(inReader);<span class="comment">//???????????????????????</span></span><br><span class="line">		BufferedWriter out=<span class="keyword">new</span> <span class="title class_">BufferedWriter</span>(outWriter);<span class="comment">//????????????????????????</span></span><br><span class="line">		String str;</span><br><span class="line">		<span class="type">int</span> lineNo=<span class="number">0</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//inStream.read</span></span><br><span class="line">		</span><br><span class="line">		<span class="keyword">try</span>&#123;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">while</span> ((str=in.readLine())!=<span class="literal">null</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				System.out.print(str);</span><br><span class="line">				String[] splits=str.split(<span class="string">&quot;\t&quot;</span>);</span><br><span class="line">				System.out.println(<span class="string">&quot;  &quot;</span>+(<span class="type">int</span>)(Double.parseDouble(splits[<span class="number">3</span>])+Double.parseDouble(splits[<span class="number">4</span>])+Double.parseDouble(splits[<span class="number">5</span>])+Double.parseDouble(splits[<span class="number">6</span>]))/<span class="number">4</span>);</span><br><span class="line">				out.write(String.format(<span class="string">&quot;%1$03d&quot;</span>, lineNo++)+<span class="string">&quot;  &quot;</span>+str+<span class="string">&quot;\t&quot;</span>+(<span class="type">int</span>)(Double.parseDouble(splits[<span class="number">3</span>])+Double.parseDouble(splits[<span class="number">4</span>])+Double.parseDouble(splits[<span class="number">5</span>])+Double.parseDouble(splits[<span class="number">6</span>]))/<span class="number">4</span>+<span class="string">&quot;\r\n&quot;</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			in.close();</span><br><span class="line">			out.close();</span><br><span class="line">			inReader.close();</span><br><span class="line">			outWriter.close();</span><br><span class="line">		&#125;<span class="keyword">catch</span>(IOException e)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;\nIO Errors.&quot;</span>);</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">&quot;\n\n\nDone!&quot;</span>);</span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>﻿## 查看文本文件SomeData.txt中的数据并分析其格式，用Java I0 api将其中的所有数据读出，计算出每一行的后4列数据的平均值，存放到新文件AvgSomeData.txt文件中，存放时每一行前面要加上行号（行号占3位，右对齐），平均值放到行末并左对齐。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FIleStream</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		</span><br><span class="line">		FileReader inReader;</span><br><span class="line">		FileWriter outWriter;</span><br><span class="line">		<span class="keyword">try</span>&#123;</span><br><span class="line">			inReader=<span class="keyword">new</span> <span class="title class_">FileReader</span>(<span class="string">&quot;D:\\Documents\\SomeData.txt&quot;</span>);</span><br><span class="line">			outWriter=<span class="keyword">new</span> <span class="title class_">FileWriter</span>(<span class="string">&quot;D:\\Documents\\SomeData2.txt&quot;</span>);</span><br><span class="line">			<span class="comment">//inReader.</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">catch</span> (IOException e)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;File can&#x27;t be found or File creates error.&quot;</span>);</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line">		BufferedReader in=<span class="keyword">new</span>  <span class="title class_">BufferedReader</span>(inReader);<span class="comment">//???????????????????????</span></span><br><span class="line">		BufferedWriter out=<span class="keyword">new</span> <span class="title class_">BufferedWriter</span>(outWriter);<span class="comment">//????????????????????????</span></span><br><span class="line">		String str;</span><br><span class="line">		<span class="type">int</span> lineNo=<span class="number">0</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//inStream.read</span></span><br><span class="line">		</span><br><span class="line">		<span class="keyword">try</span>&#123;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">while</span> ((str=in.readLine())!=<span class="literal">null</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				System.out.print(str);</span><br><span class="line">				String[] splits=str.split(<span class="string">&quot;\t&quot;</span>);</span><br><span class="line">				System.out.println(<span class="string">&quot;  &quot;</span>+(<span class="type">int</span>)(Double.parseDouble(splits[<span class="number">3</span>])+Double.parseDouble(splits[<span class="number">4</span>])+Double.parseDouble(splits[<span class="number">5</span>])+Double.parseDouble(splits[<span class="number">6</span>]))/<span class="number">4</span>);</span><br><span class="line">				out.write(String.format(<span class="string">&quot;%1$03d&quot;</span>, lineNo++)+<span class="string">&quot;  &quot;</span>+str+<span class="string">&quot;\t&quot;</span>+(<span class="type">int</span>)(Double.parseDouble(splits[<span class="number">3</span>])+Double.parseDouble(splits[<span class="number">4</span>])+Double.parseDouble(splits[<span class="number">5</span>])+Double.parseDouble(splits[<span class="number">6</span>]))/<span class="number">4</span>+<span class="string">&quot;\r\n&quot;</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			in.close();</span><br><span class="line">			out.close();</span><br><span class="line">			inReader.close();</span><br><span class="line">			outWriter.close();</span><br><span class="line">		&#125;<span class="keyword">catch</span>(IOException e)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;\nIO Errors.&quot;</span>);</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">&quot;\n\n\nDone!&quot;</span>);</span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><img data-src="https://img-blog.csdnimg.cn/20210601231425337.png" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20210601231429776.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 
@@ -261,7 +281,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://pistachiout.github.io/wiki/%E7%94%A8Java%20I0%20api%E5%B0%86SomeData.txt%E5%85%B6%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%87%BA%EF%BC%8C%E8%AE%A1%E7%AE%97%E5%87%BA%E6%AF%8F%E4%B8%80%E8%A1%8C%E7%9A%84%E5%90%8E4%E5%88%97%E6%95%B0%E6%8D%AE%E7%9A%84%E5%B9%B3%E5%9D%87%E5%80%BC%EF%BC%8C%E5%AD%98%E6%94%BE%E5%88%B0%E6%96%B0%E6%96%87%E4%BB%B6AvgSomeData.txt%E6%96%87%E4%BB%B6%E4%B8%AD%20(1)/" title="">https://pistachiout.github.io/wiki/用Java I0 api将SomeData.txt其中的所有数据读出，计算出每一行的后4列数据的平均值，存放到新文件AvgSomeData.txt文件中 (1)/</a>
+    <a href="https://pistachiout.github.io/wiki/%E7%94%A8Java%20I0%20api%E5%B0%86SomeData.txt%E5%85%B6%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%87%BA%EF%BC%8C%E8%AE%A1%E7%AE%97%E5%87%BA%E6%AF%8F%E4%B8%80%E8%A1%8C%E7%9A%84%E5%90%8E4%E5%88%97%E6%95%B0%E6%8D%AE%E7%9A%84%E5%B9%B3%E5%9D%87%E5%80%BC%EF%BC%8C%E5%AD%98%E6%94%BE%E5%88%B0%E6%96%B0%E6%96%87%E4%BB%B6AvgSomeData.txt%E6%96%87%E4%BB%B6%E4%B8%AD%20(1)/" title="Java10 API实验">https://pistachiout.github.io/wiki/用Java I0 api将SomeData.txt其中的所有数据读出，计算出每一行的后4列数据的平均值，存放到新文件AvgSomeData.txt文件中 (1)/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -271,6 +291,10 @@
 
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+          </div>
 
         
 
@@ -278,12 +302,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/wiki/%E6%B3%9B%E5%9E%8B%E9%9B%86%E5%90%88%E7%B1%BB%E4%B8%AD%E7%9A%84%E9%93%BE%E8%A1%A8%E7%B1%BB%E9%9A%8F%E6%9C%BA%E4%BA%A7%E7%94%9F100%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B4%E6%95%B0%EF%BC%88%E5%8D%95%E8%AF%8D%EF%BC%89%E7%9A%84%E9%93%BE%E8%A1%A8/" rel="prev" title="">
-      <i class="fa fa-chevron-left"></i> 
+    <a href="/wiki/%E6%B3%9B%E5%9E%8B%E9%9B%86%E5%90%88%E7%B1%BB%E4%B8%AD%E7%9A%84%E9%93%BE%E8%A1%A8%E7%B1%BB%E9%9A%8F%E6%9C%BA%E4%BA%A7%E7%94%9F100%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B4%E6%95%B0%EF%BC%88%E5%8D%95%E8%AF%8D%EF%BC%89%E7%9A%84%E9%93%BE%E8%A1%A8/" rel="prev" title="选择泛型集合类中的链表类">
+      <i class="fa fa-chevron-left"></i> 选择泛型集合类中的链表类
     </a></div>
       <div class="post-nav-item">
-    <a href="/wiki/%E8%BE%93%E5%85%A5%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AD%90%E7%9B%AE%E5%BD%95%EF%BC%8C%E7%BC%96%E7%A8%8B%E5%BA%8F%E5%B0%86%E5%85%B6%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E5%86%85%E5%AE%B9%E7%9A%84%E5%90%8D%E5%AD%97%E8%BE%93%E5%87%BA/" rel="next" title="">
-       <i class="fa fa-chevron-right"></i>
+    <a href="/wiki/%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AArandomValue%E5%80%BC%E7%9A%84%E6%AF%94%E8%BE%83%E5%99%A8%EF%BC%8C%E7%94%9F%E6%88%90%E4%B8%80%E5%89%AF%E7%89%8C%E5%90%8E%E7%94%A8%E6%AD%A4%E6%AF%94%E8%BE%83%E5%99%A8%E6%B4%97%E7%89%8C%EF%BC%8C%E7%84%B6%E5%90%8E%E8%BE%93%E5%87%BA%E6%B4%97%E5%A5%BD%E7%9A%84%E6%95%B4%E5%89%AF%E7%89%8C%E3%80%82/" rel="next" title="Java比较器Comparator与Comparable">
+      Java比较器Comparator与Comparable <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -343,7 +367,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6SomeData-txt%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%B9%B6%E5%88%86%E6%9E%90%E5%85%B6%E6%A0%BC%E5%BC%8F%EF%BC%8C%E7%94%A8Java-I0-api%E5%B0%86%E5%85%B6%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%87%BA%EF%BC%8C%E8%AE%A1%E7%AE%97%E5%87%BA%E6%AF%8F%E4%B8%80%E8%A1%8C%E7%9A%84%E5%90%8E4%E5%88%97%E6%95%B0%E6%8D%AE%E7%9A%84%E5%B9%B3%E5%9D%87%E5%80%BC%EF%BC%8C%E5%AD%98%E6%94%BE%E5%88%B0%E6%96%B0%E6%96%87%E4%BB%B6AvgSomeData-txt%E6%96%87%E4%BB%B6%E4%B8%AD%EF%BC%8C%E5%AD%98%E6%94%BE%E6%97%B6%E6%AF%8F%E4%B8%80%E8%A1%8C%E5%89%8D%E9%9D%A2%E8%A6%81%E5%8A%A0%E4%B8%8A%E8%A1%8C%E5%8F%B7%EF%BC%88%E8%A1%8C%E5%8F%B7%E5%8D%A03%E4%BD%8D%EF%BC%8C%E5%8F%B3%E5%AF%B9%E9%BD%90%EF%BC%89%EF%BC%8C%E5%B9%B3%E5%9D%87%E5%80%BC%E6%94%BE%E5%88%B0%E8%A1%8C%E6%9C%AB%E5%B9%B6%E5%B7%A6%E5%AF%B9%E9%BD%90%E3%80%82"><span class="nav-text">查看文本文件SomeData.txt中的数据并分析其格式，用Java I0 api将其中的所有数据读出，计算出每一行的后4列数据的平均值，存放到新文件AvgSomeData.txt文件中，存放时每一行前面要加上行号（行号占3位，右对齐），平均值放到行末并左对齐。</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -359,17 +382,21 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">分类</span>
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">标签</span>
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -451,13 +478,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">263k</span>
+    <span title="站点总字数">244k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">3:59</span>
+    <span title="站点阅读时长">3:42</span>
 </div>
 
 <!--

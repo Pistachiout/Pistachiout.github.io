@@ -22,18 +22,18 @@
     var CONFIG = {"hostname":"pistachiout.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="2.现有扑克牌类设计一个此类对randomValue值的比较器，生成一副牌后用此比较器洗牌，然后输出洗好的整副牌。设计对rank值的比较器，然后对整副牌进行排序输出，观察效果。 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253import java.ut">
+  <meta name="description" content="现有扑克牌类设计一个此类对randomValue值的比较器，生成一副牌后用此比较器洗牌，然后输出洗好的整副牌。设计对rank值的比较器，然后对整副牌进行排序输出，观察效果。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Pistachiout的博客">
+<meta property="og:title" content="Java比较器Comparator与Comparable">
 <meta property="og:url" content="https://pistachiout.github.io/wiki/%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AArandomValue%E5%80%BC%E7%9A%84%E6%AF%94%E8%BE%83%E5%99%A8%EF%BC%8C%E7%94%9F%E6%88%90%E4%B8%80%E5%89%AF%E7%89%8C%E5%90%8E%E7%94%A8%E6%AD%A4%E6%AF%94%E8%BE%83%E5%99%A8%E6%B4%97%E7%89%8C%EF%BC%8C%E7%84%B6%E5%90%8E%E8%BE%93%E5%87%BA%E6%B4%97%E5%A5%BD%E7%9A%84%E6%95%B4%E5%89%AF%E7%89%8C%E3%80%82/index.html">
 <meta property="og:site_name" content="Pistachiout的博客">
-<meta property="og:description" content="2.现有扑克牌类设计一个此类对randomValue值的比较器，生成一副牌后用此比较器洗牌，然后输出洗好的整副牌。设计对rank值的比较器，然后对整副牌进行排序输出，观察效果。 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253import java.ut">
+<meta property="og:description" content="现有扑克牌类设计一个此类对randomValue值的比较器，生成一副牌后用此比较器洗牌，然后输出洗好的整副牌。设计对rank值的比较器，然后对整副牌进行排序输出，观察效果。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210601231323286.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
 <meta property="article:published_time" content="2023-02-16T10:54:55.389Z">
-<meta property="article:modified_time" content="2023-02-15T01:54:39.646Z">
+<meta property="article:modified_time" content="2023-02-17T07:15:22.133Z">
 <meta property="article:author" content="Pistachiout">
-<meta property="article:tag" content="博客">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210601231323286.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
 
@@ -50,7 +50,7 @@
   };
 </script>
 
-  <title> | Pistachiout的博客</title>
+  <title>Java比较器Comparator与Comparable | Pistachiout的博客</title>
   
 
 
@@ -188,7 +188,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
+          Java比较器Comparator与Comparable
         </h1>
 
         <div class="post-meta">
@@ -205,8 +205,29 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-15 09:54:39" itemprop="dateModified" datetime="2023-02-15T09:54:39+08:00">2023-02-15</time>
+                <time title="修改时间：2023-02-17 15:15:22" itemprop="dateModified" datetime="2023-02-17T15:15:22+08:00">2023-02-17</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">计算机基础知识</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" itemprop="url" rel="index"><span itemprop="name">面向对象</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -223,6 +244,7 @@
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               <span>1 分钟</span>
             </span>
+            <div class="post-description">现有扑克牌类设计一个此类对randomValue值的比较器，生成一副牌后用此比较器洗牌，然后输出洗好的整副牌。设计对rank值的比较器，然后对整副牌进行排序输出，观察效果。</div>
 
         </div>
       </header>
@@ -233,7 +255,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="2-现有扑克牌类设计一个此类对randomValue值的比较器，生成一副牌后用此比较器洗牌，然后输出洗好的整副牌。"><a href="#2-现有扑克牌类设计一个此类对randomValue值的比较器，生成一副牌后用此比较器洗牌，然后输出洗好的整副牌。" class="headerlink" title="2.现有扑克牌类设计一个此类对randomValue值的比较器，生成一副牌后用此比较器洗牌，然后输出洗好的整副牌。"></a>2.现有扑克牌类设计一个此类对randomValue值的比较器，生成一副牌后用此比较器洗牌，然后输出洗好的整副牌。</h2><p>设计对rank值的比较器，然后对整副牌进行排序输出，观察效果。</p>
+        <p>﻿## 2.现有扑克牌类设计一个此类对randomValue值的比较器，生成一副牌后用此比较器洗牌，然后输出洗好的整副牌。</p>
+<p>设计对rank值的比较器，然后对整副牌进行排序输出，观察效果。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Card</span> <span class="keyword">implements</span> <span class="title class_">Comparable</span>&lt;Card&gt;&#123;</span><br><span class="line">	<span class="type">char</span> suit;</span><br><span class="line">	<span class="type">char</span> rank;</span><br><span class="line">	<span class="type">double</span> randomValue;</span><br><span class="line">	Card(<span class="type">char</span> aSuit,<span class="type">char</span> aRank)</span><br><span class="line">	&#123;</span><br><span class="line">		suit=aSuit;</span><br><span class="line">		rank=aRank;</span><br><span class="line">		randomValue=Math.random();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">void</span> <span class="title function_">dispaly</span><span class="params">()</span></span><br><span class="line">	&#123;		System.out.print( Character.toString(suit)+Character.toString(rank)+<span class="string">&#x27; &#x27;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compareTo</span><span class="params">(Card card)</span></span><br><span class="line">	&#123;</span><br><span class="line">		 <span class="keyword">return</span> <span class="built_in">this</span>.randomValue&gt;card.randomValue?<span class="number">1</span>:(<span class="built_in">this</span>.randomValue&lt;card.randomValue?-<span class="number">1</span>:<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CompareRank</span> <span class="keyword">implements</span> <span class="title class_">Comparator</span>&lt;Card&gt;</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compare</span><span class="params">(Card a,Card b)</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> a.rank&gt;b.rank?<span class="number">1</span>:(a.rank&lt;b.rank?-<span class="number">1</span>:<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CardSort</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		<span class="type">char</span>[] suits= &#123;<span class="string">&#x27;梅&#x27;</span>,<span class="string">&#x27;方&#x27;</span>,<span class="string">&#x27;桃&#x27;</span>,<span class="string">&#x27;心&#x27;</span>&#125;;</span><br><span class="line">		<span class="type">char</span>[] values= &#123;<span class="string">&#x27;A&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;3&#x27;</span>,<span class="string">&#x27;4&#x27;</span>,<span class="string">&#x27;5&#x27;</span>,<span class="string">&#x27;6&#x27;</span>,<span class="string">&#x27;7&#x27;</span>,<span class="string">&#x27;8&#x27;</span>,<span class="string">&#x27;9&#x27;</span>,<span class="string">&#x27;T&#x27;</span>,<span class="string">&#x27;J&#x27;</span>,<span class="string">&#x27;Q&#x27;</span>,<span class="string">&#x27;K&#x27;</span>&#125;;</span><br><span class="line">		List&lt;Card&gt; cards=<span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;Card&gt;();</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">13</span>;i++)</span><br><span class="line">		&#123; <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">4</span>;j++)</span><br><span class="line">		  &#123; cards.add(<span class="keyword">new</span> <span class="title class_">Card</span>(suits[j],values[i]));</span><br><span class="line">		  &#125;</span><br><span class="line">		&#125;</span><br><span class="line">		cards.add(<span class="keyword">new</span> <span class="title class_">Card</span>(<span class="string">&#x27;小&#x27;</span>,<span class="string">&#x27;鬼&#x27;</span>));</span><br><span class="line">		cards.add(<span class="keyword">new</span> <span class="title class_">Card</span>(<span class="string">&#x27;大&#x27;</span>,<span class="string">&#x27;鬼&#x27;</span>));</span><br><span class="line">		Collections.sort(cards);</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">54</span>;i++)</span><br><span class="line">		&#123;cards.get(i).dispaly();	</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println();</span><br><span class="line">		Collections.sort(cards,<span class="keyword">new</span> <span class="title class_">CompareRank</span>());</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">54</span>;i++)</span><br><span class="line">		&#123;cards.get(i).dispaly();	</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><img data-src="https://img-blog.csdnimg.cn/20210601231323286.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
@@ -261,7 +284,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://pistachiout.github.io/wiki/%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AArandomValue%E5%80%BC%E7%9A%84%E6%AF%94%E8%BE%83%E5%99%A8%EF%BC%8C%E7%94%9F%E6%88%90%E4%B8%80%E5%89%AF%E7%89%8C%E5%90%8E%E7%94%A8%E6%AD%A4%E6%AF%94%E8%BE%83%E5%99%A8%E6%B4%97%E7%89%8C%EF%BC%8C%E7%84%B6%E5%90%8E%E8%BE%93%E5%87%BA%E6%B4%97%E5%A5%BD%E7%9A%84%E6%95%B4%E5%89%AF%E7%89%8C%E3%80%82/" title="">https://pistachiout.github.io/wiki/设计一个randomValue值的比较器，生成一副牌后用此比较器洗牌，然后输出洗好的整副牌。/</a>
+    <a href="https://pistachiout.github.io/wiki/%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AArandomValue%E5%80%BC%E7%9A%84%E6%AF%94%E8%BE%83%E5%99%A8%EF%BC%8C%E7%94%9F%E6%88%90%E4%B8%80%E5%89%AF%E7%89%8C%E5%90%8E%E7%94%A8%E6%AD%A4%E6%AF%94%E8%BE%83%E5%99%A8%E6%B4%97%E7%89%8C%EF%BC%8C%E7%84%B6%E5%90%8E%E8%BE%93%E5%87%BA%E6%B4%97%E5%A5%BD%E7%9A%84%E6%95%B4%E5%89%AF%E7%89%8C%E3%80%82/" title="Java比较器Comparator与Comparable">https://pistachiout.github.io/wiki/设计一个randomValue值的比较器，生成一副牌后用此比较器洗牌，然后输出洗好的整副牌。/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -271,6 +294,9 @@
 
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+          </div>
 
         
 
@@ -278,12 +304,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/wiki/%E8%BE%93%E5%85%A5%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AD%90%E7%9B%AE%E5%BD%95%EF%BC%8C%E7%BC%96%E7%A8%8B%E5%BA%8F%E5%B0%86%E5%85%B6%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E5%86%85%E5%AE%B9%E7%9A%84%E5%90%8D%E5%AD%97%E8%BE%93%E5%87%BA/" rel="prev" title="">
-      <i class="fa fa-chevron-left"></i> 
+    <a href="/wiki/%E7%94%A8Java%20I0%20api%E5%B0%86SomeData.txt%E5%85%B6%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%87%BA%EF%BC%8C%E8%AE%A1%E7%AE%97%E5%87%BA%E6%AF%8F%E4%B8%80%E8%A1%8C%E7%9A%84%E5%90%8E4%E5%88%97%E6%95%B0%E6%8D%AE%E7%9A%84%E5%B9%B3%E5%9D%87%E5%80%BC%EF%BC%8C%E5%AD%98%E6%94%BE%E5%88%B0%E6%96%B0%E6%96%87%E4%BB%B6AvgSomeData.txt%E6%96%87%E4%BB%B6%E4%B8%AD%20(1)/" rel="prev" title="Java10 API实验">
+      <i class="fa fa-chevron-left"></i> Java10 API实验
     </a></div>
       <div class="post-nav-item">
-    <a href="/wiki/Java%E5%8F%8D%E5%B0%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="">
-       <i class="fa fa-chevron-right"></i>
+    <a href="/wiki/Java%E5%8F%8D%E5%B0%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="Java反射学习笔记">
+      Java反射学习笔记 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -343,7 +369,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%8E%B0%E6%9C%89%E6%89%91%E5%85%8B%E7%89%8C%E7%B1%BB%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E6%AD%A4%E7%B1%BB%E5%AF%B9randomValue%E5%80%BC%E7%9A%84%E6%AF%94%E8%BE%83%E5%99%A8%EF%BC%8C%E7%94%9F%E6%88%90%E4%B8%80%E5%89%AF%E7%89%8C%E5%90%8E%E7%94%A8%E6%AD%A4%E6%AF%94%E8%BE%83%E5%99%A8%E6%B4%97%E7%89%8C%EF%BC%8C%E7%84%B6%E5%90%8E%E8%BE%93%E5%87%BA%E6%B4%97%E5%A5%BD%E7%9A%84%E6%95%B4%E5%89%AF%E7%89%8C%E3%80%82"><span class="nav-text">2.现有扑克牌类设计一个此类对randomValue值的比较器，生成一副牌后用此比较器洗牌，然后输出洗好的整副牌。</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -359,17 +384,21 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">分类</span>
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">标签</span>
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -451,13 +480,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">263k</span>
+    <span title="站点总字数">244k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">3:59</span>
+    <span title="站点阅读时长">3:42</span>
 </div>
 
 <!--

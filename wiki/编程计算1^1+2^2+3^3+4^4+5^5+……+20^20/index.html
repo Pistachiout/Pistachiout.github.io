@@ -22,12 +22,12 @@
     var CONFIG = {"hostname":"pistachiout.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="1.用对分法解方程 x^(1&#x2F;2)&#x3D;cos(x) （x&gt;0）a、先在纸上研究好算法b、使用Math.sqrt(), Math.cos(),Math.PI;c、实型数的比较方法（不能用相等，要用差的绝对值很小作为判断）d、大致的结果区间e、怎么结束，常量（到怎样的精度则停止循环计算）（Math.abs()）f、取中值g、例子：-1.3*X+2&#x3D;sinX 12345">
+  <meta name="description" content="Java实现算法实验1">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Pistachiout的博客">
+<meta property="og:title" content="Java实现算法实验1">
 <meta property="og:url" content="https://pistachiout.github.io/wiki/%E7%BC%96%E7%A8%8B%E8%AE%A1%E7%AE%971^1+2^2+3^3+4^4+5^5+%E2%80%A6%E2%80%A6+20^20/index.html">
 <meta property="og:site_name" content="Pistachiout的博客">
-<meta property="og:description" content="1.用对分法解方程 x^(1&#x2F;2)&#x3D;cos(x) （x&gt;0）a、先在纸上研究好算法b、使用Math.sqrt(), Math.cos(),Math.PI;c、实型数的比较方法（不能用相等，要用差的绝对值很小作为判断）d、大致的结果区间e、怎么结束，常量（到怎样的精度则停止循环计算）（Math.abs()）f、取中值g、例子：-1.3*X+2&#x3D;sinX 12345">
+<meta property="og:description" content="Java实现算法实验1">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210602231655472.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210602231644248.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
@@ -37,9 +37,9 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210602231632263.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210602231549133.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
 <meta property="article:published_time" content="2023-02-16T10:54:55.478Z">
-<meta property="article:modified_time" content="2023-02-15T01:53:53.719Z">
+<meta property="article:modified_time" content="2023-02-17T03:44:24.455Z">
 <meta property="article:author" content="Pistachiout">
-<meta property="article:tag" content="博客">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210602231655472.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
 
@@ -56,7 +56,7 @@
   };
 </script>
 
-  <title> | Pistachiout的博客</title>
+  <title>Java实现算法实验1 | Pistachiout的博客</title>
   
 
 
@@ -194,7 +194,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
+          Java实现算法实验1
         </h1>
 
         <div class="post-meta">
@@ -211,8 +211,21 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-15 09:53:53" itemprop="dateModified" datetime="2023-02-15T09:53:53+08:00">2023-02-15</time>
+                <time title="修改时间：2023-02-17 11:44:24" itemprop="dateModified" datetime="2023-02-17T11:44:24+08:00">2023-02-17</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">计算机基础知识</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -229,6 +242,7 @@
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               <span>4 分钟</span>
             </span>
+            <div class="post-description">Java实现算法实验1</div>
 
         </div>
       </header>
@@ -239,8 +253,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="1-用对分法解方程-x-1-x2F-2-x3D-cos-x-（x-gt-0）"><a href="#1-用对分法解方程-x-1-x2F-2-x3D-cos-x-（x-gt-0）" class="headerlink" title="1.用对分法解方程 x^(1&#x2F;2)&#x3D;cos(x) （x&gt;0）"></a>1.用对分法解方程 x^(1&#x2F;2)&#x3D;cos(x) （x&gt;0）</h2><p>a、先在纸上研究好算法<br>b、使用Math.sqrt(), Math.cos(),Math.PI;<br>c、实型数的比较方法（不能用相等，要用差的绝对值很小作为判断）<br>d、大致的结果区间<br>e、怎么结束，常量（到怎样的精度则停止循环计算）（Math.abs()）<br>f、取中值<br>g、例子：-1.3*X+2&#x3D;sinX</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">ublic <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">			<span class="type">double</span> minNum=<span class="number">0d</span>,maxNum=<span class="number">1d</span>,xNumber=<span class="number">0.5d</span>,sqrt,cos,absSubstractiveSum=<span class="number">1d</span>;</span><br><span class="line">			<span class="keyword">for</span>(;absSubstractiveSum&gt;<span class="number">0.0000001</span>;)</span><br><span class="line">				&#123;sqrt=Math.sqrt(xNumber);</span><br><span class="line">				 cos=Math.cos(xNumber);</span><br><span class="line">				 absSubstractiveSum=(<span class="type">double</span>)Math.abs(sqrt-cos);</span><br><span class="line">				 <span class="keyword">if</span>(sqrt-cos&lt;<span class="number">0</span>)</span><br><span class="line">				 	&#123;minNum=xNumber;</span><br><span class="line">				 	xNumber=(minNum+maxNum)/<span class="number">2</span>;&#125;</span><br><span class="line">				 <span class="keyword">else</span></span><br><span class="line">				 	&#123;maxNum=xNumber;</span><br><span class="line">				 	xNumber=(minNum+maxNum)/<span class="number">2</span>;&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			System.out.println(xNumber);</span><br><span class="line">			</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>﻿## 1.用对分法解方程 x^(1&#x2F;2)&#x3D;cos(x) （x&gt;0）</p>
+<p>a、先在纸上研究好算法<br>b、使用Math.sqrt(), Math.cos(),Math.PI;<br>c、实型数的比较方法（不能用相等，要用差的绝对值很小作为判断）<br>d、大致的结果区间<br>e、怎么结束，常量（到怎样的精度则停止循环计算）（Math.abs()）<br>f、取中值<br>g、例子：-1.3*X+2&#x3D;sinX</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">			<span class="type">double</span> minNum=<span class="number">0d</span>,maxNum=<span class="number">1d</span>,xNumber=<span class="number">0.5d</span>,sqrt,cos,absSubstractiveSum=<span class="number">1d</span>;</span><br><span class="line">			<span class="keyword">for</span>(;absSubstractiveSum&gt;<span class="number">0.0000001</span>;)</span><br><span class="line">				&#123;sqrt=Math.sqrt(xNumber);</span><br><span class="line">				 cos=Math.cos(xNumber);</span><br><span class="line">				 absSubstractiveSum=(<span class="type">double</span>)Math.abs(sqrt-cos);</span><br><span class="line">				 <span class="keyword">if</span>(sqrt-cos&lt;<span class="number">0</span>)</span><br><span class="line">				 	&#123;minNum=xNumber;</span><br><span class="line">				 	xNumber=(minNum+maxNum)/<span class="number">2</span>;&#125;</span><br><span class="line">				 <span class="keyword">else</span></span><br><span class="line">				 	&#123;maxNum=xNumber;</span><br><span class="line">				 	xNumber=(minNum+maxNum)/<span class="number">2</span>;&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			System.out.println(xNumber);</span><br><span class="line">			</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><img data-src="https://img-blog.csdnimg.cn/20210602231655472.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h2 id="2-用欧几里德辗转相除法求两个正整数的最大公约数"><a href="#2-用欧几里德辗转相除法求两个正整数的最大公约数" class="headerlink" title="2. 用欧几里德辗转相除法求两个正整数的最大公约数"></a>2. 用欧几里德辗转相除法求两个正整数的最大公约数</h2><p><img data-src="https://img-blog.csdnimg.cn/20210602231644248.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Ogimed</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		<span class="type">int</span> a=<span class="number">52</span>,b=<span class="number">4</span>;</span><br><span class="line">		System.out.println(getGCD(a,b));</span><br><span class="line">	&#125;</span><br><span class="line">		<span class="keyword">static</span> <span class="type">int</span> <span class="title function_">getGCD</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span> &#123;</span><br><span class="line">		<span class="keyword">if</span>(a%b==<span class="number">0</span>)</span><br><span class="line">			 <span class="keyword">return</span> b;</span><br><span class="line">		<span class="keyword">return</span> getGCD(b,a%b);</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -248,7 +263,7 @@
 <h2 id="3-利用级数展开式计算cos（x）"><a href="#3-利用级数展开式计算cos（x）" class="headerlink" title="3.利用级数展开式计算cos（x）"></a>3.利用级数展开式计算cos（x）</h2><p>a、注意循环控制的设计(结束条件)<br>b、反复查找了源程序，没有问题，但运行的结果就是不对，试着从其他方面找原因<br>c、可以和Math.cos()的结果做一个比较<br>d、不用数组。到网上找通项公式；<br>e、结束条件，常量<br><img data-src="https://img-blog.csdnimg.cn/20210602231639180.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CosX</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		<span class="type">int</span> x=<span class="number">0</span>;</span><br><span class="line">		System.out.println(cos(x));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="type">double</span> <span class="title function_">cos</span><span class="params">(<span class="type">double</span> x)</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">double</span> sumOfItem=<span class="number">1</span>;</span><br><span class="line">		<span class="type">double</span> item=x;</span><br><span class="line">		<span class="type">double</span> EPSILON=<span class="number">0.0000000000000001</span>;</span><br><span class="line">		<span class="type">int</span> num=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span>(Math.abs(item)&gt;EPSILON)</span><br><span class="line">		&#123;	item=-item*x*x/((<span class="number">2</span>*num)*(<span class="number">2</span>*num-<span class="number">1</span>));</span><br><span class="line">			sumOfItem+=item;</span><br><span class="line">			num++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> sumOfItem;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="4-编程计算1000以内的质数（输出格式：一行10个，按列右对齐）"><a href="#4-编程计算1000以内的质数（输出格式：一行10个，按列右对齐）" class="headerlink" title="4. 编程计算1000以内的质数（输出格式：一行10个，按列右对齐）"></a>4. 编程计算1000以内的质数（输出格式：一行10个，按列右对齐）</h2><p>a、注意设计好“信号变量”，isPrime<br>b、Switch((Integer.toString(intWorker)).length())<br>c、如何按列右对齐<br> 5. 将任意一个字符串颠倒排列输出<br>a、引用正确的类及其方法<br>b、主要是合理运用String或StringBuffer的方法以及循环控制<br>c、学习使用length()、charAt()等函数<br>d、研究各种可能的情况<br><img data-src="https://img-blog.csdnimg.cn/2021060223155931.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="4-编程计算1000以内的质数（输出格式：一行10个，按列右对齐）"><a href="#4-编程计算1000以内的质数（输出格式：一行10个，按列右对齐）" class="headerlink" title="4. 编程计算1000以内的质数（输出格式：一行10个，按列右对齐）"></a>4. 编程计算1000以内的质数（输出格式：一行10个，按列右对齐）</h2><p>a、注意设计好“信号变量”，isPrime<br>b、Switch((Integer.toString(intWorker)).length())<br>c、如何按列右对齐<br>    5. 将任意一个字符串颠倒排列输出<br>       a、引用正确的类及其方法<br>         b、主要是合理运用String或StringBuffer的方法以及循环控制<br>         c、学习使用length()、charAt()等函数<br>         d、研究各种可能的情况<br>         <img data-src="https://img-blog.csdnimg.cn/2021060223155931.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">primeNumInside1000</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		<span class="type">int</span> i,j;</span><br><span class="line">		<span class="type">int</span> num=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=<span class="number">1000</span>;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(j=<span class="number">2</span>;j&lt;i;j++)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span>(i%j==<span class="number">0</span>)</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(i==j)</span><br><span class="line">				&#123;String str=Integer.toString(j);</span><br><span class="line">				System.out.printf(<span class="string">&quot;%4s&quot;</span>,str);</span><br><span class="line">				num++;&#125;;</span><br><span class="line">			<span class="keyword">if</span>(num==<span class="number">10</span>)</span><br><span class="line">				&#123;num=<span class="number">0</span>;</span><br><span class="line">				System.out.println();</span><br><span class="line">				&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="5-将任意一个字符串颠倒排列输出"><a href="#5-将任意一个字符串颠倒排列输出" class="headerlink" title="5.将任意一个字符串颠倒排列输出"></a>5.将任意一个字符串颠倒排列输出</h2><p>a、引用正确的类及其方法<br>b、主要是合理运用String或StringBuffer的方法以及循环控制<br>c、学习使用length()、charAt()等函数<br>d、研究各种可能的情况<br><img data-src="https://img-blog.csdnimg.cn/2021060223162447.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
@@ -284,7 +299,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://pistachiout.github.io/wiki/%E7%BC%96%E7%A8%8B%E8%AE%A1%E7%AE%971^1+2^2+3^3+4^4+5^5+%E2%80%A6%E2%80%A6+20^20/" title="">https://pistachiout.github.io/wiki/编程计算1^1+2^2+3^3+4^4+5^5+……+20^20/</a>
+    <a href="https://pistachiout.github.io/wiki/%E7%BC%96%E7%A8%8B%E8%AE%A1%E7%AE%971^1+2^2+3^3+4^4+5^5+%E2%80%A6%E2%80%A6+20^20/" title="Java实现算法实验1">https://pistachiout.github.io/wiki/编程计算1^1+2^2+3^3+4^4+5^5+……+20^20/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -294,6 +309,9 @@
 
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+          </div>
 
         
 
@@ -301,12 +319,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/wiki/java%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/" rel="prev" title="">
-      <i class="fa fa-chevron-left"></i> 
+    <a href="/wiki/java%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/" rel="prev" title="Java继承与多态">
+      <i class="fa fa-chevron-left"></i> Java继承与多态
     </a></div>
       <div class="post-nav-item">
-    <a href="/wiki/java%E6%A8%A1%E6%8B%9F%E5%A0%86%E6%A0%88%EF%BC%8C%E6%97%B6%E9%97%B4%E7%B1%BBMyDate%EF%BC%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%93%BE%E8%A1%A8%E8%8A%82%E7%82%B9%E7%B1%BB%EF%BC%8C%E7%B1%BBBankCustomer/" rel="next" title="">
-       <i class="fa fa-chevron-right"></i>
+    <a href="/wiki/java%E6%A8%A1%E6%8B%9F%E5%A0%86%E6%A0%88%EF%BC%8C%E6%97%B6%E9%97%B4%E7%B1%BBMyDate%EF%BC%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%93%BE%E8%A1%A8%E8%8A%82%E7%82%B9%E7%B1%BB%EF%BC%8C%E7%B1%BBBankCustomer/" rel="next" title="Java类">
+      Java类 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -366,7 +384,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%94%A8%E5%AF%B9%E5%88%86%E6%B3%95%E8%A7%A3%E6%96%B9%E7%A8%8B-x-1-x2F-2-x3D-cos-x-%EF%BC%88x-gt-0%EF%BC%89"><span class="nav-text">1.用对分法解方程 x^(1&#x2F;2)&#x3D;cos(x) （x&gt;0）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%94%A8%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%B7%E8%BE%97%E8%BD%AC%E7%9B%B8%E9%99%A4%E6%B3%95%E6%B1%82%E4%B8%A4%E4%B8%AA%E6%AD%A3%E6%95%B4%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0"><span class="nav-text">2. 用欧几里德辗转相除法求两个正整数的最大公约数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%88%A9%E7%94%A8%E7%BA%A7%E6%95%B0%E5%B1%95%E5%BC%80%E5%BC%8F%E8%AE%A1%E7%AE%97cos%EF%BC%88x%EF%BC%89"><span class="nav-text">3.利用级数展开式计算cos（x）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E7%BC%96%E7%A8%8B%E8%AE%A1%E7%AE%971000%E4%BB%A5%E5%86%85%E7%9A%84%E8%B4%A8%E6%95%B0%EF%BC%88%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F%EF%BC%9A%E4%B8%80%E8%A1%8C10%E4%B8%AA%EF%BC%8C%E6%8C%89%E5%88%97%E5%8F%B3%E5%AF%B9%E9%BD%90%EF%BC%89"><span class="nav-text">4. 编程计算1000以内的质数（输出格式：一行10个，按列右对齐）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%B0%86%E4%BB%BB%E6%84%8F%E4%B8%80%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%A2%A0%E5%80%92%E6%8E%92%E5%88%97%E8%BE%93%E5%87%BA"><span class="nav-text">5.将任意一个字符串颠倒排列输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E7%AC%A6%E5%8F%B7%E4%B8%89%E8%A7%92%E5%BD%A2%EF%BC%88%E8%BE%93%E5%85%A5%EF%BC%8D%EF%BC%8D%EF%BC%8B%EF%BC%8D%EF%BC%8B%EF%BC%8B%EF%BC%8D%EF%BC%8B%EF%BC%89-%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%8E%E7%AC%AC10%E5%88%97%E5%BC%80%E5%A7%8B%EF%BC%8C%E6%95%B4%E4%B8%AA%E4%B8%89%E8%A7%92%E5%BD%A2%E5%8F%B3%E5%AF%B9%E9%BD%90"><span class="nav-text">6. 符号三角形（输入－－＋－＋＋－＋）(第一行从第10列开始，整个三角形右对齐)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7%E3%80%81%E7%BC%96%E7%A8%8B%E8%AE%A1%E7%AE%971-1-2-2-3-3-4-4-5-5-%E2%80%A6%E2%80%A6-20-20"><span class="nav-text">7、编程计算1^1+2^2+3^3+4^4+5^5+……+20^20</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%94%A8%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%B7%E8%BE%97%E8%BD%AC%E7%9B%B8%E9%99%A4%E6%B3%95%E6%B1%82%E4%B8%A4%E4%B8%AA%E6%AD%A3%E6%95%B4%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0"><span class="nav-text">2. 用欧几里德辗转相除法求两个正整数的最大公约数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%88%A9%E7%94%A8%E7%BA%A7%E6%95%B0%E5%B1%95%E5%BC%80%E5%BC%8F%E8%AE%A1%E7%AE%97cos%EF%BC%88x%EF%BC%89"><span class="nav-text">3.利用级数展开式计算cos（x）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E7%BC%96%E7%A8%8B%E8%AE%A1%E7%AE%971000%E4%BB%A5%E5%86%85%E7%9A%84%E8%B4%A8%E6%95%B0%EF%BC%88%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F%EF%BC%9A%E4%B8%80%E8%A1%8C10%E4%B8%AA%EF%BC%8C%E6%8C%89%E5%88%97%E5%8F%B3%E5%AF%B9%E9%BD%90%EF%BC%89"><span class="nav-text">4. 编程计算1000以内的质数（输出格式：一行10个，按列右对齐）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%B0%86%E4%BB%BB%E6%84%8F%E4%B8%80%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%A2%A0%E5%80%92%E6%8E%92%E5%88%97%E8%BE%93%E5%87%BA"><span class="nav-text">5.将任意一个字符串颠倒排列输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E7%AC%A6%E5%8F%B7%E4%B8%89%E8%A7%92%E5%BD%A2%EF%BC%88%E8%BE%93%E5%85%A5%EF%BC%8D%EF%BC%8D%EF%BC%8B%EF%BC%8D%EF%BC%8B%EF%BC%8B%EF%BC%8D%EF%BC%8B%EF%BC%89-%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%8E%E7%AC%AC10%E5%88%97%E5%BC%80%E5%A7%8B%EF%BC%8C%E6%95%B4%E4%B8%AA%E4%B8%89%E8%A7%92%E5%BD%A2%E5%8F%B3%E5%AF%B9%E9%BD%90"><span class="nav-text">6. 符号三角形（输入－－＋－＋＋－＋）(第一行从第10列开始，整个三角形右对齐)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7%E3%80%81%E7%BC%96%E7%A8%8B%E8%AE%A1%E7%AE%971-1-2-2-3-3-4-4-5-5-%E2%80%A6%E2%80%A6-20-20"><span class="nav-text">7、编程计算1^1+2^2+3^3+4^4+5^5+……+20^20</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -382,17 +400,21 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">分类</span>
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">标签</span>
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -474,13 +496,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">263k</span>
+    <span title="站点总字数">244k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">3:59</span>
+    <span title="站点阅读时长">3:42</span>
 </div>
 
 <!--
