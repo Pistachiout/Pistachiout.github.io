@@ -1,3 +1,4 @@
+
 const ap = new APlayer({
   container: document.getElementById('aplayer'),
   fixed: true,
@@ -30,7 +31,7 @@ const ap = new APlayer({
     {
       name: '明天，你好',
       artist: '牛奶咖啡',
-      url: 'http://ip.h5.rh01.sycdn.kuwo.cn/3ac642c32d7f0e649ee4aea245ab8e9b/63ededbe/resource/n3/42/87/2260559662.mp3',
+      url: '/images/明天你好.mp3',
       cover: 'https://y.qq.com/music/photo_new/T002R300x300M000003K4mFV3B9UfM_1.jpg?max_age=2592000',
     },
     {
