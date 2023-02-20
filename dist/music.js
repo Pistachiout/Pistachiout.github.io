@@ -19,13 +19,13 @@ const ap = new APlayer({
     {
       name: '昨日青空',
       artist: '尤长靖',
-      url: 'http://sp.sycdn.kuwo.cn/c1d1dbf5b354f164b7d91c6e19113460/63edeeb2/resource/n1/23/52/4172959540.mp3',
+      url: '/images/昨日青空.mp3',
       cover: 'https://p2.music.126.net/txikZRkBTTEidW-sHyz_jA==/109951163575106477.jpg?param=130y130',
     },
     {
       name: '再见，昨天',
       artist: '牛奶咖啡',
-      url: 'http://lo.sycdn.kuwo.cn/7b9e3e5501a3f1408fbfe90f8e6ac32f/63eded84/resource/n2/4/23/1784629011.mp3',
+      url: '/images/再见昨天.mp3',
       cover: 'https://p1.music.126.net/Fkuj5XGCBf4_SL_T_LkDCg==/109951164776987867.jpg?param=130y130',
     },
     {
@@ -37,7 +37,7 @@ const ap = new APlayer({
     {
       name: '越长大越孤单',
       artist: '牛奶咖啡',
-      url: 'http://ip.h5.ra01.sycdn.kuwo.cn/ccc95cb12e736c966f5f1ed2313c9d94/63edee13/resource/n3/320/89/97/762329787.mp3',
+      url: '/images/越长大越孤单.mp3',
       cover: 'https://pic.baike.soso.com/ugc/baikepic2/0/20220728105324-1333779359_jpg_462_454_24779.jpg/800',
     },
     {
