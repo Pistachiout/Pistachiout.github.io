@@ -49,7 +49,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/c23b96f1152e4f36b534346b73998b35.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/cf0b8785a75b4e668f52f523d82a5e92.png">
 <meta property="article:published_time" content="2023-02-16T10:54:55.626Z">
-<meta property="article:modified_time" content="2023-02-20T02:52:11.087Z">
+<meta property="article:modified_time" content="2023-02-23T09:07:33.145Z">
 <meta property="article:author" content="Pistachiout">
 <meta property="article:tag" content="嵌入式">
 <meta name="twitter:card" content="summary">
@@ -218,7 +218,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-20 10:52:11" itemprop="dateModified" datetime="2023-02-20T10:52:11+08:00">2023-02-20</time>
+                <time title="修改时间：2023-02-23 17:07:33" itemprop="dateModified" datetime="2023-02-23T17:07:33+08:00">2023-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -272,8 +272,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>﻿# 1、系统功能</p>
-<p>目的：学习步进电机的控制。<br>使用设备：步进电机、两位共阴数码管、按键<br>功能：驱动步进电机以不同转速（4档）转动，并将当前档位用数码管显示<br>(1)按键 KEY1 作为启动和停止的切换按键；<br>(2)按键 KEY2 加速键。<br>(3)最开始按下 KEY1 ，系统以默认的最低档位（1档最低，4档最高）启动电机转动；<br>(4)每按一次 KEY2 ，电机转速提升一档。提到最高4档后，自动降到最低的1档。<br>(5)数码管显示当前的档位。<br>(6)电机处于停止状态时，数码管显示0。</p>
+        <h1 id="1、系统功能"><a href="#1、系统功能" class="headerlink" title="1、系统功能"></a>1、系统功能</h1><p>目的：学习步进电机的控制。<br>使用设备：步进电机、两位共阴数码管、按键<br>功能：驱动步进电机以不同转速（4档）转动，并将当前档位用数码管显示<br>(1)按键 KEY1 作为启动和停止的切换按键；<br>(2)按键 KEY2 加速键。<br>(3)最开始按下 KEY1 ，系统以默认的最低档位（1档最低，4档最高）启动电机转动；<br>(4)每按一次 KEY2 ，电机转速提升一档。提到最高4档后，自动降到最低的1档。<br>(5)数码管显示当前的档位。<br>(6)电机处于停止状态时，数码管显示0。</p>
 <h1 id="2、硬件结构"><a href="#2、硬件结构" class="headerlink" title="2、硬件结构"></a>2、硬件结构</h1><p>本课程实验主控芯片选择的是STM32F103ZET6作为MCU，该芯片是STM32F103里面配置非常强大的了,它拥有的资源包括：64KB SRAM、 512KB FLASH、2个基本定时器、4个通用定时器、2个高级定时器、2个DMA控制器（共12个通道）、3个SPI、2个IIC、5个串口、1个USB、1个CAN、3个12位ADC、1个12位DAC、1个SDIO接口、1个FSMC接口以及112个通用IO口。该芯片的配置十分强悍，并且还带外部总线（FSMC）可以用来外扩SRAM和连接LCD等，通过FSMC（可变静态存储控制器）驱动LCD，可以显著提高LCD的刷屏速度。<br><img data-src="https://img-blog.csdnimg.cn/d1bad71745c549e0a6edfd12360ffc92.png" alt="在这里插入图片描述"></p>
 <h1 id="3、主要外设"><a href="#3、主要外设" class="headerlink" title="3、主要外设"></a>3、主要外设</h1><p>本项目用到的主要外设为步进电机与两位共阴数码管，其中步进电机由ULN2003芯片控制。ULN2003是高耐压、大电流达林顿阵列，由七个硅NPN达林顿管组成。ULN2003的每一对达林顿都串联一个2.7K的基极电阻,在5V的工作电压下它能与TTL和CMOS电路直接相连，可以直接处理原先需要标准逻辑缓冲器来处理的数据。ULN2003工作电压高，工作电流大，灌电流可达500mA，并且能够在关态时承受50V的电压，输出还可以在高负载电流并行运行。<br>步进电机的驱动采用1-2相励磁法：1相和2相轮流交替导通，精度较高，且运转平滑。每送一个励磁信转动二分之一标称角度。有称为半步驱动。4相电机中，1、2种方式称4相4拍，3种称4相8拍。1-2相励磁法如下图所示，即采用A-&gt;AB-&gt;B-&gt;BC-&gt;C-&gt;CD-&gt;D-&gt;DA的方式陆续为线圈通电。<br><img data-src="https://img-blog.csdnimg.cn/7595366aae2f458eb1c52e6da4256f50.png" alt="在这里插入图片描述"></p>
 <p>共阴数码管是指八段数码管的八段发光二极管的阴极（负极）都连在一起，而阳极对应的各段分别控制。</p>
@@ -361,8 +360,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/wiki/%E5%88%86%E5%88%AB%E7%94%A8%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0%E5%9B%9B%E4%B8%AA%E5%8A%A8%E7%89%A9%E7%B1%BB%EF%BC%88%E9%B1%BC%E7%B1%BB%E3%80%81%E9%B8%9F%E7%B1%BB%E3%80%81%E7%88%AC%E8%A1%8C%E7%B1%BB%E3%80%81%E6%98%86%E8%99%AB%E7%B1%BB%EF%BC%89%E7%9A%84%E7%B1%BB%E5%88%AB%E5%92%8C%E5%A4%A9%E8%B5%8B/" rel="prev" title="Java实验">
-      <i class="fa fa-chevron-left"></i> Java实验
+    <a href="/wiki/java%E6%A8%A1%E6%8B%9F%E5%A0%86%E6%A0%88%EF%BC%8C%E6%97%B6%E9%97%B4%E7%B1%BBMyDate%EF%BC%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%93%BE%E8%A1%A8%E8%8A%82%E7%82%B9%E7%B1%BB%EF%BC%8C%E7%B1%BBBankCustomer/" rel="prev" title="Java类">
+      <i class="fa fa-chevron-left"></i> Java类
     </a></div>
       <div class="post-nav-item">
     <a href="/wiki/C++%E9%87%8D%E8%BD%BD%E5%AE%9E%E7%8E%B0m_n_k%E4%B8%89%E7%BB%B4%E7%9F%A9%E9%98%B5%EF%BC%8C%E4%B8%94%E7%9F%A9%E9%98%B5%E5%85%83%E7%B4%A0%E4%B8%BA%E5%A4%8D%E6%95%B0/" rel="next" title="C++重载实现m_n_k三维复数元素矩阵">
@@ -426,7 +425,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2%E3%80%81%E7%A1%AC%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="nav-text">2、硬件结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3%E3%80%81%E4%B8%BB%E8%A6%81%E5%A4%96%E8%AE%BE"><span class="nav-text">3、主要外设</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4%E3%80%81%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF"><span class="nav-text">4、设计思路</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1%E7%A1%AC%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%8E%9F%E7%90%86"><span class="nav-text">4.1硬件设计原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%B5%81%E7%A8%8B"><span class="nav-text">4.2软件设计流程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5%E3%80%81%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="nav-text">5、软件开发环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE"><span class="nav-text">5.1软件开发环境安装和配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6%E3%80%81%E8%BF%90%E8%A1%8C%E5%92%8C%E6%B5%8B%E8%AF%95"><span class="nav-text">6、运行和测试</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1%E3%80%81%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD"><span class="nav-text">1、系统功能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2%E3%80%81%E7%A1%AC%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="nav-text">2、硬件结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3%E3%80%81%E4%B8%BB%E8%A6%81%E5%A4%96%E8%AE%BE"><span class="nav-text">3、主要外设</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4%E3%80%81%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF"><span class="nav-text">4、设计思路</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1%E7%A1%AC%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%8E%9F%E7%90%86"><span class="nav-text">4.1硬件设计原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%B5%81%E7%A8%8B"><span class="nav-text">4.2软件设计流程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5%E3%80%81%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="nav-text">5、软件开发环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE"><span class="nav-text">5.1软件开发环境安装和配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6%E3%80%81%E8%BF%90%E8%A1%8C%E5%92%8C%E6%B5%8B%E8%AF%95"><span class="nav-text">6、运行和测试</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -442,7 +441,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -660,13 +659,13 @@ window.addEventListener('pjax:success', () => {
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">244k</span>
+    <span title="站点总字数">238k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">3:42</span>
+    <span title="站点阅读时长">3:36</span>
 </div>
 
 <!--
