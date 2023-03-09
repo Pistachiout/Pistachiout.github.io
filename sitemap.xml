@@ -536,13 +536,6 @@
   </url>
   
   <url>
-    <loc>https://pistachiout.github.io/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</loc>
-    <lastmod>2023-03-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://pistachiout.github.io/tags/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2023-03-09</lastmod>
     <changefreq>weekly</changefreq>
@@ -551,6 +544,13 @@
   
   <url>
     <loc>https://pistachiout.github.io/tags/GoLang/</loc>
+    <lastmod>2023-03-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://pistachiout.github.io/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</loc>
     <lastmod>2023-03-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -585,14 +585,14 @@
   </url>
   
   <url>
-    <loc>https://pistachiout.github.io/tags/%E8%AE%BA%E6%96%87/</loc>
+    <loc>https://pistachiout.github.io/tags/Linux/</loc>
     <lastmod>2023-03-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://pistachiout.github.io/tags/Linux/</loc>
+    <loc>https://pistachiout.github.io/tags/%E8%AE%BA%E6%96%87/</loc>
     <lastmod>2023-03-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -613,7 +613,7 @@
   </url>
   
   <url>
-    <loc>https://pistachiout.github.io/tags/C/</loc>
+    <loc>https://pistachiout.github.io/tags/Python/</loc>
     <lastmod>2023-03-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -634,7 +634,7 @@
   </url>
   
   <url>
-    <loc>https://pistachiout.github.io/tags/Python/</loc>
+    <loc>https://pistachiout.github.io/tags/C/</loc>
     <lastmod>2023-03-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -706,14 +706,14 @@
   </url>
   
   <url>
-    <loc>https://pistachiout.github.io/categories/%E8%AE%BA%E6%96%87%E7%A0%94%E7%A9%B6/</loc>
+    <loc>https://pistachiout.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Linux/</loc>
     <lastmod>2023-03-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://pistachiout.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Linux/</loc>
+    <loc>https://pistachiout.github.io/categories/%E8%AE%BA%E6%96%87%E7%A0%94%E7%A9%B6/</loc>
     <lastmod>2023-03-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
