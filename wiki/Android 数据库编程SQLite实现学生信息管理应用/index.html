@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210627231946285.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210627232003348.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70">
 <meta property="article:published_time" content="2023-02-16T10:54:54.926Z">
-<meta property="article:modified_time" content="2023-02-23T08:56:08.746Z">
+<meta property="article:modified_time" content="2023-03-09T10:56:46.952Z">
 <meta property="article:author" content="Pistachiout">
 <meta property="article:tag" content="Android">
 <meta property="article:tag" content="Java">
@@ -211,7 +211,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-23 16:56:08" itemprop="dateModified" datetime="2023-02-23T16:56:08+08:00">2023-02-23</time>
+                <time title="修改时间：2023-03-09 18:56:46" itemprop="dateModified" datetime="2023-03-09T18:56:46+08:00">2023-03-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -261,7 +261,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Android-数据库编程SQLite"><a href="#Android-数据库编程SQLite" class="headerlink" title="Android 数据库编程SQLite"></a>Android 数据库编程SQLite</h1><h2 id="一、实验内容"><a href="#一、实验内容" class="headerlink" title="一、实验内容"></a>一、实验内容</h2><h2 id="1-构建应用界面布局"><a href="#1-构建应用界面布局" class="headerlink" title="1. 构建应用界面布局"></a>1. 构建应用界面布局</h2><p>（1）新建一个安卓工程，在默认的layout主界面中添加一个列表(ListView)，列表绑定一个SimpleAdapter关联学生信息（学号、姓名）。<br>（2）为ListView添加上下文菜单，菜单中包含两个选项（修改学生，删除学生），分别对应学生信息的修改和删除操作。为每个选项添加点击事件完成相应的操作，其中点击修改学生时启动“updateStu”Activity组件。<br>（3）在ListView下方添加一个按钮(Button)，内容为“添加学生”，为按钮添加点击事件，单击按钮是启动“addStu”Activity组件。<br>（4）为“updateStu”和“addStu”Activity组件构建对应的layout界面stuinfo.xml，添加对应的文本框和输出框显示某一个学生的信息（学号、姓名、性别、电话），添加确认按钮(Button)。注意：当由“addStu”Activity启动此界面时，相关输入内容为空白，当由“updateStu”Activity启动此界面时，相关输入内容为该学生的原始信息。</p>
+        <meta name="referrer" content="no-referrer">
+
+<h1 id="Android-数据库编程SQLite"><a href="#Android-数据库编程SQLite" class="headerlink" title="Android 数据库编程SQLite"></a>Android 数据库编程SQLite</h1><h2 id="一、实验内容"><a href="#一、实验内容" class="headerlink" title="一、实验内容"></a>一、实验内容</h2><h2 id="1-构建应用界面布局"><a href="#1-构建应用界面布局" class="headerlink" title="1. 构建应用界面布局"></a>1. 构建应用界面布局</h2><p>（1）新建一个安卓工程，在默认的layout主界面中添加一个列表(ListView)，列表绑定一个SimpleAdapter关联学生信息（学号、姓名）。<br>（2）为ListView添加上下文菜单，菜单中包含两个选项（修改学生，删除学生），分别对应学生信息的修改和删除操作。为每个选项添加点击事件完成相应的操作，其中点击修改学生时启动“updateStu”Activity组件。<br>（3）在ListView下方添加一个按钮(Button)，内容为“添加学生”，为按钮添加点击事件，单击按钮是启动“addStu”Activity组件。<br>（4）为“updateStu”和“addStu”Activity组件构建对应的layout界面stuinfo.xml，添加对应的文本框和输出框显示某一个学生的信息（学号、姓名、性别、电话），添加确认按钮(Button)。注意：当由“addStu”Activity启动此界面时，相关输入内容为空白，当由“updateStu”Activity启动此界面时，相关输入内容为该学生的原始信息。</p>
 <h2 id="2-利用SQLite构建数据库交互组件"><a href="#2-利用SQLite构建数据库交互组件" class="headerlink" title="2. 利用SQLite构建数据库交互组件"></a>2. 利用SQLite构建数据库交互组件</h2><p>（1）新建一个DpHelper类继承SQLiteOpenHelper，通过构建方法启动数据库连接。构建createtable()方法完成建表操作，在数据库中建立一个学生信息表：<br><img data-src="https://img-blog.csdnimg.cn/20210603214055312.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODA4NzAw,size_16,color_FFFFFF,t_70"><br>（2）构建insert(String id, String name, String sex, String phone)方法实现插入记录操作，构建   		delete(String id)方法实现删除记录操作，构建update(String id, String name, String sex, String phone)方法实现更新记录操作，构建select(String id)方法实现查询某一记录操作，构建selectAll()方法实现查询所有记录操作。</p>
 <h2 id="3-实现学生信息管理应用"><a href="#3-实现学生信息管理应用" class="headerlink" title="3. 实现学生信息管理应用"></a>3. 实现学生信息管理应用</h2><p>（1）完善相关代码，实现学生信息管理应用的基本功能。包括：</p>
 <pre><code>1. 学生信息列表：进入应用程序后，在ListView中自动加载所有已有学生的信息（学号，姓名）。
