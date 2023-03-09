@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-flash.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"pistachiout.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="基于区块链的学历学位认证系统是一个利用区块链技术来防止学历造假的项目。增加学历：用户可以通过智能合约向区块链系统中添加自己的学历信息。修改学历：用户可以通过智能合约修改自己在区块链系统中的学历信息，但是修改后的信息会留下痕迹，方 便追溯。查询学历：用户可以通过智能合约查询自己或者其他用户在区块链系统中的学历信息，验证其真伪。使用了Fabric与Couchdb数据库，实现了分布式数据库与不可篡改性。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于Hypledger Fabric的学历学位认证管理系统">
+<meta property="og:url" content="https://pistachiout.github.io/wiki/%E5%9F%BA%E4%BA%8EHypledger-Fabric%E7%9A%84%E5%AD%A6%E5%8E%86%E5%AD%A6%E4%BD%8D%E8%AE%A4%E8%AF%81%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="Pistachiout的博客">
+<meta property="og:description" content="基于区块链的学历学位认证系统是一个利用区块链技术来防止学历造假的项目。增加学历：用户可以通过智能合约向区块链系统中添加自己的学历信息。修改学历：用户可以通过智能合约修改自己在区块链系统中的学历信息，但是修改后的信息会留下痕迹，方 便追溯。查询学历：用户可以通过智能合约查询自己或者其他用户在区块链系统中的学历信息，验证其真伪。使用了Fabric与Couchdb数据库，实现了分布式数据库与不可篡改性。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/8b6db7a96a764035a518f029d101a3dc.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20bde1f70a8f470e854da18887f6667f.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/e84fd3f383404f25b012ef1d4ac157c4.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c8976ad44d814c4aac11ae323c2aabec.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/d7c8ffd0e7c745f5812dc25fd08f279c.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/31199d7edade44348bd0f505d07bc8a6.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/22ea8c6344a6492898abe8a5ea669af7.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/ab9ba76d5859446abc896072a4e39022.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/d8ad47283e15407ba577946d0870e06e.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/6eb9a4566e014643916a02768db3300b.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/b6a0c7e041f14acf9f56e818ed7d0892.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/f32a23f83f2848b29e161492077c39e4.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/110899e562ec40b5a8be1878ca3c4a08.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/04a8d43cff924b81aa070af98811ccbf.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/ca5ff9c9f12f4eebbe1cc1fc94c50be9.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/1df2910d9cc24149be0528436b919a7a.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/84fc120ed80e4114bb47c92dd2547d98.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/0181506c17824261bf6ddcb2703f20c1.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/ccd0acaf95e04df999cf758dd536833d.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/f99b4201de654b049c39d632e47e16a5.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/4aaa814726204c64bba19f534ef39bc7.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/e74c46fbb3c341d1b75a54bc9e331967.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/22192eb759314993baeb3f72377343c5.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/8f3162fd34514743ad68e648dbb0c912.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/026846e1adcc49689b56cef5ae52bc7d.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2747b94a14f34c9698d8d6a3bef4c100.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/ffb878a022a949fe89d388a0ad8127ca.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/d449c551a6d449d7a640752149be939c.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/7c55555eeed94d9bbacd18cd7d7bb05e.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c5a33dd311bd46c792da068a291b3839.png">
+<meta property="article:published_time" content="2023-03-09T06:51:27.905Z">
+<meta property="article:modified_time" content="2023-03-09T09:13:37.054Z">
+<meta property="article:author" content="Pistachiout">
+<meta property="article:tag" content="区块链">
+<meta property="article:tag" content="项目">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/8b6db7a96a764035a518f029d101a3dc.png">
+
+<link rel="canonical" href="https://pistachiout.github.io/wiki/%E5%9F%BA%E4%BA%8EHypledger-Fabric%E7%9A%84%E5%AD%A6%E5%8E%86%E5%AD%A6%E4%BD%8D%E8%AE%A4%E8%AF%81%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>基于Hypledger Fabric的学历学位认证管理系统 | Pistachiout的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Pistachiout的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a target="_blank" rel="noopener" href="https://github.com/Pistachiout" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Pistachiout的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">每天多学一点知识,就少写一行代码</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+
+       
+</div>
+    </header>
+   
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pistachiout.github.io/wiki/%E5%9F%BA%E4%BA%8EHypledger-Fabric%E7%9A%84%E5%AD%A6%E5%8E%86%E5%AD%A6%E4%BD%8D%E8%AE%A4%E8%AF%81%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Pistachiout">
+      <meta itemprop="description" content="Pistachiout的学习博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pistachiout的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基于Hypledger Fabric的学历学位认证管理系统
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-03-09 14:51:27 / 修改时间：17:13:37" itemprop="dateCreated datePublished" datetime="2023-03-09T14:51:27+08:00">2023-03-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">软件项目</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/" itemprop="url" rel="index"><span itemprop="name">区块链</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE/%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">项目</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+            <div class="post-description">基于区块链的学历学位认证系统是一个利用区块链技术来防止学历造假的项目。增加学历：用户可以通过智能合约向区块链系统中添加自己的学历信息。修改学历：用户可以通过智能合约修改自己在区块链系统中的学历信息，但是修改后的信息会留下痕迹，方 便追溯。查询学历：用户可以通过智能合约查询自己或者其他用户在区块链系统中的学历信息，验证其真伪。使用了Fabric与Couchdb数据库，实现了分布式数据库与不可篡改性。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="基于Hyperledger-Fabric的学位学历认证管理系统"><a href="#基于Hyperledger-Fabric的学位学历认证管理系统" class="headerlink" title="基于Hyperledger Fabric的学位学历认证管理系统"></a>基于Hyperledger Fabric的学位学历认证管理系统</h1><h2 id="项目源码：https-github-com-Pistachiout-Academic-Degree-BlockChain"><a href="#项目源码：https-github-com-Pistachiout-Academic-Degree-BlockChain" class="headerlink" title="项目源码：https://github.com/Pistachiout/Academic-Degree-BlockChain"></a>项目源码：<a target="_blank" rel="noopener" href="https://github.com/Pistachiout/Academic-Degree-BlockChain">https://github.com/Pistachiout/Academic-Degree-BlockChain</a></h2><h2 id="一、选题背景"><a href="#一、选题背景" class="headerlink" title="一、选题背景"></a>一、选题背景</h2><p>学历造假、认证造假等是一个全球日益普遍的现象，不仅对社会产生了巨大的负面影响，同时也极大增加了企业和单位的用人成本，造成了无谓的经济消耗；从另一个角度来说，纸质或电子版的证书无论从保存便利性、验证可靠性、可信性等方面，都存在着很大的不足。一种高度可靠、易保存、易证伪同时还顾全隐私保护的学位学历认证管理系统，是一个必然的需求。<br>区块链是非中心化信任网络，适合作为此类分布式应用的底层架构和基础工具。区块链具有两大核心特点：一是数据难以篡改、二是去中心化。区块链所记录的信息更加真实可靠，可以帮助解决人们互不信任的问题。</p>
+<h2 id="二、功能分析"><a href="#二、功能分析" class="headerlink" title="二、功能分析"></a>二、功能分析</h2><p>由于系统需要保证人才受教育情况真实性，所以对于系统的用户而言，不可能由用户自己添加相应的学历信息，而是由具有一定权限的用户来完成添加或修改的功能。但普通用户可以通过系统溯源功能来确定信息的真伪。所以我们将系统用户的使用角色分为两种：</p>
+<ul>
+<li>普通用户 </li>
+<li>管理员用户</li>
+</ul>
+<p>普通用户具有对数据的查询功能 ，但实现查询之前必须经过登录认证：</p>
+<ul>
+<li>用户登录：系统只针对合法用户进行授权使用，所以用户必须先进行登录才能完成相应的功能。   </li>
+<li>查询实现：查询分为两种方式实现<ul>
+<li>根据证书编号与姓名查询：根据用户输入的证书编号与姓名进行查询。</li>
+<li>根据身份证号码查询：根据用户输入指定的身份证号码进行查询，此功能可以实现溯源。</li>
+</ul>
+</li>
+</ul>
+<p>管理员用户除具有普通用户的功能之外，额外添加了两个功能：</p>
+<ul>
+<li>添加信息：可以向系统中添加新的学历信息。 </li>
+<li>修改信息：针对已存在的学历信息进行修改。</li>
+</ul>
+<p>最后需要达到的要求</p>
+<ol>
+<li>认证颁发时的数据生成和上链流程； </li>
+<li>认证验证时的验证方法：核实电子证书文件的哈希值；</li>
+<li>用户界面：证书生成、证书上链、证书查询、证书核验；</li>
+<li>安全和隐私保护。</li>
+</ol>
+<h2 id="三、架构设计"><a href="#三、架构设计" class="headerlink" title="三、架构设计"></a>三、架构设计</h2><p>在此应用中需要编写实现完整的链码并通过业务层调用链码中的各个函数，以实现对数据状态的操作。界面为了方便用户操作使用，使用Web浏览器的方式实现。而且在此应用中我们将 Hyperledger Fabric 默认的状态数据库由 LevelDB 替换为 CouchDB 来实现<br><img data-src="https://img-blog.csdnimg.cn/8b6db7a96a764035a518f029d101a3dc.png" alt="系统架构设计"><br>Fabric Network 结构包括几个组件，如 CA、MSP、Orderer 等 ，如下图所示</p>
+<ol>
+<li>CA 代表证书颁发机构。它负责颁发和管理数字证书，用于识别 Fabric Network 中的参与者 。</li>
+<li>MSP 代表成员服务提供商。它定义了验证网络参与者身份和角色的规则和策略 。</li>
+<li>Orderer 是一个节点，它将交易排序成区块，并将它们发送给对等节点 。</li>
+<li>Org1 是属于 Fabric Network 的一个组织的例子。它可以有自己的 CA、MSP、策略和通道 。</li>
+<li>Peer0 和 Peer1 是属于 Org1 的两个节点。它们存储账本的副本并执行链码（智能合约）。<br><img data-src="https://img-blog.csdnimg.cn/20bde1f70a8f470e854da18887f6667f.png" alt="Fabric Network设计"></li>
+</ol>
+<h2 id="四、数据模型设计"><a href="#四、数据模型设计" class="headerlink" title="四、数据模型设计"></a>四、数据模型设计</h2><p>由于需要向分类账本中保存数据，所以必须设计相关的结构体用于声明要保存的数据结构，用于方便的在应用中处理数据。</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ObjectType</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>Name</td>
+<td>string</td>
+<td>姓名</td>
+</tr>
+<tr>
+<td>Gender</td>
+<td>string</td>
+<td>性别</td>
+</tr>
+<tr>
+<td>Nation</td>
+<td>string</td>
+<td>民族</td>
+</tr>
+<tr>
+<td>EntityID</td>
+<td>string</td>
+<td>身份证号（记录的Key）</td>
+</tr>
+<tr>
+<td>Place</td>
+<td>string</td>
+<td>籍贯</td>
+</tr>
+</tbody></table>
+<p>| BirthDay | stirng| 出生日期<br>| Photo | string | 照片 |<br>| EnrollDate | string | 入学日期 |<br>| GraduationDate | string | 毕（结）业日期 |<br>| SchoolName | string | 所读学校名称 |<br>| Major | string | 所读专业 |<br>| QuaType | string | 学历类别（普通、成考等） |<br>| Length | string | 学制（两年、三年、四年、五年） |<br>| Mode | string | 学习形式（普通全日制） |<br>| Level | string | 层次（专科、本科、研究生、博士） |<br>| Graduation | string | 毕（结）业（毕业、结业） |<br>| CertNo | string |证书编号 |<br>| Historys| []HistoryItem |当前edu的详细历史记录 | </p>
+<p>为了能够从当前的分类状态中查询出详细的历史操作记录，我们在 <code>Education</code> 中设计了一个类型为<code>HistoryItem</code> 数组的 <code>Historys</code> 成员，表示当前状态的历史记录集。<br>HistoryItem 结构体设计如下表所示： </p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TxId</td>
+<td>string</td>
+<td>交易编号</td>
+</tr>
+</tbody></table>
+<p>| Education | Education |本次历史记录的详细信息</p>
+<h2 id="五、原型交互设计"><a href="#五、原型交互设计" class="headerlink" title="五、原型交互设计"></a>五、原型交互设计</h2><p><a target="_blank" rel="noopener" href="https://js.design/v?i=8znNXl&p=R9WgEyOBdM&f=iGC6qsWuq2qnKAa_mCCcF">https://js.design/v?i=8znNXl&p=R9WgEyOBdM&f=iGC6qsWuq2qnKAa_mCCcF</a></p>
+<h2 id="六、链码API操作"><a href="#六、链码API操作" class="headerlink" title="六、链码API操作"></a>六、链码API操作</h2><p><img data-src="https://img-blog.csdnimg.cn/e84fd3f383404f25b012ef1d4ac157c4.png" alt="在这里插入图片描述"></p>
+<p><img data-src="https://img-blog.csdnimg.cn/c8976ad44d814c4aac11ae323c2aabec.png" alt="在这里插入图片描述"></p>
+<h2 id="七、数据存储"><a href="#七、数据存储" class="headerlink" title="七、数据存储"></a>七、数据存储</h2><p><code>链上数据</code>是直接或者间接由区块链共识产生的数据，一般包括<code>区块链节点数据</code>与<code>智能合约代码</code>等</p>
+<p><code>区块链节点数据</code>包括区块数据和状态数据两者<br>1.<strong>区块数据</strong>描述区块自身信息数据，实际是区块链上面发生的每一笔交易的记录（如添加学历信息，修改学历信息及对应的时间戳）<br>2.<strong>状态数据</strong>则是记录了每个账户和智能合约的当前状态（如张三的学历信息）</p>
+<p>区块链节点的数据存储最普遍的方式就是存入我们的磁盘中间，而我们的区块链不会直接的访问我们的磁盘，而是通过特定的数据库如LevelIDB，CouchDB等独立和分布式的数据库来操作我们的数据<br><img data-src="https://img-blog.csdnimg.cn/d7c8ffd0e7c745f5812dc25fd08f279c.png" alt="在这里插入图片描述"><br>本项目选用CouchDB作为存储链上数据的数据库</p>
+<h2 id="八、Fabric优势"><a href="#八、Fabric优势" class="headerlink" title="八、Fabric优势"></a>八、Fabric优势</h2><ol>
+<li>1.所有上链数据基于密码学数字签名，上链数据不可被第三方篡改，不可抵赖。</li>
+<li>基于多参与方的共识算法，防止单方面作恶，修改自己链上历史数据。</li>
+<li>Fabric淡化了去中心化(Decentralized)，而以分布式 (Distributed)代替，每个节点具有完整全账本，防止单机故障和数据丢失。</li>
+<li>.fabric采用中心化的CA机制来发放证书，只有持有有效证书的节点和用户才可以访问区块链上的账本数据，此外还有TLS加密通讯、通道隔离等技术，保证了数据的传播范围可控，防止数据被窃取。</li>
+</ol>
+<p>Fabric充分利用了模块化的设计、容器技术和密码学技术，使得系统具有可扩展、灵活和安全等特性。采用传统数据库或许可以实现部分区块链的功能，如设计只写数据库，设计访问权限，共享数据库，分布式协议等，但这不是数据库的功能，只是创造出一个另一种形势的“区块链”，传统数据库无法达到区块链的分布式和信任。</p>
+<h2 id="十、功能演示"><a href="#十、功能演示" class="headerlink" title="十、功能演示"></a>十、功能演示</h2><p><code>http://ip:9000/</code></p>
+<p><img data-src="https://img-blog.csdnimg.cn/31199d7edade44348bd0f505d07bc8a6.png" alt="在这里插入图片描述"></p>
+<p>输入管理员账号及密码登录验证成功，则进入系统首页面<br><img data-src="https://img-blog.csdnimg.cn/22ea8c6344a6492898abe8a5ea669af7.png" alt="在这里插入图片描述"><br>在首页面中点击 查询范围链接，进入 help页面，<br><img data-src="https://img-blog.csdnimg.cn/ab9ba76d5859446abc896072a4e39022.png" alt="在这里插入图片描述"><br>点击添加学历信息链接进入，添加学历信息页面<br><img data-src="https://img-blog.csdnimg.cn/d8ad47283e15407ba577946d0870e06e.png" alt="在这里插入图片描述"></p>
+<p>根据学历证书编号与姓名查询页面</p>
+<p><img data-src="https://img-blog.csdnimg.cn/6eb9a4566e014643916a02768db3300b.png" alt="在这里插入图片描述"></p>
+<p>根据身份证号码查询页面<br><img data-src="https://img-blog.csdnimg.cn/b6a0c7e041f14acf9f56e818ed7d0892.png" alt="在这里插入图片描述"></p>
+<p>根据身份证号码查询页面查询结果页面<br><img data-src="https://img-blog.csdnimg.cn/f32a23f83f2848b29e161492077c39e4.png" alt="在这里插入图片描述"></p>
+<p>编辑页面<br><img data-src="https://img-blog.csdnimg.cn/110899e562ec40b5a8be1878ca3c4a08.png" alt="在这里插入图片描述"></p>
+<p>编辑成功自动跳转到根据身份证号码查询结果页面<br><img data-src="https://img-blog.csdnimg.cn/04a8d43cff924b81aa070af98811ccbf.png" alt="在这里插入图片描述"></p>
+<h2 id="十一、Hyperledger-explorer——Fabric浏览器"><a href="#十一、Hyperledger-explorer——Fabric浏览器" class="headerlink" title="十一、Hyperledger explorer——Fabric浏览器"></a>十一、Hyperledger explorer——Fabric浏览器</h2><p><code>http://ip:8080/</code><br>Hyperledger Explorer是一个简单易用的开源工具，可以用于监视 区块链网络中的活动。Hyperledger Explorer支持Fabric、Iroha等 多种区块链，可以运行在MocOS和Ubuntu下。我们可以在这里看到链上的所有信息，例如交易的时间、区块的哈希值和数据的哈希值等。<br><img data-src="https://img-blog.csdnimg.cn/ca5ff9c9f12f4eebbe1cc1fc94c50be9.png" alt="Hyperledger explorer"></p>
+<p><img data-src="https://img-blog.csdnimg.cn/1df2910d9cc24149be0528436b919a7a.png" alt="区块细节"><br><img data-src="https://img-blog.csdnimg.cn/84fc120ed80e4114bb47c92dd2547d98.png" alt="交易细节"></p>
+<p><img data-src="https://img-blog.csdnimg.cn/0181506c17824261bf6ddcb2703f20c1.png" alt="Fabric网络"><br><img data-src="https://img-blog.csdnimg.cn/ccd0acaf95e04df999cf758dd536833d.png" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/f99b4201de654b049c39d632e47e16a5.png" alt="在这里插入图片描述"></p>
+<h2 id="十二、分布式数据库"><a href="#十二、分布式数据库" class="headerlink" title="十二、分布式数据库"></a>十二、分布式数据库</h2><p>peer0节点7051端口 <code>http://ip:5984/_utils</code></p>
+<p>peer1节点9051端口 <code>http://ip:7984/_utils</code></p>
+<p><img data-src="https://img-blog.csdnimg.cn/4aaa814726204c64bba19f534ef39bc7.png" alt="在这里插入图片描述"></p>
+<p><img data-src="https://img-blog.csdnimg.cn/e74c46fbb3c341d1b75a54bc9e331967.png" alt="在这里插入图片描述"></p>
+<p><img data-src="https://img-blog.csdnimg.cn/22192eb759314993baeb3f72377343c5.png" alt="在这里插入图片描述"></p>
+<h2 id="十三、不可篡改性"><a href="#十三、不可篡改性" class="headerlink" title="十三、不可篡改性"></a>十三、不可篡改性</h2><p>CouchDB数据库存取链上数据，将学历信息等数据写入到数据库，窜改数据库的数据时链上的数据没有改变，查询时返回数据为链上数据，所以篡改数据库不可修改系统返回数据。<br><img data-src="https://img-blog.csdnimg.cn/8f3162fd34514743ad68e648dbb0c912.png" alt="篡改后的数据"><br><img data-src="https://img-blog.csdnimg.cn/026846e1adcc49689b56cef5ae52bc7d.png" alt="在这里插入图片描述"></p>
+<h2 id="十四、项目部署"><a href="#十四、项目部署" class="headerlink" title="十四、项目部署"></a>十四、项目部署</h2><h3 id="1-部署环境"><a href="#1-部署环境" class="headerlink" title="1.部署环境"></a>1.部署环境</h3><p>•阿里云主机 Ubuntu 16.04 64 位（root 用户）<br>•Golang 语言 go1.17<br>•docker 18.09.7<br>•docker-compose 1.22.0</p>
+<h3 id="2-环境配置"><a href="#2-环境配置" class="headerlink" title="2.环境配置"></a>2.环境配置</h3><h4 id="2-1安装-docker-以及-docker-compose"><a href="#2-1安装-docker-以及-docker-compose" class="headerlink" title="2.1安装 docker 以及 docker-compose"></a>2.1安装 docker 以及 docker-compose</h4><p>使用 docker 可以方便的解决程序依赖的环境问题；并且后续需要使用到的 Hyperledger Fabric 框架官方也提供了相应的 docker 的容器。<br>安装 docker 命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install docker.io</span><br></pre></td></tr></table></figure>
+
+<p>验证 docker 成功安装：docker version，结果如图所示：<br><img data-src="https://img-blog.csdnimg.cn/2747b94a14f34c9698d8d6a3bef4c100.png" alt="docker 安装成功"></p>
+<p>为了方便管理多个 docker 容器，还需要安装 docker-compose：sudo apt install docker- compose；验证安装成功：docker-compose version；如图所示：</p>
+<p><img data-src="https://img-blog.csdnimg.cn/ffb878a022a949fe89d388a0ad8127ca.png" alt="docker-compose 安装成功"></p>
+<h4 id="2-2安装-golang"><a href="#2-2安装-golang" class="headerlink" title="2.2安装 golang"></a>2.2安装 golang</h4><p>区块链框架Hyperledger Fabric 目前支持Java、Go 等主流编程语言并提供了相应的SDK，但是支持最全面的还是 Golang，因此采用 Go 语言来进行开发是比较好的选择；</p>
+<ol>
+<li>安装 Golang： wget  <a target="_blank" rel="noopener" href="https://dl.google.com/go/go1.17.0.linux-amd64.tar.gz">https://dl.google.com/go/go1.17.0.linux-amd64.tar.gz</a></li>
+<li>.使用 tar 命令将压缩文件解压至指定路径&#x2F;usr&#x2F;local&#x2F;下： tar -zxvf go1.17.0.linux-amd64.tar.gz -C &#x2F;usr&#x2F;local</li>
+<li>最后是设置环境变量 GOHOME 以及 GOROOT： sudo vim &#x2F;etc&#x2F;profile 添加如下（当前用户为 root 用户，$HOME&#x3D;&#x2F;root）：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> GOPATH=<span class="variable">$HOME</span>/go </span><br><span class="line"><span class="built_in">export</span> GOROOT=/usr/local/go，</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$GOROOT</span>/bin:</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>$PATH 激活环境变量： source &#x2F;etc&#x2F;profile</li>
+<li>验证安装成功，使用 go version 结果如图所示：</li>
+</ol>
+<p><img data-src="https://img-blog.csdnimg.cn/d449c551a6d449d7a640752149be939c.png" alt="Golang 安装成功"></p>
+<h3 id="3-项目部署"><a href="#3-项目部署" class="headerlink" title="3.项目部署"></a>3.项目部署</h3><ol>
+<li>创建保存项目的文件夹： mkdir -p $GOPATH&#x2F;src</li>
+<li>进入文件夹： cd $GOPATH&#x2F;src</li>
+<li>从 github 仓库克隆项目： git clone <a target="_blank" rel="noopener" href="https://github.com/bug-away-away/BlockChainCreditSystem.git">https://github.com/bug-away-away/BlockChainCreditSystem.git</a></li>
+<li>进入项目目录：cd education</li>
+<li>添加项目开发需要依赖的 Golang 包：go mod tidy<br>命令可能会执行失败，此时设置代理即可：go env -w GOPROXY&#x3D;<a target="_blank" rel="noopener" href="https://goproxy.cn/">https://goproxy.cn</a></li>
+</ol>
+<h3 id="4-启动项目"><a href="#4-启动项目" class="headerlink" title="4.启动项目"></a>4.启动项目</h3><p>由于每次启动流程相对固定，因此编写脚本来自动清理 docker 然后启动项目在项目的目录下运行 clean_docker.sh 脚本即可启动项目：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./clean_docker.sh</span><br></pre></td></tr></table></figure>
+
+<p>项目启动成功的结果如图所示：</p>
+<p><img data-src="https://img-blog.csdnimg.cn/7c55555eeed94d9bbacd18cd7d7bb05e.png" alt="启动项目成功"></p>
+<p>通过浏览器访问 9000 端口即可进入 web 端，结果如图所示：</p>
+<p>: <img data-src="https://img-blog.csdnimg.cn/c5a33dd311bd46c792da068a291b3839.png" alt="启动项目成功"></p>
+<h2 id="十五、总结"><a href="#十五、总结" class="headerlink" title="十五、总结"></a>十五、总结</h2><p>基于区块链的学历学位认证系统是一个利用区块链技术来防止学历造假的项目。该项目使用了go语言和Hyperledger Fabric超级账本框架，实现了以下功能：</p>
+<ul>
+<li>增加学历：用户可以通过智能合约向区块链系统中添加自己的学历信息。</li>
+<li>修改学历：用户可以通过智能合约修改自己在区块链系统中的学历信息，但是修改后的信息会留下痕迹，方 便追溯。</li>
+<li>查询学历：用户可以通过智能合约查询自己或者其他用户在区块链系统中的学历信息，验证其真伪。</li>
+</ul>
+<p>该项目有以下优点和创新点：</p>
+<ol>
+<li>使用了Fabric与Couchdb数据库，实现了分布式数据库与不可篡改性。Fabric是一个支持多种共识机制和智能合约语言的企业级区块链平台，Couchdb是一个面向文档的数据库，可以存储复杂结构化数据，并支持富查询功能。Fabric账本是有序的、不可篡改的状态转换记录，包括区块链和世界状态两部分。区块链中保存着不可变的顺序记录，包含配置记录和交易记录。世界状态中维护账本的当前状态，方便应用快速查询。</li>
+<li>使用了HyperledgerExplorer，实现了对区块链网络和数据的可视化监控。Explorer是一个基于web的应用程序，可以展示区块链网络中的节点、通道、交易、合约等信息，并提供图表和统计分析功能。用户可以通过浏览器查看网络中的信息，包括网络拓扑、区块信息、链码信息等等。</li>
+</ol>
+<p>该项目遇到了以下困难和挑战：</p>
+<ul>
+<li>Fabric框架涉及多个组件和配置文件，需要花费较多时间来理解和搭建。</li>
+<li>Couchdb数据库需要创建索引来优化查询性能，并且需要考虑数据同步和一致性问题。</li>
+<li>Explorer应用程序需要与Fabric网络进行集成，并且需要适配不同版本和配置。</li>
+</ul>
+<p>该项目有以下不足和改进空间：</p>
+<ul>
+<li>学历信息只能由用户自己添加和修改，没有第三方机构来审核和认证。</li>
+<li>学历信息没有加密处理，可能存在隐私泄露风险。</li>
+<li>Explorer应用程序没有提供用户认证和权限控制功能。&#96;</li>
+</ul>
+<p>通过参加这个项目实训，我不仅学习了go语言和Fabric框架，还深入了解了区块链技术的原理和应用。我感受到了区块链技术在学历认证领域的优势和潜力，也体会到了开发区块链应用的难度和挑战。这个项目让我收获了很多知识和经验，也激发了我对区块链技术的兴趣和热情。</p>
+
+    </div>
+
+    
+    
+    
+ <div>
+    
+       <div>
+      
+          <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+      
+  </div>
+    
+  </div>
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Pistachiout 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Pistachiout 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Pistachiout
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://pistachiout.github.io/wiki/%E5%9F%BA%E4%BA%8EHypledger-Fabric%E7%9A%84%E5%AD%A6%E5%8E%86%E5%AD%A6%E4%BD%8D%E8%AE%A4%E8%AF%81%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" title="基于Hypledger Fabric的学历学位认证管理系统">https://pistachiout.github.io/wiki/基于Hypledger-Fabric的学历学位认证管理系统/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag"># 区块链</a>
+              <a href="/tags/%E9%A1%B9%E7%9B%AE/" rel="tag"># 项目</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/wiki/Golang%E7%89%88LeetCode%E5%9F%BA%E6%9C%AC%E7%AE%97%E6%B3%95%E5%87%BD%E6%95%B0/" rel="prev" title="Golange刷题语法笔记">
+      <i class="fa fa-chevron-left"></i> Golange刷题语法笔记
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8EHyperledger-Fabric%E7%9A%84%E5%AD%A6%E4%BD%8D%E5%AD%A6%E5%8E%86%E8%AE%A4%E8%AF%81%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="nav-text">基于Hyperledger Fabric的学位学历认证管理系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E6%BA%90%E7%A0%81%EF%BC%9Ahttps-github-com-Pistachiout-Academic-Degree-BlockChain"><span class="nav-text">项目源码：https:&#x2F;&#x2F;github.com&#x2F;Pistachiout&#x2F;Academic-Degree-BlockChain</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E9%80%89%E9%A2%98%E8%83%8C%E6%99%AF"><span class="nav-text">一、选题背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%8A%9F%E8%83%BD%E5%88%86%E6%9E%90"><span class="nav-text">二、功能分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="nav-text">三、架构设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1"><span class="nav-text">四、数据模型设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%8E%9F%E5%9E%8B%E4%BA%A4%E4%BA%92%E8%AE%BE%E8%AE%A1"><span class="nav-text">五、原型交互设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E9%93%BE%E7%A0%81API%E6%93%8D%E4%BD%9C"><span class="nav-text">六、链码API操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8"><span class="nav-text">七、数据存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81Fabric%E4%BC%98%E5%8A%BF"><span class="nav-text">八、Fabric优势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E5%8A%9F%E8%83%BD%E6%BC%94%E7%A4%BA"><span class="nav-text">十、功能演示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%B8%80%E3%80%81Hyperledger-explorer%E2%80%94%E2%80%94Fabric%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="nav-text">十一、Hyperledger explorer——Fabric浏览器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E5%88%86%E5%B8%83%E5%BC%8F%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">十二、分布式数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%B8%89%E3%80%81%E4%B8%8D%E5%8F%AF%E7%AF%A1%E6%94%B9%E6%80%A7"><span class="nav-text">十三、不可篡改性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E5%9B%9B%E3%80%81%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2"><span class="nav-text">十四、项目部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%83%A8%E7%BD%B2%E7%8E%AF%E5%A2%83"><span class="nav-text">1.部署环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-text">2.环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1%E5%AE%89%E8%A3%85-docker-%E4%BB%A5%E5%8F%8A-docker-compose"><span class="nav-text">2.1安装 docker 以及 docker-compose</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2%E5%AE%89%E8%A3%85-golang"><span class="nav-text">2.2安装 golang</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2"><span class="nav-text">3.项目部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE"><span class="nav-text">4.启动项目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%BA%94%E3%80%81%E6%80%BB%E7%BB%93"><span class="nav-text">十五、总结</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Pistachiout"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Pistachiout</p>
+  <div class="site-description" itemprop="description">Pistachiout的学习博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Pistachiout" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Pistachiout" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/qq_45808700?spm=1010.2135.3001.5343" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_45808700?spm&#x3D;1010.2135.3001.5343" rel="noopener" target="_blank"><i class="fa csdn fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      推荐阅读
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.captainai.net/yeman/" title="https:&#x2F;&#x2F;www.captainai.net&#x2F;yeman&#x2F;" rel="noopener" target="_blank">人工智能教程</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.liaoxuefeng.com/" title="https:&#x2F;&#x2F;www.liaoxuefeng.com&#x2F;" rel="noopener" target="_blank">廖雪峰编程语言教程</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://learnblockchain.cn/" title="https:&#x2F;&#x2F;learnblockchain.cn&#x2F;" rel="noopener" target="_blank">区块链登链社区</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.topgoer.cn/" title="https:&#x2F;&#x2F;www.topgoer.cn&#x2F;" rel="noopener" target="_blank">go地鼠文档</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://www.hubwiz.com/course/?type=free" title="http:&#x2F;&#x2F;www.hubwiz.com&#x2F;course&#x2F;?type&#x3D;free" rel="noopener" target="_blank">汇智网</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        
+    <div class="links-of-blogroll motion-element links-of-blogroll-block">
+      <div class="links-of-blogroll-title">
+        <!-- modify icon to fire by szw -->
+        <i class="fa fa-history fa-" aria-hidden="true"></i>
+        近期文章
+      </div>
+      <ul class="links-of-blogroll-list">
+        
+        
+          <li>
+            <a href="/" title="" target="_blank"></a>
+          </li>
+        
+          <li>
+            <a href="/" title="" target="_blank"></a>
+          </li>
+        
+          <li>
+            <a href="/" title="" target="_blank"></a>
+          </li>
+        
+          <li>
+            <a href="/" title="" target="_blank"></a>
+          </li>
+        
+          <li>
+            <a href="/" title="" target="_blank"></a>
+          </li>
+        
+      </ul>
+    </div>
+
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+        
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+         <link rel="stylesheet" href="/dist/APlayer.min.css">
+        <div id="aplayer"></div>
+        <script type="text/javascript" src="/dist/APlayer.min.js"></script>
+        <script type="text/javascript" src="/dist/music.js"></script>
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pistachiout</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">243k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">3:41</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+<!-- <br /> -->
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<!-- <span id="times">载入时分秒...</span> -->
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("02/15/2023 8:00:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); 
+        if(String(snum).length ==1 ){snum = "0" + snum;}
+        // var times = document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "+hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+    <div id="pjax">
+  
+
+  
+
+    </div>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":140,"height":240},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
