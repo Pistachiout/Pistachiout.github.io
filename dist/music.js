@@ -47,6 +47,12 @@ const ap = new APlayer({
       cover: 'https://p2.music.126.net/e-Uc6W3Kug-HFHJ5nvCUPg==/109951166562828988.jpg?param=130y130',
     },
     {
+      name: '天若有情',
+      artist: 'A-Lin',
+      url: '/images/天若有情.mp3',
+      cover: 'https://hbimg.b0.upaiyun.com/638d6f03ab42018b245bbf61f3e8b284bf2704454bff8-SEiPYe_fw658',
+    },
+    {
       name: '像我这样的人',
       artist: '毛不易',
       url: 'http://music.163.com/song/media/outer/url?id=569213220.mp3',
