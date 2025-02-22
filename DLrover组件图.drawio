@@ -1,16 +1,16 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36 SE 2.X MetaSr 1.0" version="26.0.15">
   <diagram name="第 1 页" id="Yx-n1sw3S0H9V18orFNg">
-    <mxGraphModel dx="2336" dy="1976" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2261" dy="767" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="rzSXWd4nxounzRFxdCJH-4" value="" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontFamily=Verdana;fillColor=#dae8fc;strokeColor=#6c8ebf;gradientColor=#7ea6e0;" parent="1" vertex="1">
           <mxGeometry x="-70" y="430.3" width="640" height="240" as="geometry" />
         </mxCell>
-        <mxCell id="TWUF4VIbawo1__MDSoWa-39" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontFamily=Verdana;container=0;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;shadow=1;glass=0;" vertex="1" parent="1">
+        <mxCell id="TWUF4VIbawo1__MDSoWa-39" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontFamily=Verdana;container=0;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;shadow=1;glass=0;" parent="1" vertex="1">
           <mxGeometry x="329.64" y="465.88" width="230" height="190" as="geometry" />
         </mxCell>
-        <mxCell id="TWUF4VIbawo1__MDSoWa-38" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontFamily=Verdana;container=0;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;shadow=1;glass=0;" vertex="1" parent="1">
+        <mxCell id="TWUF4VIbawo1__MDSoWa-38" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontFamily=Verdana;container=0;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;shadow=1;glass=0;" parent="1" vertex="1">
           <mxGeometry x="320.36" y="465.88" width="230" height="190" as="geometry" />
         </mxCell>
         <mxCell id="rzSXWd4nxounzRFxdCJH-5" value="&lt;div style=&quot;line-height: 50%;&quot;&gt;&lt;p class=&quot;MsoNormal&quot;&gt;&lt;span style=&quot;line-height: 50%;&quot;&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;任务调度组件&lt;/font&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=&quot;MsoNormal&quot;&gt;&lt;span style=&quot;line-height: 50%;&quot;&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;ElasticJob Operator&lt;/font&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontFamily=Verdana;fillColor=#fff2cc;strokeColor=#d6b656;gradientColor=#ffd966;" parent="1" vertex="1">
@@ -43,77 +43,122 @@
         <mxCell id="rzSXWd4nxounzRFxdCJH-32" value="&lt;font style=&quot;font-size: 17px;&quot;&gt;训练进程&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 17px;&quot;&gt;Trainging Process&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;container=0;fontFamily=Verdana;gradientColor=#7ea6e0;" parent="1" vertex="1">
           <mxGeometry x="320.36" y="506.18" width="210.72" height="54.12" as="geometry" />
         </mxCell>
-        <mxCell id="TWUF4VIbawo1__MDSoWa-14" value="&lt;div&gt;&lt;span&gt;&lt;font style=&quot;font-size: 17px;&quot;&gt;&lt;br&gt;&lt;span style=&quot;font-family: Verdana; float: none; color: rgb(0, 0, 0); display: inline !important;&quot;&gt;CPU Master&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-family: Verdana; color: rgb(0, 0, 0);&quot;&gt;Pod&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="TWUF4VIbawo1__MDSoWa-14" value="&lt;div&gt;&lt;span&gt;&lt;font style=&quot;font-size: 17px;&quot;&gt;&lt;br&gt;&lt;span style=&quot;font-family: Verdana; float: none; color: rgb(0, 0, 0); display: inline !important;&quot;&gt;CPU Master&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-family: Verdana; color: rgb(0, 0, 0);&quot;&gt;Pod&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="-40" y="458.24" width="210" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="TWUF4VIbawo1__MDSoWa-16" value="&lt;font style=&quot;font-size: 17px;&quot;&gt;节点状态监控&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="TWUF4VIbawo1__MDSoWa-16" value="&lt;font style=&quot;font-size: 17px;&quot;&gt;节点状态监控&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="80" y="582.06" width="110" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="TWUF4VIbawo1__MDSoWa-21" value="&lt;font style=&quot;font-size: 17px;&quot;&gt;通信组网管理&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="TWUF4VIbawo1__MDSoWa-21" value="&lt;font style=&quot;font-size: 17px;&quot;&gt;通信组网管理&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="80" y="510.3" width="110" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="TWUF4VIbawo1__MDSoWa-23" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;分布式训练划分&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="TWUF4VIbawo1__MDSoWa-23" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;分布式训练划分&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-50" y="582.0600000000001" width="120" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="TWUF4VIbawo1__MDSoWa-24" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;&lt;font style=&quot;font-family: Verdana; color: rgb(0, 0, 0);&quot;&gt;弹性训练组件&lt;/font&gt;&lt;font style=&quot;font-family: Verdana; background-color: transparent; color: rgb(0, 0, 0);&quot;&gt;（&lt;/font&gt;&lt;font style=&quot;font-family: Verdana; background-color: transparent; color: rgb(0, 0, 0);&quot;&gt;Elastic Trainer&lt;/font&gt;&lt;font style=&quot;font-family: Verdana; background-color: transparent; color: rgb(0, 0, 0);&quot;&gt;）&lt;/font&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="TWUF4VIbawo1__MDSoWa-24" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;&lt;font style=&quot;font-family: Verdana; color: rgb(0, 0, 0);&quot;&gt;弹性训练组件&lt;/font&gt;&lt;font style=&quot;font-family: Verdana; background-color: transparent; color: rgb(0, 0, 0);&quot;&gt;（&lt;/font&gt;&lt;font style=&quot;font-family: Verdana; background-color: transparent; color: rgb(0, 0, 0);&quot;&gt;Elastic Trainer&lt;/font&gt;&lt;font style=&quot;font-family: Verdana; background-color: transparent; color: rgb(0, 0, 0);&quot;&gt;）&lt;/font&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="10" y="430" width="480" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="TWUF4VIbawo1__MDSoWa-25" value="&lt;font style=&quot;font-size: 17px;&quot;&gt;弹性训练管理&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="TWUF4VIbawo1__MDSoWa-25" value="&lt;font style=&quot;font-size: 17px;&quot;&gt;弹性训练管理&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-50" y="510.3" width="120" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="TWUF4VIbawo1__MDSoWa-35" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;任务分配&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;状态跟踪&lt;/font&gt;&lt;/div&gt;" style="shape=singleArrow;whiteSpace=wrap;html=1;arrowWidth=0.643751196172248;arrowSize=0.49532163742689667;fillColor=#eeeeee;strokeColor=#36393d;" vertex="1" parent="1">
+        <mxCell id="TWUF4VIbawo1__MDSoWa-35" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;任务分配&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;状态跟踪&lt;/font&gt;&lt;/div&gt;" style="shape=singleArrow;whiteSpace=wrap;html=1;arrowWidth=0.643751196172248;arrowSize=0.49532163742689667;fillColor=#eeeeee;strokeColor=#36393d;" parent="1" vertex="1">
           <mxGeometry x="212.5" y="501.77" width="100" height="62.94" as="geometry" />
         </mxCell>
-        <mxCell id="TWUF4VIbawo1__MDSoWa-43" value="&lt;div&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;节点心跳&lt;/font&gt;&lt;/div&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;监控信息&lt;/font&gt;" style="shape=singleArrow;direction=west;whiteSpace=wrap;html=1;arrowWidth=0.45128664009328495;arrowSize=0.41727395411606105;fillColor=#eeeeee;strokeColor=#36393d;" vertex="1" parent="1">
+        <mxCell id="TWUF4VIbawo1__MDSoWa-43" value="&lt;div&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;节点心跳&lt;/font&gt;&lt;/div&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;监控信息&lt;/font&gt;" style="shape=singleArrow;direction=west;whiteSpace=wrap;html=1;arrowWidth=0.45128664009328495;arrowSize=0.41727395411606105;fillColor=#eeeeee;strokeColor=#36393d;" parent="1" vertex="1">
           <mxGeometry x="210" y="568.24" width="97.5" height="77.64" as="geometry" />
         </mxCell>
-        <mxCell id="TWUF4VIbawo1__MDSoWa-56" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://github.com/intelligent-machine-learning/dlrover/raw/master/docs/figures/ft_llm_training/dlrover_node_check.jpg;" vertex="1" parent="1">
-          <mxGeometry x="-820" y="-70.00000000000001" width="900" height="449.25" as="geometry" />
-        </mxCell>
-        <mxCell id="TWUF4VIbawo1__MDSoWa-57" value="" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontFamily=Verdana;fillColor=#dae8fc;strokeColor=#6c8ebf;gradientColor=#7ea6e0;fontSize=16;" vertex="1" parent="1">
+        <mxCell id="TWUF4VIbawo1__MDSoWa-57" value="" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontFamily=Verdana;fillColor=#dae8fc;strokeColor=#6c8ebf;gradientColor=#7ea6e0;fontSize=16;" parent="1" vertex="1">
           <mxGeometry x="-827" y="415.45" width="707" height="304.55" as="geometry" />
         </mxCell>
-        <mxCell id="TWUF4VIbawo1__MDSoWa-58" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontFamily=Verdana;container=0;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;shadow=1;glass=0;fontSize=16;" vertex="1" parent="1">
+        <mxCell id="TWUF4VIbawo1__MDSoWa-58" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontFamily=Verdana;container=0;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;shadow=1;glass=0;fontSize=16;" parent="1" vertex="1">
           <mxGeometry x="-351.11" y="447.21" width="227.36" height="258.97" as="geometry" />
         </mxCell>
-        <mxCell id="TWUF4VIbawo1__MDSoWa-59" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontFamily=Verdana;container=0;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;shadow=1;glass=0;fontSize=16;" vertex="1" parent="1">
+        <mxCell id="TWUF4VIbawo1__MDSoWa-59" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontFamily=Verdana;container=0;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;shadow=1;glass=0;fontSize=16;" parent="1" vertex="1">
           <mxGeometry x="-360.39" y="448.96999999999997" width="226.64" height="258.97" as="geometry" />
         </mxCell>
-        <mxCell id="TWUF4VIbawo1__MDSoWa-60" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontFamily=Verdana;fillColor=#ffcc99;strokeColor=#36393d;shadow=1;fontSize=16;" vertex="1" parent="1">
+        <mxCell id="TWUF4VIbawo1__MDSoWa-60" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontFamily=Verdana;fillColor=#ffcc99;strokeColor=#36393d;shadow=1;fontSize=16;" parent="1" vertex="1">
           <mxGeometry x="-819.5" y="445.15" width="199.5" height="264.85" as="geometry" />
         </mxCell>
-        <mxCell id="TWUF4VIbawo1__MDSoWa-61" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontFamily=Verdana;container=0;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;shadow=1;glass=0;fontSize=16;" vertex="1" parent="1">
+        <mxCell id="TWUF4VIbawo1__MDSoWa-61" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontFamily=Verdana;container=0;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;shadow=1;glass=0;fontSize=16;" parent="1" vertex="1">
           <mxGeometry x="-533.75" y="447.21" width="393.36" height="258.97" as="geometry" />
         </mxCell>
-        <mxCell id="TWUF4VIbawo1__MDSoWa-63" value="&lt;font&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;GPU&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;Worker Pods&lt;/span&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#143642;container=0;fontFamily=Verdana;fontSize=16;" vertex="1" parent="1">
+        <mxCell id="TWUF4VIbawo1__MDSoWa-63" value="&lt;font&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;GPU&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;Worker Pods&lt;/span&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#143642;container=0;fontFamily=Verdana;fontSize=16;" parent="1" vertex="1">
           <mxGeometry x="-433.75" y="448.96999999999997" width="169" height="28.24" as="geometry" />
         </mxCell>
-        <mxCell id="TWUF4VIbawo1__MDSoWa-65" value="&lt;div&gt;&lt;span&gt;&lt;font&gt;&lt;br&gt;&lt;span style=&quot;font-family: Verdana; float: none; color: rgb(0, 0, 0); display: inline !important;&quot;&gt;CPU Master&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-family: Verdana; color: rgb(0, 0, 0);&quot;&gt;Pod&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+        <mxCell id="TWUF4VIbawo1__MDSoWa-65" value="&lt;div&gt;&lt;span&gt;&lt;font&gt;&lt;br&gt;&lt;span style=&quot;float: none; color: rgb(0, 0, 0); display: inline !important;&quot;&gt;CPU Master&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Pod&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontFamily=Verdana;" parent="1" vertex="1">
           <mxGeometry x="-824.75" y="458.23999999999995" width="210" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="TWUF4VIbawo1__MDSoWa-69" value="&lt;font&gt;&lt;font style=&quot;font-family: Verdana; color: rgb(0, 0, 0);&quot;&gt;弹性训练组件&lt;/font&gt;&lt;font style=&quot;font-family: Verdana; background-color: transparent; color: rgb(0, 0, 0);&quot;&gt;（&lt;/font&gt;&lt;font style=&quot;font-family: Verdana; background-color: transparent; color: rgb(0, 0, 0);&quot;&gt;Elastic Trainer&lt;/font&gt;&lt;font style=&quot;font-family: Verdana; background-color: transparent; color: rgb(0, 0, 0);&quot;&gt;）&lt;/font&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeWidth=2;fontSize=16;" vertex="1" parent="1">
+        <mxCell id="TWUF4VIbawo1__MDSoWa-69" value="&lt;font&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;弹性训练组件&lt;/font&gt;&lt;font style=&quot;background-color: transparent; color: rgb(0, 0, 0);&quot;&gt;（&lt;/font&gt;&lt;font style=&quot;background-color: transparent; color: rgb(0, 0, 0);&quot;&gt;Elastic Trainer&lt;/font&gt;&lt;font style=&quot;background-color: transparent; color: rgb(0, 0, 0);&quot;&gt;）&lt;/font&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeWidth=2;fontSize=16;fontFamily=Verdana;" parent="1" vertex="1">
           <mxGeometry x="-710" y="415.45" width="480" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="TWUF4VIbawo1__MDSoWa-76" value="故障主动检测定位组件" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#FFFF99;gradientColor=#FFFF00;strokeColor=#b85450;" vertex="1" parent="1">
+        <mxCell id="TWUF4VIbawo1__MDSoWa-76" value="故障主动检测定位组件" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#FFFF99;gradientColor=#FFFF00;strokeColor=#b85450;fontFamily=Verdana;" parent="1" vertex="1">
           <mxGeometry x="-805.75" y="554.9999999999999" width="172" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="TWUF4VIbawo1__MDSoWa-78" value="训练环境与检测任务" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="TWUF4VIbawo1__MDSoWa-78" value="训练环境与检测任务" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;fontFamily=Verdana;" parent="1" vertex="1">
           <mxGeometry x="-523.75" y="486.18" width="370" height="41.06" as="geometry" />
         </mxCell>
-        <mxCell id="TWUF4VIbawo1__MDSoWa-79" value="关键日志检测任务" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="TWUF4VIbawo1__MDSoWa-79" value="关键日志检测任务" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;fontFamily=Verdana;" parent="1" vertex="1">
           <mxGeometry x="-523.75" y="596.1800000000001" width="370" height="45.88" as="geometry" />
         </mxCell>
-        <mxCell id="TWUF4VIbawo1__MDSoWa-80" value="故障节点检测任务" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="TWUF4VIbawo1__MDSoWa-80" value="故障节点检测任务" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;fontFamily=Verdana;" parent="1" vertex="1">
           <mxGeometry x="-522.07" y="652.0600000000001" width="370" height="44.88" as="geometry" />
         </mxCell>
-        <mxCell id="TWUF4VIbawo1__MDSoWa-81" value="&lt;font&gt;训练进程&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;container=0;fontFamily=Verdana;gradientColor=#7ea6e0;fontSize=16;" vertex="1" parent="1">
+        <mxCell id="TWUF4VIbawo1__MDSoWa-81" value="&lt;font&gt;训练进程&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;container=0;fontFamily=Verdana;gradientColor=#7ea6e0;fontSize=16;" parent="1" vertex="1">
           <mxGeometry x="-522.07" y="536.1800000000001" width="370" height="48.98" as="geometry" />
         </mxCell>
-        <mxCell id="TWUF4VIbawo1__MDSoWa-86" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;检测任务&lt;/font&gt;" style="shape=singleArrow;whiteSpace=wrap;html=1;arrowWidth=0.643751196172248;arrowSize=0.49532163742689667;fillColor=#eeeeee;strokeColor=#36393d;" vertex="1" parent="1">
+        <mxCell id="TWUF4VIbawo1__MDSoWa-86" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;检测任务&lt;/font&gt;" style="shape=singleArrow;whiteSpace=wrap;html=1;arrowWidth=0.643751196172248;arrowSize=0.49532163742689667;fillColor=#eeeeee;strokeColor=#36393d;fontFamily=Verdana;" parent="1" vertex="1">
           <mxGeometry x="-614.75" y="517.06" width="84.75" height="65" as="geometry" />
         </mxCell>
-        <mxCell id="TWUF4VIbawo1__MDSoWa-87" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;检测结果&lt;/font&gt;" style="shape=singleArrow;direction=west;whiteSpace=wrap;html=1;arrowWidth=0.570083102493086;arrowSize=0.5465587044534436;fillColor=#eeeeee;strokeColor=#36393d;" vertex="1" parent="1">
+        <mxCell id="TWUF4VIbawo1__MDSoWa-87" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;检测结果&lt;/font&gt;" style="shape=singleArrow;direction=west;whiteSpace=wrap;html=1;arrowWidth=0.570083102493086;arrowSize=0.5465587044534436;fillColor=#eeeeee;strokeColor=#36393d;fontFamily=Verdana;" parent="1" vertex="1">
           <mxGeometry x="-620" y="596.18" width="84.75" height="70.3" as="geometry" />
+        </mxCell>
+        <mxCell id="eeBK5RvtjPpKyudnsSZL-16" value="" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontFamily=Verdana;fillColor=#dae8fc;strokeColor=#6c8ebf;gradientColor=#7ea6e0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-817" y="810" width="707" height="284.55" as="geometry" />
+        </mxCell>
+        <mxCell id="eeBK5RvtjPpKyudnsSZL-17" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontFamily=Verdana;container=0;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;shadow=1;glass=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-341.11" y="821.76" width="227.36" height="258.97" as="geometry" />
+        </mxCell>
+        <mxCell id="eeBK5RvtjPpKyudnsSZL-18" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontFamily=Verdana;container=0;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;shadow=1;glass=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-350.39" y="823.52" width="226.64" height="258.97" as="geometry" />
+        </mxCell>
+        <mxCell id="eeBK5RvtjPpKyudnsSZL-19" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontFamily=Verdana;fillColor=#ffcc99;strokeColor=#36393d;shadow=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-805.75" y="815.88" width="199.5" height="264.85" as="geometry" />
+        </mxCell>
+        <mxCell id="eeBK5RvtjPpKyudnsSZL-20" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontFamily=Verdana;container=0;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;shadow=1;glass=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-523.75" y="821.76" width="393.36" height="258.97" as="geometry" />
+        </mxCell>
+        <mxCell id="eeBK5RvtjPpKyudnsSZL-21" value="&lt;font&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;GPU&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;Worker Pods&lt;/span&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#143642;container=0;fontFamily=Verdana;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-423.75" y="823.52" width="169" height="28.24" as="geometry" />
+        </mxCell>
+        <mxCell id="eeBK5RvtjPpKyudnsSZL-22" value="&lt;div&gt;&lt;span&gt;&lt;font&gt;&lt;br&gt;&lt;span style=&quot;float: none; color: rgb(0, 0, 0); display: inline !important;&quot;&gt;CPU Master&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Pod&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontFamily=Verdana;" vertex="1" parent="1">
+          <mxGeometry x="-814.75" y="832.79" width="210" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="eeBK5RvtjPpKyudnsSZL-24" value="&lt;p class=&quot;MsoNormal&quot;&gt;&lt;span style=&quot;&quot;&gt;&lt;font&gt;性能分析&lt;/font&gt;&lt;/span&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;模块&lt;/span&gt;&lt;font style=&quot;background-color: transparent;&quot;&gt;Analyzers&lt;/font&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#FFFF99;gradientColor=#FFFF00;strokeColor=#b85450;fontFamily=Verdana;" vertex="1" parent="1">
+          <mxGeometry x="-787.62" y="908.0799999999999" width="155.75" height="80.45" as="geometry" />
+        </mxCell>
+        <mxCell id="eeBK5RvtjPpKyudnsSZL-25" value="" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;fontFamily=Verdana;" vertex="1" parent="1">
+          <mxGeometry x="-513.94" y="910" width="373.75" height="166.09" as="geometry" />
+        </mxCell>
+        <mxCell id="eeBK5RvtjPpKyudnsSZL-30" value="&lt;span&gt;监控&lt;/span&gt;数据" style="shape=singleArrow;direction=west;whiteSpace=wrap;html=1;arrowWidth=0.570083102493086;arrowSize=0.5465587044534436;fillColor=#eeeeee;strokeColor=#36393d;fontSize=16;fontFamily=Verdana;" vertex="1" parent="1">
+          <mxGeometry x="-608.5" y="916.09" width="84.75" height="70.3" as="geometry" />
+        </mxCell>
+        <mxCell id="eeBK5RvtjPpKyudnsSZL-33" value="&lt;p class=&quot;MsoNormal&quot;&gt;&lt;span style=&quot;&quot;&gt;&lt;font&gt;数据监控&lt;/font&gt;&lt;font&gt;模块&lt;/font&gt;&lt;/span&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;Collector&lt;/span&gt;&lt;/p&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontFamily=Verdana;" vertex="1" parent="1">
+          <mxGeometry x="-404.03" y="916.09" width="139.28" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="eeBK5RvtjPpKyudnsSZL-35" value="&lt;p class=&quot;MsoNormal&quot;&gt;&lt;span style=&quot;&quot;&gt;PyTorch&amp;nbsp; Profiler&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&lt;font&gt;接口&lt;/font&gt;&lt;/span&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;container=0;fontFamily=Verdana;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-510.16" y="961.43" width="366.17" height="48.98" as="geometry" />
+        </mxCell>
+        <mxCell id="eeBK5RvtjPpKyudnsSZL-36" value="&lt;p class=&quot;MsoNormal&quot;&gt;&lt;span style=&quot;&quot;&gt;&lt;font&gt;Python&lt;/font&gt;&lt;font&gt;函数&lt;/font&gt;&lt;/span&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=16;fontFamily=Verdana;" vertex="1" parent="1">
+          <mxGeometry x="-510.01" y="1020.14" width="100" height="45.55" as="geometry" />
+        </mxCell>
+        <mxCell id="eeBK5RvtjPpKyudnsSZL-37" value="&lt;p class=&quot;MsoNormal&quot;&gt;&lt;span style=&quot;&quot;&gt;GPU显存操作&lt;/span&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=16;fontFamily=Verdana;" vertex="1" parent="1">
+          <mxGeometry x="-259.9" y="1019.75" width="115.25" height="45.94" as="geometry" />
+        </mxCell>
+        <mxCell id="eeBK5RvtjPpKyudnsSZL-38" value="&lt;p class=&quot;MsoNormal&quot;&gt;&lt;span style=&quot;&quot;&gt;&lt;font&gt;CUDA Kernel&lt;/font&gt;&lt;font&gt;函数&lt;/font&gt;&lt;/span&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=16;fontFamily=Verdana;" vertex="1" parent="1">
+          <mxGeometry x="-407.61" y="1019.3" width="142.85" height="46.39" as="geometry" />
+        </mxCell>
+        <mxCell id="eeBK5RvtjPpKyudnsSZL-40" value="&lt;font&gt;训练进程&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;container=0;fontFamily=Verdana;fontSize=16;gradientColor=#7ea6e0;" vertex="1" parent="1">
+          <mxGeometry x="-510" y="851.76" width="370" height="51.03" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
