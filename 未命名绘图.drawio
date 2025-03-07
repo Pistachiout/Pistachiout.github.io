@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36 SE 2.X MetaSr 1.0" version="26.0.16">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36 SE 2.X MetaSr 1.0" version="26.1.0">
   <diagram name="第 1 页" id="d8fcSK051ApWsuy4886Y">
-    <mxGraphModel dx="1434" dy="1934" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1434" dy="1936" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -18,25 +18,25 @@
         <mxCell id="dgHX8QewxldNRwzRjOaj-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=19;labelBackgroundColor=none;fontColor=default;strokeColor=#36393d;fontFamily=Georgia;fillColor=#cdeb8b;textShadow=0;labelBorderColor=none;" parent="1" source="dgHX8QewxldNRwzRjOaj-5" target="dgHX8QewxldNRwzRjOaj-9" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="dgHX8QewxldNRwzRjOaj-5" value="&lt;p&gt;第二章：&lt;span style=&quot;&quot;&gt;&lt;span&gt;训练故障及容错技术分析&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=19;labelBackgroundColor=none;fillColor=#cdeb8b;strokeColor=#36393d;fontFamily=Georgia;textShadow=0;labelBorderColor=none;" parent="1" vertex="1">
+        <mxCell id="dgHX8QewxldNRwzRjOaj-5" value="&lt;p&gt;第二章：&lt;span style=&quot;font-family: 宋体; font-size: 12pt; background-color: transparent;&quot;&gt;智算集群可靠性相关理论分析&lt;/span&gt;&lt;/p&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=19;labelBackgroundColor=none;fillColor=#cdeb8b;strokeColor=#36393d;fontFamily=Georgia;textShadow=0;labelBorderColor=none;" parent="1" vertex="1">
           <mxGeometry x="198.13" y="920" width="311.25" height="50" as="geometry" />
         </mxCell>
         <mxCell id="dgHX8QewxldNRwzRjOaj-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=19;labelBackgroundColor=none;fontColor=default;strokeColor=#36393d;fontFamily=Georgia;fillColor=#cdeb8b;textShadow=0;labelBorderColor=none;" parent="1" source="dgHX8QewxldNRwzRjOaj-8" target="dgHX8QewxldNRwzRjOaj-14" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="dgHX8QewxldNRwzRjOaj-8" value="第三章：&lt;span style=&quot;&quot;&gt;面向&lt;font style=&quot;color: rgb(255, 0, 0);&quot;&gt;中断型训练故障&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;&quot;&gt;的弹性自愈和断点续训容错&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=19;labelBackgroundColor=none;fillColor=#cdeb8b;strokeColor=#36393d;fontFamily=Georgia;textShadow=0;labelBorderColor=none;" parent="1" vertex="1">
+        <mxCell id="dgHX8QewxldNRwzRjOaj-8" value="第三章：&lt;span style=&quot;font-family: 宋体; font-size: 12pt; text-indent: 21pt; background-color: transparent;&quot;&gt;面向中断型训练故障容错的弹性容错训练框架&lt;/span&gt;&lt;p style=&quot;text-indent:21.0000pt;mso-char-indent-count:0.0000;&quot; class=&quot;MsoNormal&quot;&gt;&lt;span style=&quot;mso-spacerun:&#39;yes&#39;;font-family:宋体;mso-ascii-font-family:&#39;Times New Roman&#39;;&lt;br/&gt;mso-hansi-font-family:&#39;Times New Roman&#39;;mso-bidi-font-family:&#39;Times New Roman&#39;;font-size:12.0000pt;&lt;br/&gt;mso-font-kerning:1.0000pt;&quot;&gt;&lt;/span&gt;&lt;/p&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=19;labelBackgroundColor=none;fillColor=#cdeb8b;strokeColor=#36393d;fontFamily=Georgia;textShadow=0;labelBorderColor=none;" parent="1" vertex="1">
           <mxGeometry x="10" y="1040" width="290" height="60" as="geometry" />
         </mxCell>
         <mxCell id="dgHX8QewxldNRwzRjOaj-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=19;labelBackgroundColor=none;fontColor=default;strokeColor=#36393d;fontFamily=Georgia;fillColor=#cdeb8b;textShadow=0;labelBorderColor=none;" parent="1" source="dgHX8QewxldNRwzRjOaj-9" target="dgHX8QewxldNRwzRjOaj-14" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="dgHX8QewxldNRwzRjOaj-9" value="第四章：&lt;span style=&quot;&quot;&gt;面向&lt;font style=&quot;color: rgb(255, 0, 0);&quot;&gt;非中断型训练故障&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;&quot;&gt;的性能异常感知与容错恢复&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=19;labelBackgroundColor=none;fillColor=#cdeb8b;strokeColor=#36393d;fontFamily=Georgia;textShadow=0;labelBorderColor=none;" parent="1" vertex="1">
+        <mxCell id="dgHX8QewxldNRwzRjOaj-9" value="第四章：&lt;span style=&quot;font-family: 宋体; font-size: 12pt; background-color: transparent;&quot;&gt;面向非中断型训练故障容错的自适应缓解容错策略&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=19;labelBackgroundColor=none;fillColor=#cdeb8b;strokeColor=#36393d;fontFamily=Georgia;textShadow=0;labelBorderColor=none;" parent="1" vertex="1">
           <mxGeometry x="427.5" y="1040" width="300" height="60" as="geometry" />
         </mxCell>
         <mxCell id="dgHX8QewxldNRwzRjOaj-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=19;labelBackgroundColor=none;fontColor=default;strokeColor=#36393d;fontFamily=Georgia;fillColor=#cdeb8b;textShadow=0;labelBorderColor=none;" parent="1" source="dgHX8QewxldNRwzRjOaj-14" target="dgHX8QewxldNRwzRjOaj-18" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="dgHX8QewxldNRwzRjOaj-14" value="第五章：&lt;span style=&quot;&quot;&gt;面向智能计算中心&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;&quot;&gt;的训练容错应用与分析&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=19;labelBackgroundColor=none;fillColor=#cdeb8b;strokeColor=#36393d;fontFamily=Georgia;textShadow=0;labelBorderColor=none;" parent="1" vertex="1">
+        <mxCell id="dgHX8QewxldNRwzRjOaj-14" value="第五章：&lt;span style=&quot;&quot;&gt;面向智算集群可靠性&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;&quot;&gt;的训练故障容错应用分析&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=19;labelBackgroundColor=none;fillColor=#cdeb8b;strokeColor=#36393d;fontFamily=Georgia;textShadow=0;labelBorderColor=none;" parent="1" vertex="1">
           <mxGeometry x="220" y="1169" width="273.75" height="60" as="geometry" />
         </mxCell>
         <mxCell id="dgHX8QewxldNRwzRjOaj-18" value="第六章：&lt;span style=&quot;&quot;&gt;总结与展望&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=19;labelBackgroundColor=none;fillColor=#cdeb8b;strokeColor=#36393d;fontFamily=Georgia;textShadow=0;labelBorderColor=none;" parent="1" vertex="1">
@@ -180,64 +180,64 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="OEoiS8fPe-HGEr6l-w_R-122" value="CPU" style="text;html=1;align=center;verticalAlign=top;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="OEoiS8fPe-HGEr6l-w_R-122" value="CPU" style="text;html=1;align=center;verticalAlign=top;fontSize=12;" parent="1" vertex="1">
           <mxGeometry x="291.56" y="-860" width="100" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="OEoiS8fPe-HGEr6l-w_R-123" value="提交算子0" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="OEoiS8fPe-HGEr6l-w_R-123" value="提交算子0" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=12;" parent="1" vertex="1">
           <mxGeometry x="291.56" y="-830" width="80" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="OEoiS8fPe-HGEr6l-w_R-124" value="提交算子1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="OEoiS8fPe-HGEr6l-w_R-124" value="提交算子1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=12;" parent="1" vertex="1">
           <mxGeometry x="391.56" y="-830" width="80" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="OEoiS8fPe-HGEr6l-w_R-125" value="提交算子10" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="OEoiS8fPe-HGEr6l-w_R-125" value="提交算子10" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=12;" parent="1" vertex="1">
           <mxGeometry x="691.56" y="-830" width="80" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="OEoiS8fPe-HGEr6l-w_R-126" value="..." style="text;html=1;align=center;verticalAlign=middle;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="OEoiS8fPe-HGEr6l-w_R-126" value="..." style="text;html=1;align=center;verticalAlign=middle;fontSize=12;" parent="1" vertex="1">
           <mxGeometry x="541.56" y="-830" width="40" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="OEoiS8fPe-HGEr6l-w_R-127" value="GPU" style="text;html=1;align=center;verticalAlign=top;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="OEoiS8fPe-HGEr6l-w_R-127" value="GPU" style="text;html=1;align=center;verticalAlign=top;fontSize=12;" parent="1" vertex="1">
           <mxGeometry x="291.56" y="-760" width="100" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="OEoiS8fPe-HGEr6l-w_R-128" value="执行算子0" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="OEoiS8fPe-HGEr6l-w_R-128" value="执行算子0" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=12;" parent="1" vertex="1">
           <mxGeometry x="341.56" y="-730" width="80" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="OEoiS8fPe-HGEr6l-w_R-129" value="执行算子1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="OEoiS8fPe-HGEr6l-w_R-129" value="执行算子1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=12;" parent="1" vertex="1">
           <mxGeometry x="441.56" y="-730" width="80" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="OEoiS8fPe-HGEr6l-w_R-130" value="执行算子10" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="OEoiS8fPe-HGEr6l-w_R-130" value="执行算子10" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=12;" parent="1" vertex="1">
           <mxGeometry x="741.56" y="-730" width="80" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="OEoiS8fPe-HGEr6l-w_R-131" value="..." style="text;html=1;align=center;verticalAlign=middle;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="OEoiS8fPe-HGEr6l-w_R-131" value="..." style="text;html=1;align=center;verticalAlign=middle;fontSize=12;" parent="1" vertex="1">
           <mxGeometry x="591.56" y="-730" width="40" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="OEoiS8fPe-HGEr6l-w_R-132" value="时间" style="text;html=1;align=center;verticalAlign=bottom;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="OEoiS8fPe-HGEr6l-w_R-132" value="时间" style="text;html=1;align=center;verticalAlign=bottom;fontSize=12;" parent="1" vertex="1">
           <mxGeometry x="291.56" y="-610" width="600" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="OEoiS8fPe-HGEr6l-w_R-133" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="OEoiS8fPe-HGEr6l-w_R-132" target="OEoiS8fPe-HGEr6l-w_R-132">
+        <mxCell id="OEoiS8fPe-HGEr6l-w_R-133" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="OEoiS8fPe-HGEr6l-w_R-132" target="OEoiS8fPe-HGEr6l-w_R-132" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="291.56" y="-590" as="sourcePoint" />
             <mxPoint x="891.56" y="-590" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="OEoiS8fPe-HGEr6l-w_R-134" value="实际的运行时间（正确）" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="OEoiS8fPe-HGEr6l-w_R-134" value="实际的运行时间（正确）" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;" parent="1" vertex="1">
           <mxGeometry x="341.56" y="-680" width="500" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="OEoiS8fPe-HGEr6l-w_R-135" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="OEoiS8fPe-HGEr6l-w_R-134" target="OEoiS8fPe-HGEr6l-w_R-134">
+        <mxCell id="OEoiS8fPe-HGEr6l-w_R-135" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="OEoiS8fPe-HGEr6l-w_R-134" target="OEoiS8fPe-HGEr6l-w_R-134" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="341.56" y="-660" as="sourcePoint" />
             <mxPoint x="841.56" y="-660" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="OEoiS8fPe-HGEr6l-w_R-136" value="测量的运行时间（错误）" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="OEoiS8fPe-HGEr6l-w_R-136" value="测量的运行时间（错误）" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;" parent="1" vertex="1">
           <mxGeometry x="341.56" y="-630" width="400" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="OEoiS8fPe-HGEr6l-w_R-137" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="OEoiS8fPe-HGEr6l-w_R-136" target="OEoiS8fPe-HGEr6l-w_R-136">
+        <mxCell id="OEoiS8fPe-HGEr6l-w_R-137" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="OEoiS8fPe-HGEr6l-w_R-136" target="OEoiS8fPe-HGEr6l-w_R-136" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="341.56" y="-610" as="sourcePoint" />
             <mxPoint x="741.56" y="-610" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="OEoiS8fPe-HGEr6l-w_R-138" value="start=time.perf_counter()\nend=time.perf_counter()" style="text;html=1;align=left;verticalAlign=top;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="OEoiS8fPe-HGEr6l-w_R-138" value="start=time.perf_counter()\nend=time.perf_counter()" style="text;html=1;align=left;verticalAlign=top;fontSize=12;" parent="1" vertex="1">
           <mxGeometry x="291.56" y="-560" width="200" height="40" as="geometry" />
         </mxCell>
       </root>
