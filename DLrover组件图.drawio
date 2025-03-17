@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36 SE 2.X MetaSr 1.0" version="26.1.0">
   <diagram name="第 1 页" id="Yx-n1sw3S0H9V18orFNg">
-    <mxGraphModel dx="3447" dy="3297" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2901" dy="3005" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -403,9 +403,9 @@
         <mxCell id="tF5kDbO_WVZEeCOQ9knl-56" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=17;fontFamily=Verdana;" edge="1" parent="1" source="tF5kDbO_WVZEeCOQ9knl-48" target="tF5kDbO_WVZEeCOQ9knl-51">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="tF5kDbO_WVZEeCOQ9knl-108" value="具体措施" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontFamily=Verdana;" vertex="1" connectable="0" parent="tF5kDbO_WVZEeCOQ9knl-56">
+        <mxCell id="tF5kDbO_WVZEeCOQ9knl-108" value="具体措施" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontFamily=Verdana;fontSize=16;" vertex="1" connectable="0" parent="tF5kDbO_WVZEeCOQ9knl-56">
           <mxGeometry x="-0.5797" y="-1" relative="1" as="geometry">
-            <mxPoint x="9" as="offset" />
+            <mxPoint x="16" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="tF5kDbO_WVZEeCOQ9knl-48" value="4.3 面向训练异常的&lt;div&gt;容错措施实现&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=17;fontFamily=Verdana;" vertex="1" parent="1">
@@ -469,7 +469,7 @@
         <mxCell id="tF5kDbO_WVZEeCOQ9knl-102" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=18;labelBackgroundColor=none;fontColor=#000000;strokeColor=#36393d;fontFamily=Helvetica;fillColor=#cdeb8b;textShadow=0;labelBorderColor=none;fontStyle=0" edge="1" parent="1" source="tF5kDbO_WVZEeCOQ9knl-103" target="tF5kDbO_WVZEeCOQ9knl-104">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="tF5kDbO_WVZEeCOQ9knl-103" value="第五章：&lt;span&gt;面向智算集群可靠性&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;的训练故障容错应用分析&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;fillColor=#cdeb8b;strokeColor=#36393d;fontFamily=Helvetica;textShadow=0;labelBorderColor=none;fontStyle=0;fontColor=#000000;" vertex="1" parent="1">
+        <mxCell id="tF5kDbO_WVZEeCOQ9knl-103" value="第五章：&lt;span&gt;面向智算集群&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;的训练容错应用效果分析&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;fillColor=#cdeb8b;strokeColor=#36393d;fontFamily=Helvetica;textShadow=0;labelBorderColor=none;fontStyle=0;fontColor=#000000;" vertex="1" parent="1">
           <mxGeometry x="388.13" y="1739" width="291.24" height="60" as="geometry" />
         </mxCell>
         <mxCell id="tF5kDbO_WVZEeCOQ9knl-104" value="第六章：&lt;span&gt;总结与展望&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;labelBackgroundColor=none;fillColor=#cdeb8b;strokeColor=#36393d;fontFamily=Helvetica;textShadow=0;labelBorderColor=none;fontStyle=0;fontColor=#000000;" vertex="1" parent="1">
