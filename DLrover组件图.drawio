@@ -55,7 +55,7 @@
         <mxCell id="TWUF4VIbawo1__MDSoWa-21" value="&lt;font&gt;通信组网管理&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=17;" parent="1" vertex="1">
           <mxGeometry x="80" y="510.3" width="110" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="TWUF4VIbawo1__MDSoWa-23" value="&lt;font&gt;分布式训练划分&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=17;" parent="1" vertex="1">
+        <mxCell id="TWUF4VIbawo1__MDSoWa-23" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;分布式训练划分&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=17;" parent="1" vertex="1">
           <mxGeometry x="-50" y="582.0600000000001" width="120" height="50" as="geometry" />
         </mxCell>
         <mxCell id="TWUF4VIbawo1__MDSoWa-25" value="&lt;font&gt;弹性训练管理&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=17;" parent="1" vertex="1">
@@ -306,28 +306,28 @@
           <mxGeometry x="-183.16" y="1014.5" width="71.29" height="49" as="geometry" />
         </mxCell>
         <mxCell id="tF5kDbO_WVZEeCOQ9knl-1" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;fontFamily=Verdana;fontStyle=0" parent="1" vertex="1">
-          <mxGeometry x="-888.56" y="1630" width="640" height="309" as="geometry" />
+          <mxGeometry x="-888.56" y="1630" width="648.56" height="309" as="geometry" />
         </mxCell>
         <mxCell id="tF5kDbO_WVZEeCOQ9knl-2" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;弹性容错训练框架&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontFamily=Verdana;fontStyle=0" parent="1" vertex="1">
           <mxGeometry x="-680.9699999999999" y="1630" width="187" height="30" as="geometry" />
         </mxCell>
         <mxCell id="tF5kDbO_WVZEeCOQ9knl-3" value="容错自愈机制改进" style="rounded=1;whiteSpace=wrap;html=1;fontSize=18;fontFamily=Verdana;fontStyle=0" parent="1" vertex="1">
-          <mxGeometry x="-660" y="1700" width="170" height="73" as="geometry" />
+          <mxGeometry x="-660" y="1690" width="170" height="73" as="geometry" />
         </mxCell>
         <mxCell id="tF5kDbO_WVZEeCOQ9knl-5" value="&amp;nbsp;断点续训机制改进" style="rounded=1;whiteSpace=wrap;html=1;fontSize=18;fontFamily=Verdana;fontStyle=0" parent="1" vertex="1">
           <mxGeometry x="-660" y="1850" width="167.69" height="79" as="geometry" />
         </mxCell>
         <mxCell id="tF5kDbO_WVZEeCOQ9knl-6" value="故障主动检测组件" style="rounded=1;whiteSpace=wrap;html=1;fontSize=18;fontFamily=Verdana;fontStyle=0" parent="1" vertex="1">
-          <mxGeometry x="-403.56" y="1673" width="140" height="60" as="geometry" />
+          <mxGeometry x="-403.56" y="1665" width="153.56" height="60" as="geometry" />
         </mxCell>
         <mxCell id="tF5kDbO_WVZEeCOQ9knl-7" value="中断分级容错自愈" style="rounded=1;whiteSpace=wrap;html=1;fontSize=18;fontFamily=Verdana;fontStyle=0" parent="1" vertex="1">
-          <mxGeometry x="-403.56" y="1749" width="140" height="60" as="geometry" />
+          <mxGeometry x="-403.56" y="1739" width="153.56" height="60" as="geometry" />
         </mxCell>
         <mxCell id="tF5kDbO_WVZEeCOQ9knl-8" value="传统弹性训练框架" style="rounded=1;whiteSpace=wrap;html=1;fontSize=18;fontFamily=Verdana;fontStyle=0" parent="1" vertex="1">
           <mxGeometry x="-878.56" y="1773" width="148.89" height="60" as="geometry" />
         </mxCell>
         <mxCell id="tF5kDbO_WVZEeCOQ9knl-9" value="内存检查点技术" style="rounded=1;whiteSpace=wrap;html=1;fontSize=18;fontFamily=Verdana;fontStyle=0" parent="1" vertex="1">
-          <mxGeometry x="-405.56" y="1854" width="141.25" height="70" as="geometry" />
+          <mxGeometry x="-405.56" y="1854" width="155.56" height="70" as="geometry" />
         </mxCell>
         <mxCell id="tF5kDbO_WVZEeCOQ9knl-10" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.951;exitY=0.033;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=18;fontFamily=Verdana;fontStyle=0" parent="1" source="tF5kDbO_WVZEeCOQ9knl-8" target="tF5kDbO_WVZEeCOQ9knl-3" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -366,7 +366,7 @@
         <mxCell id="tF5kDbO_WVZEeCOQ9knl-27" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;fontFamily=Verdana;" parent="1" vertex="1">
           <mxGeometry x="-515" y="2060" width="635" height="280" as="geometry" />
         </mxCell>
-        <mxCell id="tF5kDbO_WVZEeCOQ9knl-28" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;4 自适应主动容错方案&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontFamily=Verdana;" parent="1" vertex="1">
+        <mxCell id="tF5kDbO_WVZEeCOQ9knl-28" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;自适应主动容错方案&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontFamily=Verdana;" parent="1" vertex="1">
           <mxGeometry x="-322" y="2060" width="222" height="30" as="geometry" />
         </mxCell>
         <mxCell id="tF5kDbO_WVZEeCOQ9knl-41" value="&lt;span&gt;非中断型训练&lt;/span&gt;&lt;div&gt;故障&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;fontFamily=Verdana;" parent="1" vertex="1">
