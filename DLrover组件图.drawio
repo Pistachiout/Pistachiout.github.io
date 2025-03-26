@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36 SE 2.X MetaSr 1.0" version="26.1.3" pages="10">
   <diagram name="第 1 页" id="Yx-n1sw3S0H9V18orFNg">
-    <mxGraphModel dx="3709" dy="2989" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="3847" dy="3067" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -455,8 +455,8 @@
         </mxCell>
         <mxCell id="tF5kDbO_WVZEeCOQ9knl-109" value="" style="endArrow=classic;html=1;rounded=0;fontSize=13;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="-300" y="2640" as="sourcePoint" />
-            <mxPoint x="300" y="2640" as="targetPoint" />
+            <mxPoint x="-332.5" y="2640" as="sourcePoint" />
+            <mxPoint x="347.5" y="2640" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="tF5kDbO_WVZEeCOQ9knl-110" value="训练至100步" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;" parent="1" vertex="1">
@@ -908,10 +908,10 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="Ne45AfRA7wI3Ql6KxIMk-3" value="断点续训机制" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;" vertex="1" parent="1">
-          <mxGeometry x="-90" y="2680" width="100" height="30" as="geometry" />
+          <mxGeometry x="-62.5" y="2660" width="100" height="30" as="geometry" />
         </mxCell>
         <mxCell id="Ne45AfRA7wI3Ql6KxIMk-6" value="故障" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#FF0F2F;fontSize=13;" vertex="1" parent="1">
-          <mxGeometry x="-110" y="2640" width="60" height="30" as="geometry" />
+          <mxGeometry x="-113.75" y="2630" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="Ne45AfRA7wI3Ql6KxIMk-7" value="" style="endArrow=classic;html=1;rounded=0;fontSize=13;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Ne45AfRA7wI3Ql6KxIMk-9" target="tF5kDbO_WVZEeCOQ9knl-121">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -926,10 +926,10 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="Ne45AfRA7wI3Ql6KxIMk-9" value="容错自愈机制" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;" vertex="1" parent="1">
-          <mxGeometry x="-20" y="2540" width="100" height="30" as="geometry" />
+          <mxGeometry x="-28.75" y="2550" width="100" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Ne45AfRA7wI3Ql6KxIMk-10" value="从100步继续训练" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;" vertex="1" parent="1">
-          <mxGeometry x="180" y="2600" width="110" height="40" as="geometry" />
+        <mxCell id="Ne45AfRA7wI3Ql6KxIMk-10" value="回退至100步继续训练" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="180" y="2600" width="140" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Ne45AfRA7wI3Ql6KxIMk-41" value="" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=0;fontSize=19;strokeWidth=1;" vertex="1" parent="1">
           <mxGeometry x="-1732.29" y="-290" width="610" height="275" as="geometry" />
@@ -1078,7 +1078,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="主动检测组件" id="QR8u8YwjV1s33lQLgm0Y">
-    <mxGraphModel dx="1806" dy="958" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -2198,7 +2198,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="现有GPU容错" id="FTv_hJDWAfc0YIOVPYxC">
-    <mxGraphModel dx="2362" dy="814" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -2679,7 +2679,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="x0adVqVRSrWI8MYka64k" name="级别划分">
-    <mxGraphModel dx="3189" dy="1983" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
